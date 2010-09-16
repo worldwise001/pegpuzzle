@@ -59,6 +59,19 @@ public class PegPuzModel {
 				else
 					return DIRECTION_LEFT;
 			}
+			else //up
+			{
+				if (firstClick >= 9 && firstClick <= 11 && (firstClick-secondClick) == 8)
+					return DIRECTION_UP;
+				if (firstClick >= 16 && firstClick <= 18 && (firstClick-secondClick) == 12)
+					return DIRECTION_UP;
+				if (firstClick >= 21 && firstClick <= 27 && (firstClick-secondClick) == 14)
+					return DIRECTION_UP;
+				if (firstClick >= 28 && firstClick <= 30 && (firstClick-secondClick) == 12)
+					return DIRECTION_UP;
+				if (firstClick >= 31 && firstClick <= 33 && (firstClick-secondClick) == 8)
+					return DIRECTION_UP;
+			}
 		}
 		else if (firstClick < secondClick) //down or right
 		{

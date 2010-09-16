@@ -94,7 +94,31 @@ public class PegPuzModelTest {
 	
 	@Test
 	public void testTypeOfMoveUp() {
+		PegPuzModel model = new PegPuzModel();
 		
+		assertEquals("Move from #10 to #2 should be up",
+				model.checkMoveDirection(10,2),
+				PegPuzModel.DIRECTION_UP);
+		
+		assertEquals("Move from #18 to #6 should be up",
+				model.checkMoveDirection(18,6),
+				PegPuzModel.DIRECTION_UP);
+		
+		assertEquals("Move from #21 to #7 should be up",
+				model.checkMoveDirection(21,7),
+				PegPuzModel.DIRECTION_UP);
+		
+		assertEquals("Move from #28 to #16 should be up",
+				model.checkMoveDirection(28,16),
+				PegPuzModel.DIRECTION_UP);
+		
+		assertEquals("Move from #33 to #25 should be up",
+				model.checkMoveDirection(33,25),
+				PegPuzModel.DIRECTION_UP);
+		
+		assertEquals("Move from #21 to #8 should be invalid",
+				model.checkMoveDirection(21,8),
+				PegPuzModel.DIRECTION_INVALID);
 	}
 	
 }
