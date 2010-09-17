@@ -119,4 +119,32 @@ public class PegPuzModelTest {
 				PegPuzModel.DIRECTION_INVALID);
 	}
 	
+	@Test
+	public void testTypeOfMoveDown() {
+		PegPuzModel model = new PegPuzModel();
+		
+		assertEquals("Move from #2 to #10 should be down",
+				model.checkMoveDirection(2,10),
+				PegPuzModel.DIRECTION_DOWN);
+		
+		assertEquals("Move from #6 to #18 should be down",
+				model.checkMoveDirection(6,18),
+				PegPuzModel.DIRECTION_DOWN);
+		
+		assertEquals("Move from #7 to #21 should be down",
+				model.checkMoveDirection(7,21),
+				PegPuzModel.DIRECTION_DOWN);
+		
+		assertEquals("Move from #16 to #28 should be down",
+				model.checkMoveDirection(16,28),
+				PegPuzModel.DIRECTION_DOWN);
+		
+		assertEquals("Move from #25 to #33 should be down",
+				model.checkMoveDirection(25,33),
+				PegPuzModel.DIRECTION_DOWN);
+		
+		assertEquals("Move from #8 to #21 should be invalid",
+				model.checkMoveDirection(8,21),
+				PegPuzModel.DIRECTION_INVALID);
+	}
 }
