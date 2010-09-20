@@ -1,0 +1,34 @@
+---+ Peg Puzzle and Save the Network Game Application F10
+
+---+++ Application Description
+<verbatim>
+Edit this to describe the basics of the application.
+</verbatim>
+---+++ Source Code
+harbinPegSTN.PegPuzModel, harbinPegSTN.PegPuzModelTest
+
+See the ProgressLog for a report of the stories currently in progress.
+
+---++ 2 Week Iteration (Work Units Budgeted NNN)
+*Status Codes*
+<verbatim>
+S - split, P - in progress, w - waiting for check-off, C - checked-off completed, R - risky?
+N - next (put off to near future), D - discontinued/distant future, U - unclassified
+</verbatim>
+*Priority Scale*
+Lower has more value (10 - High, 30 - Med, 50 - Low)
+
+
+---+++ Initial Stories (modify as needed - link to additional pages for details)
+| *ID* | *Status* |  *Title* | *Description* | *Estimate* | *Priority* |
+| 010 | xxx |  Direct Manipulation | User indicates moves graphically | xxx | xxx |
+| 015 | xxx |  Legal Moves Only | Only legal moves are permitted | xxx | xxx |
+| 020 | xxx |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | xxx | xxx |
+| 025 | xxx |  Pegs Remaining | Keep track and display the number of pegs remaining | xxx | xxx |
+| 030 | xxx |  Game Over Message | Once game has ended, a Game Over message is displayed | xxx | xxx |
+| 035 | xxx |  New Game | User can start a new game at any time | xxx | xxx |
+| 040 | xxx |  Multiple Jumps | Allow multiple jumps in a single turn | xxx | xxx |
+| 045 | xxx |  Attractive Board | Board is displayed with images or graphics (not text) | xxx | xxx |
+| 050 | xxx |  Replay Game | The moves of a game can be reviewed/replayed | xxx | xxx |
+| 055 | xxx |  Take Back | A move can be taken back | xxx | xxx |
+| 060 | xxx |  Demo Mode | Sample Game(s) are played as a demonstration | xxx | xxx |

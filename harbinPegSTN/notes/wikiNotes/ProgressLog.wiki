@@ -1,0 +1,40 @@
+Back to HarbinHome
+
+---+ Development Progress for your group
+
+---+++ Notes
+Put your notes here
+<verbatim>
+To allow you to link to other documents (images etc.) within your project
+in a portable way, each individual should use a wikispace alias for their
+Project home directory. This takes into account that everyone does not use
+the same Eclipse workspace directory on each machine.
+
+The alias you create should be named based upon your repository name
+(in lowercase) followed by the word Home. So if your Repository name
+was "puzzle" your alias would be defined as "puzzleHome". Set this through
+the Eclipse Window ->Preferences dialog for wiki properties.
+
+Under the wikispace section add a new alias.
+Use your alias to link to resources within your repository on wiki pages.
+To keep your links portable, make sure to use this alias any time you
+need to refer to your Eclipse workspace when forming a link address.
+</verbatim>
+puzzleHome:/notes/refactoringNotes
+<verbatim>
+Other commonly used aliases can be constructed in a shared file and placed
+in the repository so all members of the project can share the definitions.
+</verbatim>
+The file should be named *wikispace.properties* and placed in your wikiNotes directory.
+A definition might be projRes=http://www.cs.siu.edu/%7Ewainer/435F10/projRes
+
+This allows you to refer to the board image for instance as (see source):
+projRes:/pegPuzSTNboard.png
+
+---++ Work Log
+
+---++++ Week 1: Tracker: (member acting as this week's tracker)
+
+Accomplishments, discussions of note, links to resources, examples etc.
+Also update the story table back at HarbinHome.
+
