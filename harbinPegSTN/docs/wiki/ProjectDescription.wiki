@@ -1,0 +1,7 @@
+Back to HomePage.
+
+Current project involves making a single model to serve for two games:
+ - PegPuzzle
+ - SaveTheNetwork
+
+ 
