@@ -1,8 +1,10 @@
 package harbinPegSTN;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import java.util.Random;
+import java.awt.Point;
 
 import org.junit.Test;
 
@@ -144,5 +146,13 @@ public class PegPuzModelTest {
 		assertEquals("Move from #8 to #21 should be invalid",
 				model.checkMoveDirection(8,21),
 				PegPuzModel.DIRECTION_INVALID);
+	}
+	
+	@Test
+	public void testPegIDTo2DRepresentation()
+	{
+		PegPuzModel model = new PegPuzModel();
+		
+		Point p = model.pegIDToPoint(1);
 	}
 }

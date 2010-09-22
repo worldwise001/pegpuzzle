@@ -1,5 +1,7 @@
 package harbinPegSTN;
 
+import java.awt.Point;
+
 public class PegPuzModel {
 
 	public static final int CENTER_LOC = 17;
@@ -101,6 +103,12 @@ public class PegPuzModel {
 			}
 		}
 		return DIRECTION_INVALID;
+	}
+
+	public Point pegIDToPoint(int i) {
+		// TODO Auto-generated method stub
+		if (i < 1 || i > 33) return null;
+		return null;
 	}
 	
 
