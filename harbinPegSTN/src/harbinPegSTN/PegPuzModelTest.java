@@ -8,8 +8,6 @@ import org.junit.Test;
 
 
 public class PegPuzModelTest {
-	
-	Random generator = new Random();
 
 	@Test
 	public void testStandardStartingBoard() {
