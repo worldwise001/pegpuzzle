@@ -8,6 +8,7 @@ Edit this to describe the basics of the application.
 harbinPegSTN.PegPuzModel, harbinPegSTN.PegPuzModelTest
 
 See the ProgressLog for a report of the stories currently in progress.
+Here is a list of the current JUnit Tests the program has passed: puzzleHome:/junitReport/index.html
 
 ---++ 2 Week Iteration (Work Units Budgeted NNN)
 *Status Codes*

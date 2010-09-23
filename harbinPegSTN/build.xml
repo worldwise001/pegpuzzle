@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- build.xml, for Ant to compile Java sources, cs435 Wainer -->
 <project basedir="." default="compile">
+	<property file="local.properties" />
 	<property name="build.dir" value="build" />
 	<property name="dist.dir" value="${build.dir}/dist" />
 	<property name="src.dir" value="src" />
+	<property name="junit.output.dir" value="junitReport" />
 	<target description="Creates temporary directories" name="init">
 		<mkdir dir="${build.dir}/classes" />
 		<mkdir dir="${dist.dir}" />
@@ -13,6 +15,9 @@
 	</target>
 	<target name="compile" depends="init">
 		<javac debug="true" deprecation="true" fork="true" destdir="${build.dir}/classes" srcdir="${src.dir}" verbose="true">
+			<classpath>
+				<pathelement location="${junitJar}" />
+			</classpath>
 		</javac>
 	</target>
 	<target name="run" depends="compile" description="Run the Application">
@@ -22,5 +27,30 @@
 				<pathelement location="${build.dir}/.." />
 			</classpath>
 		</java>
+	</target>
+	<target name="junit tests" depends="compile" description="Execute Unit Tests">
+		<mkdir dir="${junit.output.dir}" />
+		<junit fork="yes" forkmode="once" printsummary="withOutAndErr">
+			<classpath>
+				<pathelement location="${junitJar}" />
+				<pathelement location="${hamcrestJar}" />
+				<pathelement location="${build.dir}/classes" />
+			</classpath>
+			<formatter type="xml" />
+			<batchtest todir="${junit.output.dir}">
+				<fileset dir="${src.dir}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="junitreport" depends="junit tests" description="Generate Report as HTML">
+		<junitreport todir="${junit.output.dir}">
+			<fileset dir="${junit.output.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${junit.output.dir}" />
+		</junitreport>
 	</target>
 </project>
