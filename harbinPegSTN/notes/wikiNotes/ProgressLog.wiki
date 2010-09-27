@@ -33,7 +33,11 @@ projRes:/pegPuzSTNboard.png
 
 ---++ Work Log
 
----++++ Week 1: Tracker: (member acting as this week's tracker)
+---++++ Week 1: Tracker: [[Sarah Harvey]]
+ * Developers setting up initial wikispace
+ * Refactoring test and board backend
+ 
+---++++ Week 2: Tracker: ???
 
 Accomplishments, discussions of note, links to resources, examples etc.
 Also update the story table back at HarbinHome.
