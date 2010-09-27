@@ -6,10 +6,20 @@ A small team of network administrators try to hold of an attack by a multitude o
 ---+++ Notes
 
    * Uses a common [[Game Board]]
-   * Uses all lines on the Game Board.
+      * Uses all lines on the Game Board.
    * Color (blue) is used to help distinguish the Network from the rest of the notes
    * Two-player game
    * White tokens acting as the network administrator side
    * Black tokens acting as the evil bots trying to take control of the network
 
 ---+++ Rules
+   
+   1. White must place its 2 tokens within the network (Blue region).
+   1. Black occupies the 24 nodes outside of the network.
+   1. White moves first.
+   1. Possible white moves are:
+      a. A token is moved one node away in any direction
+      a. Jump a Bot if an adjacent location is occupied by a Bot and the following location is empty. The jumped Bot is removed with the jumping white token placed in the empty node 2 positions away from the starting location (like in [[Peg Puzzle]]). Multiple jumps may be strung together in one turn.
+      a. If a jump was available and white does not jump at least one Bot, then one white which could have jumped, is removed.
+   1. White wins if at least 18 bots have been captured.
+   1. Black moves one token in any forward or sideways direction. To win, Black tries to occupy every location within the Network (blue region) or trap the White tokens so they cannot move. Bots cannot jump and cannot move backwards.

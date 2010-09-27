@@ -34,7 +34,8 @@ projRes:/pegPuzSTNboard.png
 ---++ Work Log
 
 ---++++ Week 1: Tracker: [[Sarah Harvey]]
-   * Developers setting up initial wikispace
+   * Setting up initial wikispace
+   * Filling in estimates
    * Refactoring test and board backend
  
 ---++++ Week 2: Tracker: ???
