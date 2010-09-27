@@ -2,6 +2,6 @@ Back to HarbinHome
 
 015: Only allow legal moves
 
-Estimatation 6 hours. 
+Estimation 6 hours. 
 Dependency: None.
 Status: Next
