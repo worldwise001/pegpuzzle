@@ -1,0 +1,7 @@
+Back to HarbinHome
+
+010: User indicates moves graphically
+
+Applies to both [[Peg Puzzle]] and [[Save The Network]] games.
+
+---

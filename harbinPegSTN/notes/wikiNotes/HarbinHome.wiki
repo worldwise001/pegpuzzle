@@ -21,15 +21,15 @@ Lower has more value (10 - High, 30 - Med, 50 - Low)
 
 
 ---+++ Initial Stories (modify as needed - link to additional pages for details)
-| *ID* | *Status* |  *Title* | *Description* | *Estimate* | *Priority* |
-| 010 | xxx |  Direct Manipulation | User indicates moves graphically | xxx | xxx |
-| 015 | xxx |  Legal Moves Only | Only legal moves are permitted | xxx | xxx |
-| 020 | xxx |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | xxx | xxx |
-| 025 | xxx |  Pegs Remaining | Keep track and display the number of pegs remaining | xxx | xxx |
-| 030 | xxx |  Game Over Message | Once game has ended, a Game Over message is displayed | xxx | xxx |
-| 035 | xxx |  New Game | User can start a new game at any time | xxx | xxx |
-| 040 | xxx |  Multiple Jumps | Allow multiple jumps in a single turn | xxx | xxx |
-| 045 | xxx |  Attractive Board | Board is displayed with images or graphics (not text) | xxx | xxx |
-| 050 | xxx |  Replay Game | The moves of a game can be reviewed/replayed | xxx | xxx |
-| 055 | xxx |  Take Back | A move can be taken back | xxx | xxx |
-| 060 | xxx |  Demo Mode | Sample Game(s) are played as a demonstration | xxx | xxx |
+| *ID* | *Status* |  *Title* | *Description* | *Estimate* | *Priority* | *Dependencies* |
+| [[010]] | N |  Direct Manipulation | User indicates moves graphically | 3h | xxx | - |
+| 015 | P |  Legal Moves Only | Only legal moves are permitted | 6h | xxx | - |
+| 020 | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2h | xxx | 015 |
+| 025 | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2h | xxx | - |
+| 030 | N |  Game Over Message | Once game has ended, a Game Over message is displayed | 8h | xxx | 015 |
+| 035 | N |  New Game | User can start a new game at any time | 2h | xxx | - |
+| 040 | R |  Multiple Jumps | Allow multiple jumps in a single turn | ??? | xxx | 030 |
+| 045 | N |  Attractive Board | Board is displayed with images or graphics (not text) | 3h | xxx | - |
+| 050 | N |  Replay Game | The moves of a game can be reviewed/replayed | 5h | xxx | - |
+| 055 | N |  Take Back | A move can be taken back | 3h | xxx | 050 |
+| 060 | N |  Demo Mode | Sample Game(s) are played as a demonstration | 2h | xxx | 050 |
