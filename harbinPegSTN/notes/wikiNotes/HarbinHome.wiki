@@ -27,13 +27,13 @@ in a 2-week iteration -> 18 units
 | *ID* | *Status* |  *Title* | *Description* | *Estimate* | *Priority* | *Dependencies* |
 | [[010]] | N |  Direct Manipulation | User indicates moves graphically | 3 | xxx | - |
 | [[015]] | P |  Legal Moves Only | Only legal moves are permitted | 6 | xxx | - |
-| 020 | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | xxx | 015 |
-| 025 | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | xxx | - |
-| 030 | N |  Game Over Message | Once game has ended, a Game Over message is displayed | 8 | xxx | 015 |
-| 035 | N |  New Game | User can start a new game at any time | 2 | xxx | - |
-| 040 | R |  Multiple Jumps | Allow multiple jumps in a single turn | ??? | xxx | 030 |
-| 045 | N |  Attractive Board | Board is displayed with images or graphics (not text) | 3 | xxx | - |
-| 050 | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | xxx | - |
-| 055 | N |  Take Back | A move can be taken back | 3 | xxx | 050 |
-| 060 | N |  Demo Mode | Sample Game(s) are played as a demonstration | 2 | xxx | 050 |
+| [[020]] | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | xxx | 015 |
+| [[025]] | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | xxx | - |
+| [[030]] | N |  Game Over Message | Once game has ended, a Game Over message is displayed | 8 | xxx | 015 |
+| [[035]] | N |  New Game | User can start a new game at any time | 2 | xxx | - |
+| [[040]] | R |  Multiple Jumps | Allow multiple jumps in a single turn | ??? | xxx | 030 |
+| [[045]] | N |  Attractive Board | Board is displayed with images or graphics (not text) | 3 | xxx | - |
+| [[050]] | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | xxx | - |
+| [[055]] | N |  Take Back | A move can be taken back | 3 | xxx | 050 |
+| [[060]] | N |  Demo Mode | Sample Game(s) are played as a demonstration | 2 | xxx | 050 |
 | TOTAL | | | | 36 | | |
