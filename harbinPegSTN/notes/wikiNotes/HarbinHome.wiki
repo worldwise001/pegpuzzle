@@ -1,14 +1,12 @@
 ---+ Peg Puzzle and Save the Network Game Application F10
 
 ---+++ Application Description
-<verbatim>
-Edit this to describe the basics of the application.
-</verbatim>
----+++ Source Code
-harbinPegSTN.PegPuzModel, harbinPegSTN.PegPuzModelTest
+Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games in CS435 for Fall 2010.
 
-See the ProgressLog for a report of the stories currently in progress.
-Here is a list of the current JUnit Tests the program has passed: puzzleHome:/junitReport/index.html
+---+++ Development Status
+   * [[Source File Hierarchy]]
+   * [[Progress Log]]
+   * JUnit Test Status: puzzleHome:/junitReport/index.html 
 
 ---++ 2 Week Iteration (Work Units Budgeted NNN)
 *Status Codes*
