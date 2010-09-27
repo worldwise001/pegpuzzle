@@ -5,3 +5,7 @@ Back to HarbinHome
 Applies to both [[Peg Puzzle]] and [[Save The Network]] games.
 
 ---
+Description: User indicates moves graphically. 
+Estimation: 3 units.
+Dependency: None.
+Status: Next.

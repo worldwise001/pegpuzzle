@@ -1,0 +1,8 @@
+back HarinHome
+
+020 Move Feedback 
+---
+Description: If an illegal move is attempted, a helpful message is displayed.
+Estimation: 2 hours. 
+Dependency: 015 Legal Moves Only.
+Status: Next.

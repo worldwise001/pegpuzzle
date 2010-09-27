@@ -1,7 +1,8 @@
 Back to HarbinHome
 
 015: Only allow legal moves
-
-Estimation 6 hours. 
+---
+Description: Only legal moves are permitted.
+Estimation: 6 units. 
 Dependency: None.
-Status: Next
+Status: Next.

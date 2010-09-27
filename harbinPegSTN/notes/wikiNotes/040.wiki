@@ -1,0 +1,8 @@
+back HarbinHome
+
+040  Multiple Jumps
+---
+Description: Allow multiple jumps in a single turn.[need to talk with customer to clarify the requirement.]
+Estimation: Unknown.
+Dependency: 030
+Status: Risky.  

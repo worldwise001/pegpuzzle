@@ -1,0 +1,8 @@
+back HarbinHome
+
+030 Game Over Message
+---
+Description:Once game has ended, a Game Over message is displayed. Focus on the model part.
+Estimation: 8 unit.
+Dependency: 015.
+Status: Next.

@@ -1,0 +1,8 @@
+back HarbinHome
+
+045  Attractive Board 
+---
+Description: Board is displayed with images or graphics (not text).
+Estimation:  3 units.
+Dependency: None.
+Status: Next.  

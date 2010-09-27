@@ -1,0 +1,8 @@
+back HarbinHome
+
+060 Demo Mode
+---
+Description: Sample Game(s) are played as a demonstration.
+Estimation:2 units.
+Dependency: [[050]]
+Status: Next.  

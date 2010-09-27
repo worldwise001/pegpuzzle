@@ -1,0 +1,8 @@
+back HarbinHome
+
+025 Pegs Remaining 
+---
+Description: Keep track and display the number of pegs remaining 
+Estimation: 2 units. 
+Dependency: None.
+Status: Next.
