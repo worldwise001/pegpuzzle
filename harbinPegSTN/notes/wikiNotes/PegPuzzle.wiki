@@ -1,1 +1,10 @@
-Back to 010
+Back to HarbinHome
+
+---+++ Description
+The puzzle starts with every peg occupied but the center. To make a move, a peg must be jumped and removed. The goal is to finish with fewest remaining pegs possible (ideally 1). No special marking or coloring of the board is needed.
+
+---+++ Notes
+
+   * Uses a common [[Game Board]]
+   * Uses only the vertical and horizontal lines in the Game Board
+   * May use tokens of the same color

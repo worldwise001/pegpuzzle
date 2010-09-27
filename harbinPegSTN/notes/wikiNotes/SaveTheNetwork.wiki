@@ -1,1 +1,15 @@
 Back to HarbinHome
+
+---+++ Description
+A small team of network administrators try to hold of an attack by a multitude of evil bots!
+
+---+++ Notes
+
+   * Uses a common [[Game Board]]
+   * Uses all lines on the Game Board.
+   * Color (blue) is used to help distinguish the Network from the rest of the notes
+   * Two-player game
+   * White tokens acting as the network administrator side
+   * Black tokens acting as the evil bots trying to take control of the network
+
+---+++ Rules
