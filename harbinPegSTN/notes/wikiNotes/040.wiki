@@ -5,4 +5,12 @@ back HarbinHome
 Description: Allow multiple jumps in a single turn.[need to talk with customer to clarify the requirement.]
 Estimation: Unknown.
 Dependency: 030
-Status: Risky.  
+Status: Risky.
+
+---++++ After meeting with customer...
+   * Used primarily for [[Save The Network]]
+   * Theoretically unlimited
+   * Used for convenience (less incessant clicking)
+
+---++++ Developer Notes
+   * For [[Peg Puzzle]], just keep button depressed when move has been made, regardless of whether additional moves can be made
