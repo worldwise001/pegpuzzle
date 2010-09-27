@@ -1,0 +1,15 @@
+Back to HarbinHome
+
+Information on the common Game Board for both [[Peg Puzzle]] and [[Save The Network]] games.
+
+---
+
+projRes:/pegPuzSTNboard.png
+
+---++++ Notes
+
+   * Blue area marks the network (STN)
+   * Orange area marks bots (STN)
+   * Diagonal moves are not used in Peg Puzzle
+   * Peg Puzzle starts with the board filled with pegs, except for center peg (17)
+   * Numbering system is set by the user
