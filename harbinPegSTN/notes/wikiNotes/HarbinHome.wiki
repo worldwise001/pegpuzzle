@@ -8,7 +8,7 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
    * [[Progress Log]]
    * JUnit Test Status: puzzleHome:/junitReport/index.html 
 
----++ 2 Week Iteration (Work Units Budgeted NNN)
+---++ 2 Week Iteration (Work Units Budgeted - 18 units)
 *Status Codes*
 <verbatim>
 S - split, P - in progress, w - waiting for check-off, C - checked-off completed, R - risky?
