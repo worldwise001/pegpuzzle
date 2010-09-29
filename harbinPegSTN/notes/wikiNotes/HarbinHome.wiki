@@ -20,25 +20,26 @@ Lower has more value (10 - High, 30 - Med, 50 - Low)
 1 unit = 1 hour
 in a 2-week iteration -> 18 units
 (class-time 4 unit/wk)
-(pair programming 6 unit/wk - MWF 3PM)
-(single programming 4 unit/wk)
+(pair programming 3 unit/wk - MWF 3PM)
+(single programming 2 unit/wk)
 
 ---+++ Initial Stories (modify as needed - link to additional pages for details)
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
 | [[010]] | N |  Direct Manipulation | User indicates moves graphically | 3 | 3 | xxx | - | 1 |
-| [[015]] | S |  Legal Moves Only | Only legal moves are permitted | - | - | xxx | - | 1 |
-| [[016]] | P |  Legal Moves Only | Peg Puzzle Legal Moves | 2 | 3 | xxx | - | 1 |
-| [[017]] | N |  Legal Moves Only | Save The Network | 1 | 3 | xxx | - | 1 |
+| [[015]] | S |  Legal Moves | Only legal moves are permitted | - | - | xxx | 016,017 | 1 |
+| [[016]] | P |  Legal Moves | Peg Puzzle Legal Moves | 2 | 3 | xxx | - | 1 |
+| [[017]] | N |  Legal Moves | Save The Network | 1 | 3 | xxx | - | 1 |
 | [[020]] | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | 2 | xxx | 015 | 1 |
 | [[025]] | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | 2 | xxx | - | 1 |
-| [[030]] | N |  Game Over Message | Once game has ended, a Game Over message is displayed | 8 | 8 | xxx | 015 | 1 |
+| [[030]] | N |  Game Over Message | Once game has ended, a Game Over message is displayed | - | - | xxx | 031,032 | 1 |
+| [[031]] | N |  Game Over Message | Determine Game Over when Peg Puzzle game has ended | 4 | 4 | xxx | 015 | 1 |
+| [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 4 | 4 | xxx | 015 | 1 |
 | [[035]] | N |  New Game | User can start a new game at any time | 2 | 2 | xxx | - | 1 |
 | [[040]] | R |  Multiple Jumps | Allow multiple jumps in a single turn | ??? | ??? | xxx | 030 | 1 |
 | [[045]] | N |  Attractive Board | Board is displayed with images or graphics (not text) | 3 | 3 | xxx | - | 1 |
 | [[050]] | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | 5 | xxx | - | 1 |
 | [[055]] | N |  Take Back | A move can be taken back | 3 | 3 | xxx | 050 | 1 |
 | [[060]] | N |  Demo Mode | Sample Game(s) are played as a demonstration | 3 | 2 | xxx | 050 | 1 |
-
 | [[100]] | N |  White setup | Allow white to position for start | - | - | xxx | - | |
 | [[105]] | N |  Enforce turns | Enforce/indicate White/Black turn-taking | - | - | xxx | - | |
 | [[110]] | N |  White legal moves | Permit valid white moves | - | - | xxx | - | |
