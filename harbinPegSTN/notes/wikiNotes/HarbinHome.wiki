@@ -31,7 +31,7 @@ in a 2-week iteration -> 18 units
 | [[017]] | N |  Legal Moves | Save The Network | 1 | 3 | xxx | - | 1 |
 | [[020]] | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | 2 | xxx | 015 | 1 |
 | [[025]] | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | 2 | xxx | - | 1 |
-| [[030]] | N |  Game Over Message | Once game has ended, a Game Over message is displayed | - | - | xxx | 031,032 | 1 |
+| [[030]] | S |  Game Over Message | Once game has ended, a Game Over message is displayed | - | - | xxx | 031,032 | 1 |
 | [[031]] | N |  Game Over Message | Determine Game Over when Peg Puzzle game has ended | 4 | 4 | xxx | 015 | 1 |
 | [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 4 | 4 | xxx | 015 | 1 |
 | [[035]] | N |  New Game | User can start a new game at any time | 2 | 2 | xxx | - | 1 |
