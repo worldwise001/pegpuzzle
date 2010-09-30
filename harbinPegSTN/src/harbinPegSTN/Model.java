@@ -3,17 +3,20 @@ package harbinPegSTN;
 import java.awt.Point;
 
 public class Model {
+	
+	public enum Peg { NONE, NORMAL, WHITE, BLACK, BLANK, INVALID };
 
-	public static final int CENTER_LOC = 17;
-
-	private boolean[] pegs;
+	private Peg[][] pegs;
 
 	public Model() {
-		pegs = new boolean[34];
-		for (int i = 1; i < pegs.length; i++) {
-			pegs[i] = true;
+		pegs = new Peg[7][7];
+		for (int i = 0; i < pegs.length; i++) {
+			for (int j = 0; j < pegs[i].length; j++) {
+				if ((i < 2 && j < 2) || (i < 2 && j > 4) || (i > 4 && j < 2) || (i > 4 && j > 4)) pegs[i][j] = Peg.BLANK;
+				else pegs[i][j] = Peg.NONE;
+			}
 		}
-		pegs[CENTER_LOC] = false;
+		
 	}
 
 	public int size() {
@@ -21,25 +24,25 @@ public class Model {
 		return pegs.length;
 	}
 
-	public boolean isPegAtLocation(int loc) {
-		if (loc < 1 || loc > 33)
-			return false;
-		return pegs[loc];
-	}
-
-	public boolean movePeg(int firstClick, int secondClick) {
-		// TODO Auto-generated method stub
-		if (secondClick == firstClick + 2) {
-			if (pegs[firstClick] && pegs[firstClick + 1]
-					&& !pegs[firstClick + 2]) {
-				pegs[firstClick+2] = true;
-				pegs[firstClick] = false;
-				pegs[firstClick+1] = false;
-				return true;
-			}
-		}
-		return false;
-	}
+//	public boolean isPegAtLocation(int loc) {
+//		if (loc < 1 || loc > 33)
+//			return false;
+//		return pegs[loc];
+//	}
+//
+//	public boolean movePeg(int firstClick, int secondClick) {
+//		// TODO Auto-generated method stub
+//		if (secondClick == firstClick + 2) {
+//			if (pegs[firstClick] && pegs[firstClick + 1]
+//					&& !pegs[firstClick + 2]) {
+//				pegs[firstClick+2] = true;
+//				pegs[firstClick] = false;
+//				pegs[firstClick+1] = false;
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 	public Point pegIDToPoint(int i) {
 		if (i < 1 || i > 33) return null;
