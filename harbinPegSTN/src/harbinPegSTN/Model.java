@@ -43,6 +43,11 @@ public class Model {
 //		}
 //		return false;
 //	}
+	
+	public void setPegAt(Peg p, int i) {
+		Point pt = pegIDToPoint(i);
+		pegs[pt.x][pt.y] = p;
+	}
 
 	public Point pegIDToPoint(int i) {
 		if (i < 1 || i > 33) return null;
