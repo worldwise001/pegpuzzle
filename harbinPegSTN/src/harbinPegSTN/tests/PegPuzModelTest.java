@@ -1,8 +1,10 @@
-package harbinPegSTN;
+package harbinPegSTN.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import harbinPegSTN.PegPuzModel;
 
 import java.awt.Point;
 

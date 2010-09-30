@@ -106,7 +106,6 @@ public class PegPuzModel {
 	}
 
 	public Point pegIDToPoint(int i) {
-		// TODO Auto-generated method stub
 		if (i < 1 || i > 33) return null;
 		Point p = new Point();
 		if (i >= 1 && i <= 6)
