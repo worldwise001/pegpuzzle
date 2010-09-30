@@ -1,5 +1,8 @@
 package harbinPegSTN;
 
-public class SaveTheNetworkModel {
+public class SaveTheNetworkModel extends Model{
 
+	public SaveTheNetworkModel(){
+		super();
+	}
 }
