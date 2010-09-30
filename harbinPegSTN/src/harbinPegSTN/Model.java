@@ -6,7 +6,7 @@ public class Model {
 	
 	public enum Peg { NONE, NORMAL, WHITE, BLACK, BLANK, INVALID };
 
-	private Peg[][] pegs;
+	protected Peg[][] pegs;
 
 	public Model() {
 		pegs = new Peg[7][7];
