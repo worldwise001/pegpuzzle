@@ -8,9 +8,9 @@ public class PegPuzzleModel extends Model{
 	 */
 	public PegPuzzleModel(){
 		super();
-		for(int i=1;i<33;i++){
+		for(int i=1;i<=33;i++){
 			super.setPegAt(Peg.NORMAL, i);
 		}
-		setPegAt(Peg.BLANK,CENTER_LOC);
+		setPegAt(Peg.NONE,CENTER_LOC);
 	}
 }

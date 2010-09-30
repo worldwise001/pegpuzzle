@@ -55,8 +55,8 @@ public class Model {
 		Point p = new Point();
 		if (i >= 1 && i <= 6)
 		{
-			p.x = i/3;
-			p.y = (i%3)+1;
+			p.x = (i-1)/3;
+			p.y = ((i-1)%3)+2;
 		}
 		else if (i >= 7 && i <= 27)
 		{
@@ -65,8 +65,8 @@ public class Model {
 		}
 		else
 		{
-			p.x = (i/3)-4;
-			p.y = (i%3)+1;
+			p.x = ((i-1)/3)-4;
+			p.y = ((i-1)%3)+2;
 		}
 		return p;
 	}
