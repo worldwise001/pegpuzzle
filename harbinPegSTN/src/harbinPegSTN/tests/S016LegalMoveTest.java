@@ -26,6 +26,17 @@ public class S016LegalMoveTest {
 		model = new PegPuzzleModel();
 	}
 	
+	@Test
+	public void testStartingBoard() {
+		for (int loc = 1; loc < 34; loc++)
+		{
+			if (loc != PegPuzzleModel.CENTER_LOC)
+				assertTrue("Initially should be a peg here: "+loc, model.isPegAtLocation(loc));
+			else
+				assertFalse("Initially, should not be a peg here: "+loc, model.isPegAtLocation(loc));
+		}
+	}
+	
 //	@Test
 //	public void testStandardStartingBoard() {
 //		model = new Model();

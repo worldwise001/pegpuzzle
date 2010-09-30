@@ -24,11 +24,12 @@ public class Model {
 		return pegs.length;
 	}
 
-//	public boolean isPegAtLocation(int loc) {
-//		if (loc < 1 || loc > 33)
-//			return false;
-//		return pegs[loc];
-//	}
+	public boolean isPegAtLocation(int loc) {
+		if (loc < 1 || loc > 33)
+			return false;
+		Point pt = pegIDToPoint(loc);
+		return (pegs[pt.x][pt.y] != Peg.INVALID) && (pegs[pt.x][pt.y] != Peg.NONE); 
+	}
 //
 //	public boolean movePeg(int firstClick, int secondClick) {
 //		// TODO Auto-generated method stub
