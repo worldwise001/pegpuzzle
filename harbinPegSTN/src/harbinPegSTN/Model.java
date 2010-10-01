@@ -98,37 +98,43 @@ public class Model {
 	}
 
 	public int getMiddlePeg(int loc1, int loc2, boolean allowDiag) {
+		Point p = getMiddlePeg(pegIDToPoint(loc1), pegIDToPoint(loc2), allowDiag);
+		if (p == null) return -1;
+		return pointToPegID(p.x, p.y);
+	}
+	
+	public Point getMiddlePeg(Point p1, Point p2)
+	{
+		return getMiddlePeg(p1, p2, false);
+	}
+	
+	public Point getMiddlePeg(Point p1, Point p2, boolean allowDiag)
+	{
 		Point mid=new Point();
-		int midLoc=0;
-		Point fPt=pegIDToPoint(loc1);
-		Point sPt=pegIDToPoint(loc2);
-		if(Math.abs(fPt.x-sPt.x)==2 && fPt.y==sPt.y)
+		if(Math.abs(p1.x-p2.x)==2 && p1.y==p2.y)
 		{
-			mid.y=fPt.y;
-			if(fPt.x>sPt.x)
-				mid.x=fPt.x-1;
+			mid.y=p1.y;
+			if(p1.x>p2.x)
+				mid.x=p1.x-1;
 			else
-				mid.x=fPt.x+1;
-			midLoc=pointToPegID(mid.x, mid.y);  
-			return midLoc;
+				mid.x=p1.x+1;
+			return mid;
 		}
-		if(Math.abs(fPt.y-sPt.y)==2 && fPt.x==sPt.x)
+		if(Math.abs(p1.y-p2.y)==2 && p1.x==p2.x)
 		{
-			mid.x=fPt.x;
-			if(fPt.y>sPt.y)
-				mid.y=fPt.y-1;
+			mid.x=p1.x;
+			if(p1.y>p2.y)
+				mid.y=p1.y-1;
 			else
-				mid.y=fPt.y+1;
-			midLoc=pointToPegID(mid.x, mid.y);  
-			return midLoc;
+				mid.y=p1.y+1;
+			return mid;
 		}
-		if(allowDiag && Math.abs(fPt.x-sPt.x)==2 && Math.abs(fPt.y-sPt.y)==2){
-			mid.x=(fPt.x>sPt.x)?(fPt.x-1):(fPt.x+1);
-			mid.y=(fPt.y>sPt.y)?(fPt.y-1):(fPt.y+1);
-			midLoc=pointToPegID(mid.x, mid.y);  
-			return midLoc;
+		if(allowDiag && Math.abs(p1.x-p2.x)==2 && Math.abs(p1.y-p2.y)==2){
+			mid.x=(p1.x>p2.x)?(p1.x-1):(p1.x+1);
+			mid.y=(p1.y>p2.y)?(p1.y-1):(p1.y+1);
+			return mid;
 		}
-		return -1;
+		return null;
 	}
 
 
