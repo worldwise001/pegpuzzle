@@ -25,9 +25,12 @@ public class Model {
 	}
 
 	public boolean isPegAtLocation(int loc) {
-		if (loc < 1 || loc > 33)
-			return false;
+		if (loc < 1 || loc > 33) return false;
 		Point pt = pegIDToPoint(loc);
+		return isPegAtLocation(pt); 
+	}
+	
+	public boolean isPegAtLocation(Point pt) {
 		return (pegs[pt.x][pt.y] != Peg.INVALID) && (pegs[pt.x][pt.y] != Peg.NONE); 
 	}
 
@@ -35,6 +38,10 @@ public class Model {
 		if (loc < 1 || loc > 33)
 			return Peg.INVALID;
 		Point pt = pegIDToPoint(loc);
+		return getPeg(pt); 
+	}
+	
+	public Peg getPeg(Point pt) {
 		if (pegs[pt.x][pt.y] == null) return Peg.INVALID;
 		return pegs[pt.x][pt.y]; 
 	}
