@@ -57,5 +57,17 @@ public class S015LegalMoveTest {
 		assertEquals("Peg between 9 and 25 should be -1 (disallow diag)", -1, model.getMiddlePeg(9, 25));
 		assertEquals("Peg between 9 and 30 should be -1", -1, model.getMiddlePeg(9, 30));
 	}
+	
+	@Test
+	public void testCheckJump()
+	{
+		
+	}
+	
+	@Test
+	public void testCheckHop()
+	{
+		
+	}
 
 }
