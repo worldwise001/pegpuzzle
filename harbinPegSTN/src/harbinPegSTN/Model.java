@@ -19,11 +19,6 @@ public class Model {
 
 	}
 
-	public int size() {
-		// TODO Auto-generated method stub
-		return pegs.length;
-	}
-
 	public boolean isPegAtLocation(int loc) {
 		if (loc < 1 || loc > 33) return false;
 		Point pt = pegIDToPoint(loc);
@@ -143,6 +138,28 @@ public class Model {
 		}
 		return null;
 	}
-
-
+	
+	public boolean checkJump(Point p1, Point p2)
+	{
+		return checkJump(p1, p2, false);
+	}
+	
+	public boolean checkJump(Point p1, Point p2, boolean allowDiag)
+	{
+		Point mid = getMiddlePeg(p1, p2, allowDiag);
+		return mid != null;
+	}
+	
+	public boolean checkHop(Point p1, Point p2)
+	{
+		return checkHop(p1, p2, false);
+	}
+	
+	public boolean checkHop(Point p1, Point p2, boolean allowDiag)
+	{
+		return ((Math.abs(p1.x - p2.x) == 1 && p1.y == p2.y) ||
+				(Math.abs(p1.y - p2.y) == 1 && p1.x == p2.x) ||
+				(allowDiag && Math.abs(p1.y - p2.y) == 1 && (Math.abs(p1.x - p2.x) == 1)));
+	}
+	
 }
