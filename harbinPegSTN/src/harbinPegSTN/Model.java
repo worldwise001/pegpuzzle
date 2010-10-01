@@ -162,4 +162,10 @@ public class Model {
 				(allowDiag && Math.abs(p1.y - p2.y) == 1 && (Math.abs(p1.x - p2.x) == 1)));
 	}
 	
+	//please reimplement this!
+	public boolean makeMove(int loc1, int loc2)
+	{
+		return false;
+	}
+	
 }
