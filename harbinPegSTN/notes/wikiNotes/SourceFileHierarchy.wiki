@@ -1,5 +1,11 @@
 Back to HarbinHome
 
 ---++++ package <verbatim>harbinPegSTN</verbatim>
-   * harbinPegSTN.PegPuzModel
-   * harbinPegSTN.PegPuzModelTest
+   * harbinPegSTN.Model
+   * harbinPegSTN.PegPuzzleModel
+   * harbinPegSTN.SaveTheNetworkModel
+   
+---++++ package <verbatim>harbinPegSTN.tests</verbatim>
+   * harbinPegSTN.tests.S016LegalMoveTest
+   * harbinPegSTN.tests.S017LegalMoveTest
+   * harbinPegSTN.tests.S040MultipleJumpTest
