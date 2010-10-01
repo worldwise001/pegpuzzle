@@ -53,7 +53,8 @@ public class S015LegalMoveTest {
 	public void testMiddlePeg()
 	{
 		assertEquals("Peg between 18 and 16 should be 17", 17, model.getMiddlePeg(18, 16));
-		assertEquals("Peg between 9 and 25 should be 17", 17, model.getMiddlePeg(9, 25));
+		assertEquals("Peg between 9 and 25 should be 17 (allow diag)", 17, model.getMiddlePeg(9, 25, true));
+		assertEquals("Peg between 9 and 25 should be -1 (disallow diag)", -1, model.getMiddlePeg(9, 25));
 		assertEquals("Peg between 9 and 30 should be -1", -1, model.getMiddlePeg(9, 30));
 	}
 

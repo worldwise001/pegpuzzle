@@ -91,8 +91,13 @@ public class Model {
 			id = (y-1)+(x+4)*3;
 		return id;
 	}
+	
+	public int getMiddlePeg(int loc1, int loc2)
+	{
+		return getMiddlePeg(loc1, loc2, false);
+	}
 
-	public int getMiddlePeg(int loc1, int loc2) {
+	public int getMiddlePeg(int loc1, int loc2, boolean allowDiag) {
 		Point mid=new Point();
 		int midLoc=0;
 		Point fPt=pegIDToPoint(loc1);
@@ -117,7 +122,7 @@ public class Model {
 			midLoc=pointToPegID(mid.x, mid.y);  
 			return midLoc;
 		}
-		if(Math.abs(fPt.x-sPt.x)==2&& Math.abs(fPt.y-sPt.y)==2){
+		if(allowDiag && Math.abs(fPt.x-sPt.x)==2 && Math.abs(fPt.y-sPt.y)==2){
 			mid.x=(fPt.x>sPt.x)?(fPt.x-1):(fPt.x+1);
 			mid.y=(fPt.y>sPt.y)?(fPt.y-1):(fPt.y+1);
 			midLoc=pointToPegID(mid.x, mid.y);  
