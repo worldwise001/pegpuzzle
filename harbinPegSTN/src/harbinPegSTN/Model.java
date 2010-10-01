@@ -3,7 +3,7 @@ package harbinPegSTN;
 import java.awt.Point;
 
 public class Model {
-	
+
 	public enum Peg { NONE, NORMAL, WHITE, BLACK, BLANK, INVALID };
 
 	protected Peg[][] pegs;
@@ -16,7 +16,7 @@ public class Model {
 				else pegs[i][j] = Peg.NONE;
 			}
 		}
-		
+
 	}
 
 	public int size() {
@@ -30,7 +30,7 @@ public class Model {
 		Point pt = pegIDToPoint(loc);
 		return (pegs[pt.x][pt.y] != Peg.INVALID) && (pegs[pt.x][pt.y] != Peg.NONE); 
 	}
-	
+
 	public Peg getPeg(int loc) {
 		if (loc < 1 || loc > 33)
 			return Peg.INVALID;
@@ -38,22 +38,22 @@ public class Model {
 		if (pegs[pt.x][pt.y] == null) return Peg.INVALID;
 		return pegs[pt.x][pt.y]; 
 	}
-	
-//
-//	public boolean movePeg(int firstClick, int secondClick) {
-//		// TODO Auto-generated method stub
-//		if (secondClick == firstClick + 2) {
-//			if (pegs[firstClick] && pegs[firstClick + 1]
-//					&& !pegs[firstClick + 2]) {
-//				pegs[firstClick+2] = true;
-//				pegs[firstClick] = false;
-//				pegs[firstClick+1] = false;
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-	
+
+	//
+	//	public boolean movePeg(int firstClick, int secondClick) {
+	//		// TODO Auto-generated method stub
+	//		if (secondClick == firstClick + 2) {
+	//			if (pegs[firstClick] && pegs[firstClick + 1]
+	//					&& !pegs[firstClick + 2]) {
+	//				pegs[firstClick+2] = true;
+	//				pegs[firstClick] = false;
+	//				pegs[firstClick+1] = false;
+	//				return true;
+	//			}
+	//		}
+	//		return false;
+	//	}
+
 	public void setPegAt(Peg p, int i) {
 		Point pt = pegIDToPoint(i);
 		pegs[pt.x][pt.y] = p;
@@ -91,6 +91,40 @@ public class Model {
 			id = (y-1)+(x+4)*3;
 		return id;
 	}
-	
+
+	public int getMiddlePeg(int loc1, int loc2) {
+		Point mid=new Point();
+		int midLoc=0;
+		Point fPt=pegIDToPoint(loc1);
+		Point sPt=pegIDToPoint(loc2);
+		if(Math.abs(fPt.x-sPt.x)==2 && fPt.y==sPt.y)
+		{
+			mid.y=fPt.y;
+			if(fPt.x>sPt.x)
+				mid.x=fPt.x-1;
+			else
+				mid.x=fPt.x+1;
+			midLoc=pointToPegID(mid.x, mid.y);  
+			return midLoc;
+		}
+		if(Math.abs(fPt.y-sPt.y)==2 && fPt.x==sPt.x)
+		{
+			mid.x=fPt.x;
+			if(fPt.y>sPt.y)
+				mid.y=fPt.y-1;
+			else
+				mid.y=fPt.y+1;
+			midLoc=pointToPegID(mid.x, mid.y);  
+			return midLoc;
+		}
+		if(Math.abs(fPt.x-sPt.x)==2&& Math.abs(fPt.y-sPt.y)==2){
+			mid.x=(fPt.x>sPt.x)?(fPt.x-1):(fPt.x+1);
+			mid.y=(fPt.y>sPt.y)?(fPt.y-1):(fPt.y+1);
+			midLoc=pointToPegID(mid.x, mid.y);  
+			return midLoc;
+		}
+		return -1;
+	}
+
 
 }

@@ -28,8 +28,6 @@ public class S015LegalMoveTest {
 	@Test
 	public void testPegIDTo2DRepresentation()
 	{
-		model = new Model();
-		
 		Point p = model.pegIDToPoint(1);
 		assertEquals("X coordinate of Peg 1 should be 0", 0, p.x);
 		assertEquals("Y coordinate of Peg 1 should be 2", 2, p.y);
@@ -46,10 +44,17 @@ public class S015LegalMoveTest {
 	@Test
 	public void test2DRepresentationToPegID()
 	{
-		model = new Model();
-		
-		int peg = model.pointToPegID(0, 3);
-		assertEquals("Peg ID at (0,3) should be 2", 2, peg);
+		assertEquals("Peg ID at (0,3) should be 2", 2, model.pointToPegID(0, 3));
+		assertEquals("Peg ID at (1,3) should be 5", 5, model.pointToPegID(1, 3));
+		assertEquals("Peg ID at (3,3) should be 17", 17, model.pointToPegID(3, 3));
+	}
+	
+	@Test
+	public void testMiddlePeg()
+	{
+		assertEquals("Peg between 18 and 16 should be 17", 17, model.getMiddlePeg(18, 16));
+		assertEquals("Peg between 9 and 25 should be 17", 17, model.getMiddlePeg(9, 25));
+		assertEquals("Peg between 9 and 30 should be -1", -1, model.getMiddlePeg(9, 30));
 	}
 
 }

@@ -33,5 +33,12 @@ public class S016LegalMoveTest {
 				assertEquals("Initially, should be a peg here: "+loc, Peg.NORMAL, model.getPeg(loc));
 		}
 	}
+	
+	@Test
+	public void testLeftMove() {
+		assertTrue("Peg successfully moves from 3 to 1:", model.makeMove(3, 1));
+		assertFalse("Peg cannot move from 3 to 4:", model.makeMove(3, 4));
+		assertFalse("Peg cannot move from 8 to 6:", model.makeMove(8, 6));
+	}
 
 }
