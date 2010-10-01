@@ -17,7 +17,8 @@ public class PegPuzzleModel extends Model{
 	}
 	public boolean checkMove(Point fPt,Point sPt){
 		Point mid=this.getMiddlePeg(fPt, sPt);
-		
+		if(mid==null)
+			return false;
 		return (isPegAtLocation(fPt)&&isPegAtLocation(mid)&&!isPegAtLocation(sPt));
 	}
 	public boolean makeMove(Point fPt,Point sPt){

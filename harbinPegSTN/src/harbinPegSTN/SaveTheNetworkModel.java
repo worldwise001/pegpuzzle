@@ -68,6 +68,8 @@ public class SaveTheNetworkModel extends Model {
 			}
 
 			Point mid = getMiddlePeg(fPt, sPt);
+			if(mid==null)
+				return false;
 			pegs[fPt.x][fPt.y] = Peg.BLANK;
 			pegs[mid.x][mid.y] = Peg.BLANK;
 			pegs[sPt.x][sPt.y] = Peg.WHITE;
