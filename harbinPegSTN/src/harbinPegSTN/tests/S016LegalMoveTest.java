@@ -2,6 +2,7 @@ package harbinPegSTN.tests;
 
 
 import static org.junit.Assert.*;
+import harbinPegSTN.Model.Peg;
 import harbinPegSTN.PegPuzzleModel;
 
 import org.junit.Before;
@@ -26,10 +27,10 @@ public class S016LegalMoveTest {
 	public void testStartingBoard() {
 		for (int loc = 1; loc < 34; loc++)
 		{
-			if (loc != PegPuzzleModel.CENTER_LOC)
-				assertTrue("Initially should be a peg here: "+loc, model.isPegAtLocation(loc));
+			if (loc == PegPuzzleModel.CENTER_LOC)
+				assertEquals("Peg at "+loc+" should be none", Peg.NONE, model.getPeg(loc));
 			else
-				assertFalse("Initially, should not be a peg here: "+loc, model.isPegAtLocation(loc));
+				assertEquals("Initially, should be a peg here: "+loc, Peg.NORMAL, model.getPeg(loc));
 		}
 	}
 

@@ -30,6 +30,15 @@ public class Model {
 		Point pt = pegIDToPoint(loc);
 		return (pegs[pt.x][pt.y] != Peg.INVALID) && (pegs[pt.x][pt.y] != Peg.NONE); 
 	}
+	
+	public Peg getPeg(int loc) {
+		if (loc < 1 || loc > 33)
+			return Peg.INVALID;
+		Point pt = pegIDToPoint(loc);
+		if (pegs[pt.x][pt.y] == null) return Peg.INVALID;
+		return pegs[pt.x][pt.y]; 
+	}
+	
 //
 //	public boolean movePeg(int firstClick, int secondClick) {
 //		// TODO Auto-generated method stub

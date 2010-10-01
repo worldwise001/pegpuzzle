@@ -1,8 +1,8 @@
 package harbinPegSTN.tests;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import harbinPegSTN.SaveTheNetworkModel;
+import harbinPegSTN.Model.Peg;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,10 @@ public class S017LegalMoveTest {
 	public void testStartingBoard() {
 		for (int loc = 1; loc < 34; loc++)
 		{
-			//TODO
+			if ((loc >= 1 && loc <= 6) || (loc >= 9 && loc <= 11))
+				assertEquals("Should not be a peg in the admin area ("+loc+")", Peg.NONE, model.getPeg(loc));
+			else
+				assertEquals("Peg should be black in the bot area ("+loc+")", Peg.BLACK, model.getPeg(loc));
 		}
 	}
 	
