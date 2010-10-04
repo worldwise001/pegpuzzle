@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import java.awt.Point;
 
-import harbinPegSTN.Model;
+import harbinPegSTN.model.Model;
 
 import org.junit.Before;
 import org.junit.Test;

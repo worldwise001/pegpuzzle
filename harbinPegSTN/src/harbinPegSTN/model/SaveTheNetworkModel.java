@@ -1,4 +1,4 @@
-package harbinPegSTN;
+package harbinPegSTN.model;
 
 import java.awt.Point;
 

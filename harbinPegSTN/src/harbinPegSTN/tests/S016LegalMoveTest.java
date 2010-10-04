@@ -2,8 +2,8 @@ package harbinPegSTN.tests;
 
 
 import static org.junit.Assert.*;
-import harbinPegSTN.Model.Peg;
-import harbinPegSTN.PegPuzzleModel;
+import harbinPegSTN.model.PegPuzzleModel;
+import harbinPegSTN.model.Model.Peg;
 
 import org.junit.Before;
 import org.junit.Test;

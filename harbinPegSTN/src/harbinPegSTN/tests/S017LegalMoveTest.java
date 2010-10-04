@@ -1,8 +1,8 @@
 package harbinPegSTN.tests;
 
 import static org.junit.Assert.*;
-import harbinPegSTN.SaveTheNetworkModel;
-import harbinPegSTN.Model.Peg;
+import harbinPegSTN.model.SaveTheNetworkModel;
+import harbinPegSTN.model.Model.Peg;
 
 import org.junit.Before;
 import org.junit.Test;
