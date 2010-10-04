@@ -43,7 +43,9 @@ public class PegPuzzleModel extends Model{
 	}
 	
 	public boolean makeMove(int firstLoc,int secLoc){
-		if(!checkMove(firstLoc,secLoc))
+		if(firstLoc<1||firstLoc>33)
+			return false;
+		if(secLoc<1||secLoc>33)
 			return false;
 		
 		Point fPt=pegIDToPoint(firstLoc);

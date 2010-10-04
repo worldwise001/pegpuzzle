@@ -15,9 +15,23 @@ public class SaveTheNetworkModel extends Model {
 			super.setPegAt(Peg.BLACK, i);
 
 	}
-
+	public boolean checkJump(Point fPt, Point sPt){
+		return super.checkJump(fPt, sPt, true);
+	}
+	public boolean checkHop(Point fPt, Point sPt){
+		if( !super.checkHop(fPt, sPt, true))
+			return false;
+		//black can only move forward and sideways
+		if(pegs[fPt.x][fPt.y]==Model.Peg.BLACK){
+			if(sPt.x>fPt.x)
+				return false;
+		}
+		//else is white can hop freely
+		return true;
+	}
 	public boolean checkMove(Point fPt, Point sPt) {
-
+		if(fPt==null||sPt==null)
+			return false;
 		switch (pegs[fPt.x][fPt.y]) {
 		case INVALID:
 		case NONE:
@@ -25,9 +39,7 @@ public class SaveTheNetworkModel extends Model {
 			return false;
 		case BLACK:
 			// black dots can only move forward and sideways
-			if ((fPt.x == sPt.x && Math.abs(fPt.y - sPt.y) == 1)
-					|| (fPt.x == sPt.x + 1 && fPt.y == sPt.y)
-					|| (fPt.x == sPt.x + 1 && Math.abs(fPt.y - sPt.y) == 1)) {
+			if (checkHop(fPt,sPt)) {
 				return !isPegAtLocation(sPt);
 			}
 			return false;
@@ -35,16 +47,15 @@ public class SaveTheNetworkModel extends Model {
 		case WHITE:
 			// white can move either way
 			// 1: move
-			if (Math.abs(fPt.x - sPt.x) <= 1 && Math.abs(fPt.y - sPt.y) <= 1) {
+			if (checkHop(fPt,sPt)) {
 				return !this.isPegAtLocation(sPt);
 			}
+			else if(checkJump(fPt,sPt)){
 			// 2: jump
 			Point mid = getMiddlePeg(fPt, sPt);
-			if (mid == null)
-				return false;
-
 			return pegs[mid.x][mid.y] == Peg.BLACK && !isPegAtLocation(sPt);
-
+			}
+			return false;
 		}
 		return false;
 	}
@@ -61,15 +72,13 @@ public class SaveTheNetworkModel extends Model {
 		case WHITE:
 			// white can move either way
 			// 1: move
-			if (Math.abs(fPt.x - sPt.x) <= 1 && Math.abs(fPt.y - sPt.y) <= 1) {
+			if (checkHop(fPt,sPt)) {
 				pegs[fPt.x][fPt.y] = Peg.BLANK;
 				pegs[sPt.x][sPt.y] = Peg.WHITE;
 				return true;
 			}
-
+			// 2: jump
 			Point mid = getMiddlePeg(fPt, sPt);
-			if(mid==null)
-				return false;
 			pegs[fPt.x][fPt.y] = Peg.BLANK;
 			pegs[mid.x][mid.y] = Peg.BLANK;
 			pegs[sPt.x][sPt.y] = Peg.WHITE;
@@ -80,7 +89,9 @@ public class SaveTheNetworkModel extends Model {
 	}
 
 	public boolean makeMove(int firstLoc, int secLoc) {
-		if (!checkMove(firstLoc, secLoc))
+		if(firstLoc<1||firstLoc>33)
+			return false;
+		if(secLoc<1||secLoc>33)
 			return false;
 
 		Point fPt = pegIDToPoint(firstLoc);
