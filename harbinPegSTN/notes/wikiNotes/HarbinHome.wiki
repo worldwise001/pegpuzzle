@@ -25,10 +25,10 @@ in a 2-week iteration -> 18 units
 
 ---+++ Initial Stories (modify as needed - link to additional pages for details)
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
-| [[010]] | N |  Direct Manipulation | User indicates moves graphically | 3 | 3 | 10 | - | 1 |
+| [[010]] | W |  Direct Manipulation | User indicates moves graphically | 0 | 3 | 10 | - | 1 |
 | [[015]] | S |  Legal Moves | Only legal moves are permitted | - | - | xxx | 016,017 | 1 |
-| [[016]] | P |  Legal Moves | Peg Puzzle Legal Moves | 0.5 | 3 | 15 | - | 1 |
-| [[017]] | P |  Legal Moves | Save The Network | 0.5 | 3 | 10 | - | 1 |
+| [[016]] | W |  Legal Moves | Peg Puzzle Legal Moves | 0 | 3 | 15 | - | 1 |
+| [[017]] | W |  Legal Moves | Save The Network |  | 3 | 10 | - | 1 |
 | [[020]] | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | 2 | xxx | 015 | |
 | [[025]] | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | 2 | xxx | - | |
 | [[030]] | S |  Game Over Message | Once game has ended, a Game Over message is displayed | - | - | xxx | 031,032 | |
@@ -44,7 +44,7 @@ in a 2-week iteration -> 18 units
 | [[100]] | N |  White setup | Allow white to position for start | 1 | 1 | 15 | - | 1 |
 | [[105]] | N |  Enforce turns | Enforce/indicate White/Black turn-taking | 3 | 3 | xxx | - | 1 |
 | [[110]] | N |  White legal moves | Permit valid white moves | 0.5 | 0.5 | 10 | 015,105 | 1 |
-| [[115]] | N |  Black legal moves | Permit valid black moves | 0.5 | 0.5 | 10 | 015,105 | 1 |
+| [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[120]] | N |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 30 | 041 | |
 | [[125]] | N |  Recognize winner | Recognize winner and give message | 3 | 3 | 30 | 030,041 | |
 | [[130]] | R |  White AI | AI for white | - | ??? | xxx | 041 | |
