@@ -1,4 +1,4 @@
-package harbinPegSTN.tests;
+package harbinPegSTN.test.stories;
 
 
 import static org.junit.Assert.*;

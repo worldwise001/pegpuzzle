@@ -1,9 +1,9 @@
-package harbinPegSTN.tests;
+package harbinPegSTN.test.stories;
 
 
 import static org.junit.Assert.*;
-import harbinPegSTN.model.PegPuzzleModel;
 import harbinPegSTN.model.Model.Peg;
+import harbinPegSTN.model.PegPuzzleModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class S016LegalMoveTest {
 	}
 	
 	@Test
-	public void testCheckMove() {
+	public void testCheckMove () {
 		assertTrue("Legal move from 3 to 1", model.checkMove(3, 1));
 		assertTrue("Legal move from 3 to 11", model.checkMove(3, 11));
 		assertTrue("Legal move from 10 to 2", model.checkMove(10, 2));
