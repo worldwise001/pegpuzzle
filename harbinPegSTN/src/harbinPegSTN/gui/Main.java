@@ -13,7 +13,7 @@ public class Main extends JFrame {
 	public Main()
 	{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		add(ppp);
+		add(stnp);
 		pack();
 	}
 	

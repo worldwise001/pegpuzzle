@@ -117,7 +117,7 @@ public class BoardPanel extends JPanel implements ActionListener {
 		}
 	}
 
-	protected void executeMove(int loc1, int loc2) {
+	private void executeMove(int loc1, int loc2) {
 		boolean result = model.makeMove(loc1, loc2);
 		System.out.println("Trying to move from "+loc1+" to "+loc2+" :"+result);
 		updateGUI();
