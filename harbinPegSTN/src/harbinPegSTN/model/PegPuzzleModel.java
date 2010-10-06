@@ -26,8 +26,8 @@ public class PegPuzzleModel extends Model{
 		if(!checkMove(fPt,sPt)) 
 			return false;
 		Point mid=getMiddlePeg(fPt,sPt);
-		pegs[fPt.x][fPt.y]=Peg.BLANK;
-		pegs[mid.x][mid.y]=Peg.BLANK;
+		pegs[fPt.x][fPt.y]=Peg.NONE;
+		pegs[mid.x][mid.y]=Peg.NONE;
 		pegs[sPt.x][sPt.y]=Peg.NORMAL;
 		return true;
 	}

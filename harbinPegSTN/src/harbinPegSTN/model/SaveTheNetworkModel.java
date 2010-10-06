@@ -65,7 +65,7 @@ public class SaveTheNetworkModel extends Model {
 			return false;
 		switch (pegs[fPt.x][fPt.y]) {
 		case BLACK:
-			pegs[fPt.x][fPt.y] = Peg.BLANK;
+			pegs[fPt.x][fPt.y] = Peg.NONE;
 			pegs[sPt.x][sPt.y] = Peg.BLACK;
 			return true;
 
@@ -73,14 +73,14 @@ public class SaveTheNetworkModel extends Model {
 			// white can move either way
 			// 1: move
 			if (checkHop(fPt,sPt)) {
-				pegs[fPt.x][fPt.y] = Peg.BLANK;
+				pegs[fPt.x][fPt.y] = Peg.NONE;
 				pegs[sPt.x][sPt.y] = Peg.WHITE;
 				return true;
 			}
 			// 2: jump
 			Point mid = getMiddlePeg(fPt, sPt);
-			pegs[fPt.x][fPt.y] = Peg.BLANK;
-			pegs[mid.x][mid.y] = Peg.BLANK;
+			pegs[fPt.x][fPt.y] = Peg.NONE;
+			pegs[mid.x][mid.y] = Peg.NONE;
 			pegs[sPt.x][sPt.y] = Peg.WHITE;
 			return true;
 		default: return false;
