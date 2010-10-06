@@ -8,7 +8,7 @@ Applies to both [[Peg Puzzle]] and [[Save The Network]] games.
 Description: User indicates moves graphically. 
 Estimation: 3 units.
 Dependency: None.
-Status: In Progress.
+Status: Finished, waiting for check out.
 
 ---++++ Sketches
    * puzzleHome:/notes/journals/2010-09-27-Note-15-49.pdf
