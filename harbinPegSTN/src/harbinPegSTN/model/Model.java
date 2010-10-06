@@ -26,7 +26,7 @@ public class Model {
 	}
 	
 	public boolean isPegAtLocation(Point pt) {
-		return (pegs[pt.x][pt.y] != Peg.INVALID) && (pegs[pt.x][pt.y] != Peg.NONE); 
+		return (pegs[pt.x][pt.y] != Peg.INVALID) && (pegs[pt.x][pt.y] != Peg.NONE)&&(pegs[pt.x][pt.y]!=Peg.BLANK); 
 	}
 
 	public Peg getPeg(int loc) {
