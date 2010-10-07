@@ -15,8 +15,18 @@ public class SaveTheNetworkModel extends Model {
 			super.setPegAt(Peg.BLACK, i);
 
 	}
+	public boolean checkJump(int id1, int id2){
+		if(id1<1||id1>33||id2<1||id2>33)
+			return false;
+		return checkJump(pegIDToPoint(id1), pegIDToPoint(id2));
+	}
 	public boolean checkJump(Point fPt, Point sPt){
+		if(fPt==null || sPt==null)
+			return false;
 		return super.checkJump(fPt, sPt, true);
+	}
+	public boolean checkHop(int id1,int id2){
+		return checkHop(pegIDToPoint(id1),pegIDToPoint(id2));
 	}
 	public boolean checkHop(Point fPt, Point sPt){
 		if( !super.checkHop(fPt, sPt, true))

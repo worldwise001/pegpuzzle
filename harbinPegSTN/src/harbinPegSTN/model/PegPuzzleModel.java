@@ -15,13 +15,24 @@ public class PegPuzzleModel extends Model{
 		}
 		setPegAt(Peg.NONE,CENTER_LOC);
 	}
+	public boolean checkJump(int id1, int id2){
+		
+		if(id1<1||id1>33 ||id2<1||id2>33)
+			return false;
+		return checkJump(pegIDToPoint(id1), pegIDToPoint(id2));
+	}
 	public boolean checkJump(Point p1, Point p2){
+		if(p1==null||p2==null)
+			return false;
 		return super.checkJump(p1, p2, false);
 	}
 	/**
 	 * do not allow hop in PegPuzzle Game
 	 */
 	public boolean checkHop(Point p1,Point p2){
+		return false;
+	}
+	public boolean checkHop(int id1,int id2){
 		return false;
 	}
 	public boolean checkMove(Point fPt,Point sPt){
