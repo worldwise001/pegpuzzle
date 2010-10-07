@@ -9,14 +9,7 @@ public class Model {
 	protected Peg[][] pegs;
 
 	public Model() {
-		pegs = new Peg[7][7];
-		for (int i = 0; i < pegs.length; i++) {
-			for (int j = 0; j < pegs[i].length; j++) {
-				if ((i < 2 && j < 2) || (i < 2 && j > 4) || (i > 4 && j < 2) || (i > 4 && j > 4)) pegs[i][j] = Peg.BLANK;
-				else pegs[i][j] = Peg.NONE;
-			}
-		}
-
+		reset();
 	}
 
 	public boolean isPegAtLocation(int loc) {
@@ -166,6 +159,18 @@ public class Model {
 	public boolean makeMove(int loc1, int loc2)
 	{
 		return false;
+	}
+
+	public void reset() {
+		// TODO Auto-generated method stub
+
+		pegs = new Peg[7][7];
+		for (int i = 0; i < pegs.length; i++) {
+			for (int j = 0; j < pegs[i].length; j++) {
+				if ((i < 2 && j < 2) || (i < 2 && j > 4) || (i > 4 && j < 2) || (i > 4 && j > 4)) pegs[i][j] = Peg.BLANK;
+				else pegs[i][j] = Peg.NONE;
+			}
+		}
 	}
 	
 }

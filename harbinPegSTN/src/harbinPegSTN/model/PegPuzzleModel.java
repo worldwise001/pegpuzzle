@@ -9,11 +9,7 @@ public class PegPuzzleModel extends Model{
 	 * Initializing board
 	 */
 	public PegPuzzleModel(){
-		super();
-		for(int i=1;i<=33;i++){
-			super.setPegAt(Peg.NORMAL, i);
-		}
-		setPegAt(Peg.NONE,CENTER_LOC);
+		reset();
 	}
 	public boolean checkJump(int id1, int id2){
 		
@@ -71,5 +67,13 @@ public class PegPuzzleModel extends Model{
 		Point fPt=pegIDToPoint(firstLoc);
 		Point sPt=pegIDToPoint(secLoc);
 		return makeMove(fPt,sPt);
+	}
+	public void reset() {
+		// TODO Auto-generated method stub
+		super.reset();
+		for(int i=1;i<=33;i++){
+			super.setPegAt(Peg.NORMAL, i);
+		}
+		setPegAt(Peg.NONE,CENTER_LOC);
 	}
 }

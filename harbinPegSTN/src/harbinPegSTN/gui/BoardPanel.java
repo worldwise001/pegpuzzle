@@ -2,6 +2,7 @@ package harbinPegSTN.gui;
 
 import harbinPegSTN.model.Model;
 import harbinPegSTN.model.Model.Peg;
+import harbinPegSTN.model.SaveTheNetworkModel;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -11,20 +12,57 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
+/**
+ * @author sarah
+ *
+ */
 public class BoardPanel extends JPanel implements ActionListener {
 
 	private Model model = null;
 	private PegButton[] buttons = new PegButton[34];
+	
+	public static final Color DEEP_BLUE = new Color(0, 0, 0x66);
+	public static final Color DEEP_ORANGE = new Color(0xCC, 0x66, 00);
 
 	private int prevClick = 0;
 
+	/**
+	 * 
+	 * @param m
+	 */
 	public BoardPanel(Model m) {
 		model = m;
 		buildGUI();
 		updateGUI();
 	}
 
-	private void updateGUI() {
+	private void buildGUI() {
+		// TODO Auto-generated method stub
+		setLayout(new GridLayout(7,7));
+		for (int i = 1; i < buttons.length; i++) {
+			buttons[i] = new PegButton(i);
+			buttons[i].addActionListener(this);
+		}
+		int b = 1;
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				if ((i < 2 && j < 2) || (i < 2 && j > 4) ||
+						(i > 4 && j < 2) || (i > 4 && j > 4))
+					add(new JPanel());
+				else add(buttons[b++]);
+			}
+		}
+		
+	}
+	
+	public void setModel(Model m) {
+		model = m;
+	}
+
+	/**
+	 * 
+	 */
+	public void updateGUI() {
 		// TODO Auto-generated method stub
 		for (int i = 1; i < buttons.length; i++) {
 			updatePegState(i);
@@ -53,7 +91,11 @@ public class BoardPanel extends JPanel implements ActionListener {
 			peg.setEnabled(true);
 			break;
 		case NONE:
-			peg.setBackground(Color.DARK_GRAY);
+			Color bg = Color.DARK_GRAY;
+			if (model instanceof SaveTheNetworkModel)
+				if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11)) bg = DEEP_BLUE;
+				else bg = DEEP_ORANGE;
+			peg.setBackground(bg);
 			peg.setForeground(Color.WHITE);
 			peg.setEnabled(true);
 			break;
@@ -62,24 +104,6 @@ public class BoardPanel extends JPanel implements ActionListener {
 			peg.setForeground(Color.GRAY);
 			peg.setEnabled(false);
 			break;
-		}
-	}
-
-	private void buildGUI() {
-		// TODO Auto-generated method stub
-		setLayout(new GridLayout(7,7));
-		for (int i = 1; i < buttons.length; i++) {
-			buttons[i] = new PegButton(i);
-			buttons[i].addActionListener(this);
-		}
-		int b = 1;
-		for (int i = 0; i < 7; i++) {
-			for (int j = 0; j < 7; j++) {
-				if ((i < 2 && j < 2) || (i < 2 && j > 4) ||
-						(i > 4 && j < 2) || (i > 4 && j > 4))
-					add(new JPanel());
-				else add(buttons[b++]);
-			}
 		}
 	}
 
@@ -119,7 +143,6 @@ public class BoardPanel extends JPanel implements ActionListener {
 
 	private void executeMove(int loc1, int loc2) {
 		boolean result = model.makeMove(loc1, loc2);
-		System.out.println("Trying to move from "+loc1+" to "+loc2+" :"+result);
 		updateGUI();
 	}
 

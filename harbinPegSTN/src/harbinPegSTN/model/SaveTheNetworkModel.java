@@ -5,15 +5,7 @@ import java.awt.Point;
 public class SaveTheNetworkModel extends Model {
 
 	public SaveTheNetworkModel() {
-		super();
-		// Board is NONE by default
-		setPegAt(Peg.BLACK, 7);
-		setPegAt(Peg.BLACK, 8);
-		setPegAt(Peg.BLACK, 12);
-		setPegAt(Peg.BLACK, 13);
-		for (int i = 14; i <= 33; i++)
-			super.setPegAt(Peg.BLACK, i);
-
+		reset();
 	}
 	public boolean checkJump(int id1, int id2){
 		if(id1<1||id1>33||id2<1||id2>33)
@@ -120,5 +112,16 @@ public class SaveTheNetworkModel extends Model {
 		Point sPt = pegIDToPoint(secLoc);
 		return checkMove(fPt, sPt);
 
+	}
+	
+	public void reset() {
+		super.reset();
+		// Board is NONE by default
+		setPegAt(Peg.BLACK, 7);
+		setPegAt(Peg.BLACK, 8);
+		setPegAt(Peg.BLACK, 12);
+		setPegAt(Peg.BLACK, 13);
+		for (int i = 14; i <= 33; i++)
+			super.setPegAt(Peg.BLACK, i);
 	}
 }
