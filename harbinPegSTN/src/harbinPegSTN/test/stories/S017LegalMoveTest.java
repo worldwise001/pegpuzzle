@@ -27,7 +27,12 @@ public class S017LegalMoveTest {
 				assertEquals("Peg should be black in the bot area ("+loc+")", Peg.BLACK, model.getPeg(loc));
 		}
 	}
-	
+	public void testReset(){
+		model.setPegAt(Peg.WHITE, 10);
+		assertEquals("There is a peg at Location 10",Peg.WHITE,model.getPeg(10));
+		model.reset();
+		assertEquals("There is no peg at Location 10 now",Peg.NONE,model.getPeg(10));
+	}
 	@Test
 	public void testCheckHop(){
 		assertTrue("Legal hop from 12 to 11", model.checkHop(12, 11));

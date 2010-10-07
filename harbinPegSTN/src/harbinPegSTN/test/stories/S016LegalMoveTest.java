@@ -33,6 +33,13 @@ public class S016LegalMoveTest {
 				assertEquals("Initially, should be a peg here: "+loc, Peg.NORMAL, model.getPeg(loc));
 		}
 	}
+	@Test 
+	public void testReset(){
+		model.setPegAt(Peg.NORMAL, 17);
+		assertEquals("There is a peg at Location 17",Peg.NORMAL,model.getPeg(17));
+		model.reset();
+		assertEquals("There is no peg at Location 17 now",Peg.NONE,model.getPeg(17));
+	}
 	@Test
 	public void testCheckHop(){
 		assertFalse("Illegal hop from 3 to 2", model.checkHop(3, 2));
