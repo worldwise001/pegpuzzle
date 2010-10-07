@@ -15,6 +15,15 @@ public class PegPuzzleModel extends Model{
 		}
 		setPegAt(Peg.NONE,CENTER_LOC);
 	}
+	public boolean checkJump(Point p1, Point p2){
+		return super.checkJump(p1, p2, false);
+	}
+	/**
+	 * do not allow hop in PegPuzzle Game
+	 */
+	public boolean checkHop(Point p1,Point p2){
+		return false;
+	}
 	public boolean checkMove(Point fPt,Point sPt){
 		Point mid=this.getMiddlePeg(fPt, sPt);
 		if(mid==null)
