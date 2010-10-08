@@ -43,7 +43,7 @@ in a 2-week iteration -> 18 units
 | [[060]] | N |  Demo Mode | Sample Game(s) are played as a demonstration | 2 | 2 | xxx | 050 | |
 | [[100]] | N |  White setup | Allow white to position for start | 1 | 1 | 15 | - | 1 |
 | [[105]] | N |  Enforce turns | Enforce/indicate White/Black turn-taking | 3 | 3 | xxx | - | 1 |
-| [[110]] | N |  White legal moves | Permit valid white moves | 0.5 | 0.5 | 10 | 015,105 | 1 |
+| [[110]] | W |  White legal moves | Permit valid white moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[120]] | N |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 30 | 041 | |
 | [[125]] | N |  Recognize winner | Recognize winner and give message | 3 | 3 | 30 | 030,041 | |
