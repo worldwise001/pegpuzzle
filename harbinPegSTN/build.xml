@@ -5,6 +5,7 @@
 	<property name="build.dir" value="build" />
 	<property name="dist.dir" value="${build.dir}/dist" />
 	<property name="src.dir" value="src" />
+	<property name="jdemoJar" value="lib/jdemo_core.jar" />
 	<property name="junit.output.dir" value="junitReport" />
 	<target description="Creates temporary directories" name="init">
 		<mkdir dir="${build.dir}/classes" />
@@ -17,13 +18,23 @@
 		<javac debug="true" deprecation="true" fork="true" destdir="${build.dir}/classes" srcdir="${src.dir}" verbose="true">
 			<classpath>
 				<pathelement location="${junitJar}" />
+				<pathelement location="${jdemoJar}" />
 			</classpath>
 		</javac>
 	</target>
 	<target name="run" depends="compile" description="Run the Application">
-		<java classname="cs435ex1.PegPuzzle" failonerror="true" fork="true">
+		<java classname="harbinPegSTN.gui.Main" failonerror="true" fork="true">
 			<classpath>
 				<pathelement location="${build.dir}/classes" />
+				<pathelement location="${build.dir}/.." />
+			</classpath>
+		</java>
+	</target>
+	<target name="run gui demos" depends="compile" description="Run GUI Demos">
+		<java classname="de.jdemo.swingui.DemoRunner" failonerror="true" fork="true">
+			<classpath>
+				<pathelement location="${JDemo}" />
+				<pathelement location="${build.dir}/class" />
 				<pathelement location="${build.dir}/.." />
 			</classpath>
 		</java>
