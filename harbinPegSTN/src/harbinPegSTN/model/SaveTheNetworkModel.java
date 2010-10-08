@@ -3,9 +3,20 @@ package harbinPegSTN.model;
 import java.awt.Point;
 
 public class SaveTheNetworkModel extends Model {
-
+	private Peg turn;
 	public SaveTheNetworkModel() {
 		reset();
+		//intially start with white's turn
+		turn = Peg.WHITE;
+	}
+	
+	public Peg whosTurn(){
+		return turn;
+	}
+	public void reverseTurn(){
+		if(turn==Peg.WHITE)
+			turn=Peg.BLACK;
+		else turn=Peg.WHITE;
 	}
 	public boolean checkJump(int id1, int id2){
 		if(id1<1||id1>33||id2<1||id2>33)
@@ -64,6 +75,8 @@ public class SaveTheNetworkModel extends Model {
 
 	public boolean makeMove(Point fPt, Point sPt) {
 		if (!checkMove(fPt, sPt))
+			return false;
+		if(pegs[fPt.x][fPt.y]!=turn)
 			return false;
 		switch (pegs[fPt.x][fPt.y]) {
 		case BLACK:
