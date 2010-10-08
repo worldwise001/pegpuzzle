@@ -29,7 +29,7 @@ public class Main extends JFrame {
 	}
 
 	private void buildGUI() {
-		// TODO Auto-generated method stub
+		// TODO Convert this to two BoardPanels using CardLayout
 		boardArea.setLayout(new BoxLayout(boardArea, BoxLayout.Y_AXIS));
 		boardArea.add(boardPanel);
 		boardArea.add(new BottomPanel(this));
@@ -37,7 +37,7 @@ public class Main extends JFrame {
 	}
 
 	private void updateGUI() {
-		// TODO Auto-generated method stub
+		// TODO Convert this to use CardLayout
 		switch (state) {
 		case PEG_PUZZLE:
 			boardPanel.setModel(pegPuzzle);

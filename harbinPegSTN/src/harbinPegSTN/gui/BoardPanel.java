@@ -36,7 +36,7 @@ public class BoardPanel extends JPanel implements ActionListener {
 		updateGUI();
 	}
 
-	private void buildGUI() {
+	public void buildGUI() {
 		// TODO Auto-generated method stub
 		setLayout(new GridLayout(7,7));
 		for (int i = 1; i < buttons.length; i++) {
