@@ -76,7 +76,8 @@ public class S016LegalMoveTest {
 	public void testPegPuzzleMove() {
 		assertTrue("Legal move from 5 to 17", model.makeMove(5, 17));
 		
-		assertTrue("Legal move from 12 to 10", model.makeMove(12, 10));
+		
+		assertTrue("Legal move from 12 to 10", model.makeMove(model.pegIDToPoint(12), model.pegIDToPoint(10)));
 		assertTrue("Legal move from 26 to 12", model.makeMove(26, 12));
 		assertTrue("Legal move from 24 to 26", model.makeMove(24, 26));
 		

@@ -69,8 +69,8 @@ public class S017LegalMoveTest {
 	@Test
 	public void testSTNMove() {
 		model.setPegAt(Peg.WHITE, 4);
-		assertTrue("Legal move from 4 to 9", model.makeMove(4, 9));
-		assertTrue("Legal move from 9 to 5", model.makeMove(9, 5));
+		assertTrue("Legal move from 4 to 9", model.makeMove(model.pegIDToPoint(4), model.pegIDToPoint(9)));
+		assertTrue("Legal move from 9 to 5", model.makeMove(model.pegIDToPoint(9), model.pegIDToPoint(5)));
 		
 		model.reverseTurn();
 		
