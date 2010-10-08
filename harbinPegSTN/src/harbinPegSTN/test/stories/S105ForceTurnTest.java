@@ -22,5 +22,7 @@ SaveTheNetworkModel model = null;
 		assertTrue("White legal move from 4 to 9", model.makeMove(4, 9));
 		model.reverseTurn();
 		assertTrue("Now black's turn, legal move from 12 to 11",model.makeMove(12, 11));
+		assertFalse("illegal white's turn from 9 to 8", model.makeMove(9, 8));
+		
 	}
 }
