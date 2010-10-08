@@ -65,7 +65,7 @@ public class SaveTheNetworkModel extends Model {
 			}
 			else if(checkJump(fPt,sPt)){
 			// 2: jump
-			Point mid = getMiddlePeg(fPt, sPt);
+			Point mid = getMiddlePeg(fPt, sPt,true);
 			return pegs[mid.x][mid.y] == Peg.BLACK && !isPegAtLocation(sPt);
 			}
 			return false;

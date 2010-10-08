@@ -18,12 +18,12 @@ SaveTheNetworkModel model = null;
 	}
 	
 	@Test
-	public void testCheckJump(){
+	public void testCheckMove(){
 		model.setPegAt(Peg.WHITE, 10);
 		model.setPegAt(Peg.NONE, 24);
-		assertTrue("White potential jump from 10 to 24", model.checkJump(10, 24));
-		assertTrue("White potential jump from 10 to 9", model.checkJump(10, 9));
-		assertFalse("Illegal move from 10 to 22",model.checkJump(10, 22));
+		assertTrue("White potential jump from 10 to 24", model.checkMove(10, 24));
+		assertTrue("White potential jump from 10 to 9", model.checkMove(10, 9));
+		assertFalse("Illegal move from 10 to 22",model.checkMove(10, 22));
 		
 	}
 }
