@@ -5,7 +5,8 @@
 	<property name="build.dir" value="build" />
 	<property name="dist.dir" value="${build.dir}/dist" />
 	<property name="src.dir" value="src" />
-	<property name="jdemoJar" value="lib/jdemo_core.jar" />
+	<property name="jdemoCoreJar" value="lib/jdemo_core.jar" />
+	<property name="jdemoRunnerJar" value="lib/jdemo_runner.jar" />
 	<property name="junit.output.dir" value="junitReport" />
 	<target description="Creates temporary directories" name="init">
 		<mkdir dir="${build.dir}/classes" />
@@ -18,7 +19,7 @@
 		<javac debug="true" deprecation="true" fork="true" destdir="${build.dir}/classes" srcdir="${src.dir}" verbose="true">
 			<classpath>
 				<pathelement location="${junitJar}" />
-				<pathelement location="${jdemoJar}" />
+				<pathelement location="${jdemoCoreJar}" />
 			</classpath>
 		</javac>
 	</target>
@@ -33,10 +34,13 @@
 	<target name="run gui demos" depends="compile" description="Run GUI Demos">
 		<java classname="de.jdemo.swingui.DemoRunner" failonerror="true" fork="true">
 			<classpath>
-				<pathelement location="${JDemo}" />
-				<pathelement location="${build.dir}/class" />
+				<pathelement location="${jdemoCoreJar}" />
+				<pathelement location="${jdemoRunnerJar}" />
+				<pathelement location="${build.dir}/classes" />
 				<pathelement location="${build.dir}/.." />
 			</classpath>
+			<arg line="harbinPegSTN.demo.BoardPanelDemo -sp" />
+			<arg path="${src.dir}" />
 		</java>
 	</target>
 	<target name="junit tests" depends="compile" description="Execute Unit Tests">
