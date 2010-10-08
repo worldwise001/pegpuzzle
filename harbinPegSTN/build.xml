@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- build.xml, for Ant to compile Java sources, cs435 Wainer -->
-<project basedir="." default="compile">
+<project name="harbinPegSTN" basedir="." default="compile">
 	<property file="local.properties" />
 	<property name="build.dir" value="build" />
 	<property name="dist.dir" value="${build.dir}/dist" />
