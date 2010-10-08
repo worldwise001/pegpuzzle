@@ -59,6 +59,7 @@ public class S016LegalMoveTest {
 		assertFalse("Illegal jump out of boundary 2 to 0", model.checkJump(2, 0));
 		assertFalse("Illegal jump out of boundary 32 to 24", model.checkJump(32, 34));
 	}
+	
 	@Test
 	public void testCheckMove () {
 		assertFalse("Ilegal move from 3 to 1", model.checkMove(3, 1));
