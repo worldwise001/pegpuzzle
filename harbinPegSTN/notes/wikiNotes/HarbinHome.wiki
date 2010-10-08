@@ -35,14 +35,14 @@ in a 2-week iteration -> 18 units
 | [[031]] | N |  Game Over Message | Determine Game Over when Peg Puzzle game has ended | 4 | 4 | 30 | 015 | |
 | [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 2 | 2 | 30 | 015 | |
 | [[035]] | N |  New Game | User can start a new game at any time | 2 | 2 | 15 | - | 1 |
-| [[040]] | N |  Multiple Jumps | Allow multiple jumps in a single turn | 2 | 2 | 20 | 030,041 | 1 |
+| [[040]] | P |  Multiple Jumps | Allow multiple jumps in a single turn | 2 | 2 | 20 | 030,041 | 1 |
 | [[041]] | N |  Detect Potential Jumps | Check if a jump is possible | 2 | 2 | xxx | 030 | |
-| [[045]] | N |  Attractive Board | Board is displayed with images or graphics (not text) | 3 | 3 | 25 | - | 1 |
+| [[045]] | P |  Attractive Board | Board is displayed with images or graphics (not text) | 3 | 3 | 25 | - | 1 |
 | [[050]] | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | 5 | xxx | - | |
 | [[055]] | N |  Take Back | A move can be taken back | 3 | 3 | xxx | 050 | |
 | [[060]] | N |  Demo Mode | Sample Game(s) are played as a demonstration | 2 | 2 | xxx | 050 | |
 | [[100]] | N |  White setup | Allow white to position for start | 1 | 1 | 15 | - | 1 |
-| [[105]] | N |  Enforce turns | Enforce/indicate White/Black turn-taking | 3 | 3 | xxx | - | 1 |
+| [[105]] | W |  Enforce turns | Enforce/indicate White/Black turn-taking | 0 | 3 | xxx | - | 1 |
 | [[110]] | W |  White legal moves | Permit valid white moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[120]] | N |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 30 | 041 | |
