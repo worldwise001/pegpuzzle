@@ -17,6 +17,7 @@ public class S115BlackLegalMoveTest {
 	
 	@Test
 	public void testBlackLegalMove(){
+		model.reverseTurn();
 		assertTrue("black legal hop from 8 to 9",model.makeMove(8, 9));
 		assertTrue("black legal hop from 9 to 4",model.makeMove(9, 4));
 		assertFalse("Illegal black backward hop from 4 to 9",model.makeMove(4, 9));
