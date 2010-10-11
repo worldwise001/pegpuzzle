@@ -2,6 +2,7 @@ package harbinPegSTN.gui;
 
 import harbinPegSTN.model.PegPuzzleModel;
 import harbinPegSTN.model.SaveTheNetworkModel;
+import harbinPegSTN.gui.BoardPanel;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -38,6 +39,7 @@ public class Main extends JFrame {
 
 	private void updateGUI() {
 		// TODO Convert this to use CardLayout
+		/*
 		switch (state) {
 		case PEG_PUZZLE:
 			boardPanel.setModel(pegPuzzle);
@@ -47,6 +49,7 @@ public class Main extends JFrame {
 			break;
 		}
 		boardPanel.updateGUI();
+		*/
 	}
 
 	public static void main(String[] args)
@@ -108,6 +111,7 @@ public class Main extends JFrame {
 
 	protected void switchBoard() {
 		// TODO Auto-generated method stub
+		/*
 		switch (state) {
 		case PEG_PUZZLE:
 			boardPanel.setModel(stnPuzzle);
@@ -118,7 +122,7 @@ public class Main extends JFrame {
 			state = BoardState.PEG_PUZZLE;
 			break;
 		}
-
+		*/
 		updateGUI();
 	};
 }
