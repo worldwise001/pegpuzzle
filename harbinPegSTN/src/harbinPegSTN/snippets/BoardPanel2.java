@@ -25,6 +25,9 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 	public static final Color DEEP_BLUE = new Color(0x77, 0x77, 0xBB);
 	public static final Color DEEP_ORANGE = new Color(0xDD, 0x77, 0x33);
 
+	private int prevClick = 0;
+	private int pegsToPlace = 0;
+
 	private Model model = null;
 	private Peg[] pegs = new Peg[34];
 
@@ -34,6 +37,7 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 
 	public BoardPanel2(Model m) {
 		model = m;
+		if (model instanceof SaveTheNetworkModel) pegsToPlace = 2;
 		buildGUI();
 		updateGUI();
 	}
@@ -125,7 +129,7 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 		g2.drawLine(lx2, ly1, lx2, ly2);
 		g2.drawLine(lx1, ly1, lx2, ly1);
 		g2.drawLine(lx1, ly2, lx2, ly2);
-		
+
 		if (model instanceof SaveTheNetworkModel) {
 			g2.drawLine(lx1, ly1, lx2, ly2);
 			g2.drawLine(lx1, ly2, lx2, ly1);
@@ -140,9 +144,10 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 		int x = 0;
 		int y = 0;
 		int id = 0;
-		
+
 		float sx = 0;
 		float sy = 0;
+		boolean selected = false;
 		Color color = null;
 		Color textColor = Color.BLACK;
 		Ellipse2D.Double shape = new Ellipse2D.Double();
@@ -169,6 +174,8 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 				else color = getBackground();
 				textColor = Color.BLACK; break;
 			}
+
+			if (selected) color = Color.CYAN;
 		}
 
 		private void updateGraphic() {
@@ -186,18 +193,18 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 
 		private void updateText(Graphics2D g2) {
 			font = font.deriveFont((float)shape.getWidth()/2);
-			
+
 			double cellWidth = getCellSize().getWidth();
 			double cellHeight = getCellSize().getHeight();
-			
+
 			String text = "" + id;
-			
+
 			LineMetrics lineMetrics = font.getLineMetrics(text, g2.getFontRenderContext());
 			Rectangle2D bounds = font.getStringBounds(text, g2.getFontRenderContext());
-			
+
 			sx = (float)(cellWidth*x + (cellWidth - bounds.getWidth())/2);
 			sy = (float)(cellHeight*y + (cellHeight - bounds.getHeight())/2 + lineMetrics.getAscent());
-			
+
 		}
 
 		public void draw(Graphics2D g2) {
@@ -215,9 +222,13 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 			g2.setFont(font);
 			g2.drawString(""+id, sx, sy);
 		}
-		
+
 		public boolean contains(Point pt) {
 			return shape.contains(pt);
+		}
+
+		public void setSelected(boolean b) {
+			selected = b;
 		}
 	}
 
@@ -227,10 +238,35 @@ public class BoardPanel2 extends JPanel implements MouseListener {
 		Point pt = e.getPoint();
 		for (int i = 1; i < 34; i++) {
 			if (pegs[i].contains(pt)) {
-				System.out.println("Peg "+i+" was clicked");
+				processClick(i);
+				break;
 			}
-			
+
 		}
+	}
+
+	private void processClick(int i) {
+		if (pegsToPlace > 0) {
+			if (model.placeWhite(i)) pegsToPlace--;
+		}
+		else
+		{
+			if (prevClick == 0) {
+				prevClick = i;
+				pegs[i].setSelected(true);
+			} else {
+				int click = i;
+				pegs[click].setSelected(false);
+				pegs[prevClick].setSelected(false);
+				executeMove(prevClick, click);
+				prevClick = 0;
+			}
+		}
+		updateGUI();
+	}
+
+	private void executeMove(int loc1, int loc2) {
+		boolean result = model.makeMove(loc1, loc2);
 	}
 
 	@Override

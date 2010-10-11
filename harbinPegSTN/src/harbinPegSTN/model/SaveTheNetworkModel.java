@@ -137,4 +137,14 @@ public class SaveTheNetworkModel extends Model {
 		for (int i = 14; i <= 33; i++)
 			super.setPegAt(Peg.BLACK, i);
 	}
+	
+	public boolean placeWhite(int i) {
+		if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11))
+		{
+			this.setPegAt(Peg.WHITE, i);
+			return true;
+		}
+		else
+			return false;
+	}
 }
