@@ -1,11 +1,31 @@
 Back to HarbinHome
 
----++++ package <verbatim>harbinPegSTN</verbatim>
+---++++ package <verbatim>harbinPegSTN.demo</verbatim>
    * harbinPegSTN.Model
    * harbinPegSTN.PegPuzzleModel
    * harbinPegSTN.SaveTheNetworkModel
    
----++++ package <verbatim>harbinPegSTN.tests</verbatim>
+   
+---++++ package <verbatim>harbinPegSTN.gui</verbatim>
+   * harbinPegSTN.gui.BoardPanel
+   * harbinPegSTN.gui.Main
+
+---++++ package <verbatim>harbinPegSTN.model</verbatim>
+   * harbinPegSTN.model.Model
+   * harbinPegSTN.model.PegPuzzleModel
+   * harbinPegSTN.model.SaveTheNetworkModel
+
+   
+---++++ package <verbatim>harbinPegSTN.test.stories</verbatim>
    * harbinPegSTN.tests.S016LegalMoveTest
    * harbinPegSTN.tests.S017LegalMoveTest
    * harbinPegSTN.tests.S040MultipleJumpTest
+   * harbinPegSTN.test.stories.S041DetectingPotentialJumpTest
+   * harbinPegSTN.test.stories.S105ForceTurnTest
+   * harbinPegSTN.test.stories.S110WhiteLegalMoveTest
+   * harbinPegSTN.test.stories.S115BlackLegalMoveTest
+   
+   
+ 
+---++++ package <verbatim>harbinPegSTN.test.suite</verbatim>
+	   * harbinPegSTN.test.suite.LegalMoveTests
