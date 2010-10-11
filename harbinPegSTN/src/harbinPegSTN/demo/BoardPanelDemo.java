@@ -1,10 +1,9 @@
 package harbinPegSTN.demo;
 
-import java.awt.Dimension;
+import harbinPegSTN.gui.PegPuzzleBoardPanel;
+import harbinPegSTN.gui.SaveTheNetworkBoardPanel;
 
-import harbinPegSTN.gui.BoardPanel;
-import harbinPegSTN.model.PegPuzzleModel;
-import harbinPegSTN.model.SaveTheNetworkModel;
+import java.awt.Dimension;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -16,19 +15,14 @@ import de.jdemo.junit.DemoAsTestRunner;
 @RunWith (DemoAsTestRunner.class)
 public class BoardPanelDemo extends SwingDemoCase {
 
-	private PegPuzzleModel pegPuzzle = null;
-	private SaveTheNetworkModel stnPuzzle = null;
-
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		pegPuzzle = new PegPuzzleModel();
-		stnPuzzle = new SaveTheNetworkModel();
 	}
 	
 	@Demo
 	public void demoDrawPegScreen() {
-		BoardPanel panel = new BoardPanel(pegPuzzle);
+		PegPuzzleBoardPanel panel = new PegPuzzleBoardPanel();
 		panel.setMinimumSize(new Dimension(400,300));
 		panel.setPreferredSize(new Dimension(400,300));
 		show(panel);
@@ -36,7 +30,7 @@ public class BoardPanelDemo extends SwingDemoCase {
 	
 	@Demo
 	public void demoDrawSTNScreen() {
-		BoardPanel panel = new BoardPanel(stnPuzzle);
+		SaveTheNetworkBoardPanel panel = new SaveTheNetworkBoardPanel();
 		panel.setMinimumSize(new Dimension(400,300));
 		panel.setPreferredSize(new Dimension(400,300));
 		show(panel);

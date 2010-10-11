@@ -172,10 +172,5 @@ public class Model {
 			}
 		}
 	}
-
-	public boolean placeWhite(int i) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 }
