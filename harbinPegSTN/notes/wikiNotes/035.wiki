@@ -5,4 +5,4 @@ back HarbinHome
 Description:  User can start a new game at any time.
 Estimation: 2 units.
 Dependency: None.
-Status: Next.   
+Status: Finished.   

@@ -22,7 +22,8 @@ Back to HarbinHome
    * Split [[015]] into [[016]], [[017]]
    * Met with customer to look at potential interface mockup, program flow
    * Started forming GUI for [[010]]
-   * Finished [[010]], [[016]], [[017]], [[115]]
+   * Finished [[010]], [[016]], [[017]], [[115]], [[040]],[[041]],[[105]],[[110]],[[115]]
+   * Add test cases for each stories
    * Added tests to suite
 
 Accomplishments, discussions of note, links to resources, examples etc.
