@@ -28,7 +28,7 @@ in a 2-week iteration -> 18 units
 | [[010]] | W |  Direct Manipulation | User indicates moves graphically | 0 | 3 | 10 | - | 1 |
 | [[015]] | S |  Legal Moves | Only legal moves are permitted | - | - | xxx | 016,017 | 1 |
 | [[016]] | W |  Legal Moves | Peg Puzzle Legal Moves | 0 | 3 | 15 | - | 1 |
-| [[017]] | W |  Legal Moves | Save The Network |  | 3 | 10 | - | 1 |
+| [[017]] | W |  Legal Moves | Save The Network | 0 | 3 | 10 | - | 1 |
 | [[020]] | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | 2 | xxx | 015 | |
 | [[025]] | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | 2 | xxx | - | |
 | [[030]] | S |  Game Over Message | Once game has ended, a Game Over message is displayed | - | - | xxx | 031,032 | |

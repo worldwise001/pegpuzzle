@@ -27,7 +27,15 @@ public class BoardPanel2Demo extends SwingDemoCase {
 	}
 	
 	@Demo
-	public void demoDrawScreen() {
+	public void demoDrawPegScreen() {
+		BoardPanel2 panel = new BoardPanel2(pegPuzzle);
+		panel.setMinimumSize(new Dimension(400,300));
+		panel.setPreferredSize(new Dimension(400,300));
+		show(panel);
+	}
+	
+	@Demo
+	public void demoDrawSTNScreen() {
 		BoardPanel2 panel = new BoardPanel2(stnPuzzle);
 		panel.setMinimumSize(new Dimension(400,300));
 		panel.setPreferredSize(new Dimension(400,300));
