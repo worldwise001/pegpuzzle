@@ -147,4 +147,7 @@ public class SaveTheNetworkModel extends Model {
 		else
 			return false;
 	}
+	public boolean isFutureJumpPossible(int loc){
+		return false;
+	}
 }
