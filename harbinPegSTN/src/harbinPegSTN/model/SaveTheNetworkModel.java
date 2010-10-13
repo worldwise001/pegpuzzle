@@ -45,6 +45,10 @@ public class SaveTheNetworkModel extends Model {
 	public boolean checkMove(Point fPt, Point sPt) {
 		if(fPt==null||sPt==null)
 			return false;
+		if(fPt.x<0||fPt.x>7||fPt.y<0||fPt.y>7)
+			return false;
+		if(sPt.x<0||sPt.x>7||sPt.y<0||sPt.y>7)
+			return false;
 		switch (pegs[fPt.x][fPt.y]) {
 		case INVALID:
 		case NONE:
@@ -159,12 +163,40 @@ public class SaveTheNetworkModel extends Model {
 		if(checkMove(p,fp))
 			return true;
 		//test topleft
+		fp.y=p.y-2;
+		fp.x=p.x-2;
+		if(checkMove(p,fp))
+			return true;
 		//test top
+		fp.y=p.y;
+		fp.x=p.x-2;
+		if(checkMove(p,fp))
+			return true;
 		//test topright
+		fp.y=p.y+2;
+		fp.x=p.x-2;
+		if(checkMove(p,fp))
+			return true;
 		//test right
+		fp.y=p.y+2;
+		fp.x=p.x;
+		if(checkMove(p,fp))
+			return true;
 		//test bottomright
+		fp.y=p.y+2;
+		fp.x=p.x+2;
+		if(checkMove(p,fp))
+			return true;
 		//test bootom
+		fp.y=p.y;
+		fp.x=p.x+2;
+		if(checkMove(p,fp))
+			return true;
 		//test bootomleft
+		fp.y=p.y-2;
+		fp.x=p.x+2;
+		if(checkMove(p,fp))
+			return true;
 		return false;
 	}
 }
