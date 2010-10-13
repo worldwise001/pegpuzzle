@@ -209,6 +209,12 @@ public class BoardPanel extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		return model;
 	}
+	
+	public void reset() {
+		// TODO Auto-generated method stub
+		model.reset();
+		updateGUI();
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {}

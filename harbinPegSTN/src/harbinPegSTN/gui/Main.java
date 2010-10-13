@@ -1,55 +1,44 @@
 package harbinPegSTN.gui;
 
-import harbinPegSTN.model.PegPuzzleModel;
-import harbinPegSTN.model.SaveTheNetworkModel;
-import harbinPegSTN.gui.BoardPanel;
-
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Main extends JFrame {
-	private PegPuzzleModel pegPuzzle = new PegPuzzleModel();
-	private SaveTheNetworkModel stnPuzzle = new SaveTheNetworkModel();
+	private PegPuzzleBoardPanel pegPuzzle = new PegPuzzleBoardPanel();
+	private SaveTheNetworkBoardPanel stnPuzzle = new SaveTheNetworkBoardPanel();
 
 	private BoardState state = BoardState.SAVE_THE_NETWORK;
 	private JPanel boardArea = new JPanel();
-	private BoardPanel boardPanel = new BoardPanel(stnPuzzle);
+	private JLabel statusArea = new JLabel();
 
 	public Main()
 	{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		buildGUI();
 		pack();
-		updateGUI();
 	}
 
 	private void buildGUI() {
 		// TODO Convert this to two BoardPanels using CardLayout
-		boardArea.setLayout(new BoxLayout(boardArea, BoxLayout.Y_AXIS));
-		boardArea.add(boardPanel);
-		boardArea.add(new BottomPanel(this));
-		add(boardArea);
-	}
 
-	private void updateGUI() {
-		// TODO Convert this to use CardLayout
-		/*
-		switch (state) {
-		case PEG_PUZZLE:
-			boardPanel.setModel(pegPuzzle);
-			break;
-		case SAVE_THE_NETWORK:
-			boardPanel.setModel(stnPuzzle);
-			break;
-		}
-		boardPanel.updateGUI();
-		*/
+		this.setLayout(new BorderLayout());
+		CardLayout cardStack = new CardLayout();
+		boardArea.setLayout(cardStack);
+
+		boardArea.add(stnPuzzle, "STN");
+		boardArea.add(pegPuzzle, "PEG");
+		
+		this.add(boardArea, BorderLayout.CENTER);
+		this.add(new BottomPanel(this), BorderLayout.SOUTH);
+		this.add(statusArea, BorderLayout.NORTH);
 	}
 
 	public static void main(String[] args)
@@ -105,24 +94,20 @@ public class Main extends JFrame {
 			stnPuzzle.reset();
 			break;
 		}
-
-		updateGUI();
 	}
 
 	protected void switchBoard() {
 		// TODO Auto-generated method stub
-		/*
+		
 		switch (state) {
 		case PEG_PUZZLE:
-			boardPanel.setModel(stnPuzzle);
+			((CardLayout)boardArea.getLayout()).next(boardArea);
 			state = BoardState.SAVE_THE_NETWORK;
 			break;
 		case SAVE_THE_NETWORK:
-			boardPanel.setModel(pegPuzzle);
+			((CardLayout)boardArea.getLayout()).next(boardArea);
 			state = BoardState.PEG_PUZZLE;
 			break;
 		}
-		*/
-		updateGUI();
 	};
 }
