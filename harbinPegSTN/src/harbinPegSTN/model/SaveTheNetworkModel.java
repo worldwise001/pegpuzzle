@@ -10,7 +10,7 @@ public class SaveTheNetworkModel extends Model {
 		
 	}
 	
-	public Peg whosTurn(){
+	public Peg whoseTurn(){
 		return turn;
 	}
 	public void reverseTurn(){
@@ -151,7 +151,20 @@ public class SaveTheNetworkModel extends Model {
 	public boolean isFutureJumpPossible(int loc){
 		if(loc<1||loc>33)
 			return false;
-		Point point=pegIDToPoint(loc);
+		Point p=pegIDToPoint(loc);
+		Point fp=new Point();
+		//test left
+		fp.y=p.y-2;
+		fp.x=p.x;
+		if(checkMove(p,fp))
+			return true;
+		//test topleft
+		//test top
+		//test topright
+		//test right
+		//test bottomright
+		//test bootom
+		//test bootomleft
 		return false;
 	}
 }
