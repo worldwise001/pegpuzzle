@@ -89,7 +89,12 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 		}
 		else {
 			result = super.processClick(i);
-			if (result) m.reverseTurn();
+			if (result) {
+				if (m.isFutureJumpPossible(i))
+					super.processClick(i);
+				else
+					m.reverseTurn();
+			}
 		}
 		return result;
 	}
