@@ -7,7 +7,7 @@ public class SaveTheNetworkModel extends Model {
 	public SaveTheNetworkModel() {
 		reset();
 		//intially start with white's turn
-		turn = Peg.WHITE;
+		
 	}
 	
 	public Peg whosTurn(){
@@ -136,6 +136,7 @@ public class SaveTheNetworkModel extends Model {
 		setPegAt(Peg.BLACK, 13);
 		for (int i = 14; i <= 33; i++)
 			super.setPegAt(Peg.BLACK, i);
+		turn = Peg.WHITE;
 	}
 	
 	public boolean placeWhite(int i) {
@@ -148,6 +149,9 @@ public class SaveTheNetworkModel extends Model {
 			return false;
 	}
 	public boolean isFutureJumpPossible(int loc){
+		if(loc<1||loc>33)
+			return false;
+		Point point=pegIDToPoint(loc);
 		return false;
 	}
 }
