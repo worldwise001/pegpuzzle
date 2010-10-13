@@ -37,7 +37,7 @@ public class Main extends JFrame {
 		boardArea.add(pegPuzzle, "PEG");
 		
 		this.add(boardArea, BorderLayout.CENTER);
-		this.add(new BottomPanel(this), BorderLayout.SOUTH);
+		this.add(new BottomPanel(), BorderLayout.SOUTH);
 		this.add(statusArea, BorderLayout.NORTH);
 	}
 
@@ -48,11 +48,9 @@ public class Main extends JFrame {
 	}
 
 	protected class BottomPanel extends JPanel {
-		private Main main = null;
 
-		public BottomPanel(Main m) {
-			main = m;
-			this.buildGUI();
+		public BottomPanel() {
+			buildGUI();
 		}
 
 		private void buildGUI() {
@@ -69,14 +67,14 @@ public class Main extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					main.resetBoard();
+					resetBoard();
 				}
 			});
 			switchButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					main.switchBoard();
+					switchBoard();
 				}
 			});
 		}
