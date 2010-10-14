@@ -27,8 +27,8 @@ in a 2-week iteration -> 18 units
 | [[031]] | N |  Game Over Message | Determine Game Over when Peg Puzzle game has ended | 4 | 4 | 30 | 015 | |
 | [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 2 | 2 | 30 | 015 | |
 | [[035]] | W |  New Game | User can start a new game at any time | 0 | 2 | 15 | - | 1 |
-| [[040]] | P |  Multiple Jumps | Allow multiple jumps in a single turn | 2 | 2 | 20 | 030,041 | 1 |
-| [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 0 | 2 | xxx | 030 | |
+| [[040]] | SP |  Multiple Jumps | Allow multiple jumps in a single turn | 1 | 2 | 20 | 030,041 | 1 |
+| [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 1 | 2 | xxx | 030 | |
 | [[045]] | W |  Attractive Board | Board is displayed with images or graphics (not text) | 0 | 3 | 25 | - | 1 |
 | [[050]] | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | 5 | xxx | - | |
 | [[055]] | N |  Take Back | A move can be taken back | 3 | 3 | xxx | 050 | |
