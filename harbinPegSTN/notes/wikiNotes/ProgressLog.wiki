@@ -21,10 +21,16 @@ Back to HarbinHome
 ---++++ Week 2: Tracker: [[Sarah Harvey]]
    * Split [[015]] into [[016]], [[017]]
    * Met with customer to look at potential interface mockup, program flow
-   * Started forming GUI for [[010]]
-   * Finished [[010]], [[016]], [[017]], [[115]], [[040]],[[041]],[[105]],[[110]],[[115]]
+   * Finished GUI for [[010]]
+   * Finished [[010]], [[016]], [[017]], [[115]], [[105]], [[110]], [[115]]
+   * Working on [[040]], [[041]]
    * Add test cases for each stories
    * Added tests to suite
+   * Using eclemma to test code coverage
+      * Got 93-94% test coverage from JUnit tests for model
+      * Got 50% test coverage from GUI using model
+   * Found some logic for click interpretation in the controller... moving it to the model to comply with MVC
+   
 
 Accomplishments, discussions of note, links to resources, examples etc.
 Also update the story table back at HarbinHome.

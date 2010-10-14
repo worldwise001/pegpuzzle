@@ -6,50 +6,24 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 ---+++ Development Status
    * [[Source File Hierarchy]]
    * [[Progress Log]]
+   * [[Iteration Log]]
    * JUnit Test Status: puzzleHome:/junitReport/index.html 
+   
+---+++ Retrospective
+   * Thoughts on stuff......
 
----++ 2 Week Iteration (Work Units Budgeted - 18 units)
-*Status Codes*
-<verbatim>
-S - split, P - in progress, w - waiting for check-off, C - checked-off completed, R - risky?
-N - next (put off to near future), D - discontinued/distant future, U - unclassified
-</verbatim>
-*Priority Scale*
-Lower has more value (10 - High, 30 - Med, 50 - Low)
-*Estimation Key*
-1 unit = 1 pair-hour
-in a 2-week iteration -> 18 units
-(class-time 4 unit/wk)
-(pair programming 3 unit/wk - MWF 3PM)
-(single programming 2 unit/wk)
-
----+++ Initial Stories (modify as needed - link to additional pages for details)
+---+++ Current Stories
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
 | [[010]] | W |  Direct Manipulation | User indicates moves graphically | 0 | 3 | 10 | - | 1 |
 | [[015]] | S |  Legal Moves | Only legal moves are permitted | - | - | xxx | 016,017 | 1 |
 | [[016]] | W |  Legal Moves | Peg Puzzle Legal Moves | 0 | 3 | 15 | - | 1 |
 | [[017]] | W |  Legal Moves | Save The Network | 0 | 3 | 10 | - | 1 |
-| [[020]] | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | 2 | xxx | 015 | |
-| [[025]] | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | 2 | xxx | - | |
-| [[030]] | S |  Game Over Message | Once game has ended, a Game Over message is displayed | - | - | xxx | 031,032 | |
-| [[031]] | N |  Game Over Message | Determine Game Over when Peg Puzzle game has ended | 4 | 4 | 30 | 015 | |
-| [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 2 | 2 | 30 | 015 | |
 | [[035]] | W |  New Game | User can start a new game at any time | 0 | 2 | 15 | - | 1 |
-| [[040]] | P |  Multiple Jumps | Allow multiple jumps in a single turn | 2 | 2 | 20 | 030,041 | 1 |
+| [[040]] | SP |  Multiple Jumps | Allow multiple jumps in a single turn | 1 | 2 | 20 | 030,041 | 1 |
 | [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 0 | 2 | xxx | 030 | |
 | [[045]] | W |  Attractive Board | Board is displayed with images or graphics (not text) | 0 | 3 | 25 | - | 1 |
-| [[050]] | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | 5 | xxx | - | |
-| [[055]] | N |  Take Back | A move can be taken back | 3 | 3 | xxx | 050 | |
-| [[060]] | N |  Demo Mode | Sample Game(s) are played as a demonstration | 2 | 2 | xxx | 050 | |
-| [[100]] | N |  White setup | Allow white to position for start | 1 | 1 | 15 | - | 1 |
+| [[100]] | W |  White setup | Allow white to position for start | 0 | 1 | 15 | - | 1 |
 | [[105]] | W |  Enforce turns | Enforce/indicate White/Black turn-taking | 0 | 3 | xxx | - | 1 |
 | [[110]] | W |  White legal moves | Permit valid white moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
-| [[120]] | N |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 30 | 041 | |
-| [[125]] | N |  Recognize winner | Recognize winner and give message | 3 | 3 | 30 | 030,041 | |
-| [[130]] | R |  White AI | AI for white | - | ??? | xxx | 041 | |
-| [[135]] | R |  Black AI | AI for black | - | ??? | xxx | 015 | |
-| [[200]] | N |  Game Choice | Allow user to select Peg Puzzle or Save The Network game to play | 0.5 | 0.5 | 20 | - | 1 |
-| [[205]] | N |  Help | Offer help/instructions | 0.5 | 0.5 | xxx | - | |
-| [[210]] | N |  Credits | Show Credits | 0.5 | 0.5 | xxx | - | |
 | TOTAL | | | | | 48 | | | |
