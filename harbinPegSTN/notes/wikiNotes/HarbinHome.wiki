@@ -26,4 +26,3 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 | [[105]] | W |  Enforce turns | Enforce/indicate White/Black turn-taking | 0 | 3 | xxx | - | 1 |
 | [[110]] | W |  White legal moves | Permit valid white moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
-| TOTAL | | | | | 48 | | | |
