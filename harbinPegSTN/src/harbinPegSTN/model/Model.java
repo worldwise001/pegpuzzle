@@ -5,13 +5,20 @@ import java.awt.Point;
 public class Model {
 
 	public enum Peg { NONE, NORMAL, WHITE, BLACK, BLANK, INVALID };
-
+	
+	private int previousClicked;
 	protected Peg[][] pegs;
 
 	public Model() {
 		reset();
+		previousClicked=-1;
 	}
-
+	public void setPreviousClicked(int pc){
+		previousClicked=pc;
+	}
+	public int getPreviousClicked(){
+		return previousClicked;
+	}
 	public boolean isPegAtLocation(int loc) {
 		if (loc < 1 || loc > 33) return false;
 		Point pt = pegIDToPoint(loc);

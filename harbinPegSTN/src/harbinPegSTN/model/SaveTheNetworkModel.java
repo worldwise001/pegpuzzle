@@ -4,12 +4,43 @@ import java.awt.Point;
 
 public class SaveTheNetworkModel extends Model {
 	private Peg turn;
+	
 	public SaveTheNetworkModel() {
 		reset();
 		//intially start with white's turn
 		
 	}
 	
+	public boolean togglePeg(int loc) {
+		if (loc < 1 || loc > 33)
+			return false;
+		if (super.getPreviousClicked() == -1) {
+			super.setPreviousClicked(loc);
+			return true;
+		}
+		int preClicked = super.getPreviousClicked();
+		if (this.checkJump(preClicked, loc)) {
+			if (makeMove(preClicked, loc)) {
+				if (this.isFutureJumpPossible(loc))
+					super.setPreviousClicked(loc);
+				else {
+					setPreviousClicked(-1);
+					this.reverseTurn();
+				}
+				return true;
+			}
+		} else if (this.checkHop(preClicked, loc)) {
+			if (makeMove(preClicked, loc)) {
+				this.reverseTurn();
+				setPreviousClicked(-1);
+				return true;
+			}
+		}
+		if(this.isPegAtLocation(loc))
+			setPreviousClicked(loc);
+		else setPreviousClicked(-1);
+		return true;
+	}
 	public Peg whoseTurn(){
 		return turn;
 	}
