@@ -1,6 +1,7 @@
 package harbinPegSTN.gui;
 
 import harbinPegSTN.model.Model;
+import harbinPegSTN.model.Status;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -98,8 +99,47 @@ public class BoardPanel extends JPanel implements MouseListener {
 			}
 
 		}
+		String status;
+		switch( model.getStatus()){
+		case BLACK_CLICK:
+			status="black pegs selected!";
+			break;
+		case BLACK_SLIDE:
+			status="slide black peg";
+			break;
+		case BLACK_TURN:
+			status="it's black's turn";
+			break;
+		case INVALID:
+			status="invalid mvoe or click, plese try again";
+			break;
+		case PEG_JUMP:
+			status="peg jumpped";
+			break;
+		case WHITE_CLICK:
+			status="white peg selected";
+			break;
+		case WHITE_JUMP:
+			status="white peg jumpped";
+			break;
+		case WHITE_PLACE:
+			status="white peg is placed";
+			break;
+		case WHITE_REMOVED:
+			status="white peg is removed";
+			break;
+		case WHITE_SLIDE:
+			status="slide white peg";
+			break;
+		case WHITE_TURN:
+			status="it's white's turn";
+			break;
+			default :
+				status="invalid input";
+				break;
+		}
 		if(mainWindow!=null)
-			mainWindow.updateStatus("testing");
+			mainWindow.updateStatus(status);
 	}
 
 	protected boolean processClick(int i) {
