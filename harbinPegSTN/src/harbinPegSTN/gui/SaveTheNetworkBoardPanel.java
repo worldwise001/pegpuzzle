@@ -14,9 +14,11 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 	private RoundRectangle2D.Double bgSafeZone = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	private RoundRectangle2D.Double bgDangerZone1 = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	private RoundRectangle2D.Double bgDangerZone2 = new RoundRectangle2D.Double(0,0,0,0,30,30);
-
-	public SaveTheNetworkBoardPanel() {
+	
+	
+	public SaveTheNetworkBoardPanel(Main mWin) {
 		super(new SaveTheNetworkModel());
+		mainWindow=mWin;
 
 		pegsToPlace = 2;
 		// TODO Auto-generated constructor stub

@@ -24,6 +24,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 	private Model model = null;
 	private VisualPeg[] pegs = new VisualPeg[34];
 
+	protected Main mainWindow;
 	public BoardPanel(Model m) {
 		model = m;
 		buildGUI();
@@ -97,6 +98,8 @@ public class BoardPanel extends JPanel implements MouseListener {
 			}
 
 		}
+		if(mainWindow!=null)
+			mainWindow.updateStatus("testing");
 	}
 
 	protected boolean processClick(int i) {

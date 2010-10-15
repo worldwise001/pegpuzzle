@@ -7,8 +7,10 @@ import harbinPegSTN.model.PegPuzzleModel;
 
 public class PegPuzzleBoardPanel extends BoardPanel {
 
-	public PegPuzzleBoardPanel() {
+	
+	public PegPuzzleBoardPanel(Main mWin) {
 		super(new PegPuzzleModel());
+		mainWindow=mWin;
 		// TODO Auto-generated constructor stub
 	}
 	

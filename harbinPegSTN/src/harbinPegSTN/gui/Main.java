@@ -12,20 +12,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Main extends JFrame {
-	private PegPuzzleBoardPanel pegPuzzle = new PegPuzzleBoardPanel();
-	private SaveTheNetworkBoardPanel stnPuzzle = new SaveTheNetworkBoardPanel();
+	private PegPuzzleBoardPanel pegPuzzle ;
+	private SaveTheNetworkBoardPanel stnPuzzle ;
 
 	private BoardState state = BoardState.SAVE_THE_NETWORK;
 	private JPanel boardArea = new JPanel();
 	private JLabel statusArea = new JLabel();
 
+	private Main mainWindow;
+	
 	public Main()
 	{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pegPuzzle=new PegPuzzleBoardPanel(this);
+		stnPuzzle=new SaveTheNetworkBoardPanel(this);
 		buildGUI();
 		pack();
 	}
-
+	public void updateStatus(String st){
+		statusArea.setText(st);
+	}
 	private void buildGUI() {
 		// TODO Convert this to two BoardPanels using CardLayout
 
