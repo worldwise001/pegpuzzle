@@ -90,13 +90,9 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 			updateGUI();
 		}
 		else {
-			result = super.processClick(i);
-			if (result) {
-				if (m.isFutureJumpPossible(i))
-					super.processClick(i);
-				else
-					m.reverseTurn();
-			}
+			result=m.togglePeg(i);
+			super.processClick(i);
+			
 		}
 		return result;
 	}

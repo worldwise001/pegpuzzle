@@ -144,16 +144,10 @@ public class BoardPanel extends JPanel implements MouseListener {
 
 	protected boolean processClick(int i) {
 		boolean result = false;
-		if (prevClick == 0) {
-			prevClick = i;
-			pegs[i].setSelected(true);
-		} else {
-			int click = i;
-			pegs[click].setSelected(false);
-			pegs[prevClick].setSelected(false);
-			result = executeMove(prevClick, click);
-			prevClick = 0;
-		}
+		for(int j=1;j<34;j++)
+			pegs[j].setSelected(false);
+		if(model.getPreviousClicked()!=-1)
+			pegs[model.getPreviousClicked()].setSelected(true);
 		updateGUI();
 		return result;
 	}
