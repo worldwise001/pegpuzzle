@@ -39,4 +39,10 @@ public class S040MultipleJumpTest {
 		model.makeMove(16, 4);
 		assertFalse("No jumps possible", model.isFutureJumpPossible(4));
 	}
+	
+	@Test
+	public void testTogglePeg()
+	{
+		
+	}
 }

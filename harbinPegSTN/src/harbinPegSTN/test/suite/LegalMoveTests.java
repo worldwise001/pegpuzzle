@@ -2,6 +2,7 @@ package harbinPegSTN.test.suite;
 import harbinPegSTN.test.stories.S015LegalMoveTest;
 import harbinPegSTN.test.stories.S016LegalMoveTest;
 import harbinPegSTN.test.stories.S017LegalMoveTest;
+import harbinPegSTN.test.stories.S040MultipleJumpTest;
 import harbinPegSTN.test.stories.S041DetectingPotentialJumpTest;
 import harbinPegSTN.test.stories.S105ForceTurnTest;
 import harbinPegSTN.test.stories.S110WhiteLegalMoveTest;
@@ -18,7 +19,8 @@ import org.junit.runners.Suite;
 	S110WhiteLegalMoveTest.class,
 	S115BlackLegalMoveTest.class,
 	S105ForceTurnTest.class,
-	S041DetectingPotentialJumpTest.class
+	S041DetectingPotentialJumpTest.class,
+	S040MultipleJumpTest.class
 })
 
 

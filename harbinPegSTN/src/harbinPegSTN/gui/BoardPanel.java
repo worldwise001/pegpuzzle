@@ -18,12 +18,11 @@ import javax.swing.JPanel;
 
 public class BoardPanel extends JPanel implements MouseListener {
 
-	public static final int GRID_SIZE = 7;
-	public static final float CIRCLE_MULTIPLIER = 1.7f;
 	private int prevClick = 0;
+	public static final int GRID_SIZE = 7;
 	
 	private Model model = null;
-	private Peg[] pegs = new Peg[34];
+	private VisualPeg[] pegs = new VisualPeg[34];
 
 	public BoardPanel(Model m) {
 		model = m;
@@ -38,7 +37,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 			for (int j = 0; j < 7; j++) {
 				if (!(i < 2 && j < 2) && !(i < 2 && j > 4) &&
 						!(i > 4 && j < 2) && !(i > 4 && j > 4))
-					pegs[++b] = new Peg(b, j, i);
+					pegs[++b] = new VisualPeg(this, b, j, i);
 			}
 		}
 		addMouseListener(this);
@@ -85,92 +84,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 	protected Color getBackgroundPegColor(int i) {
 		return getBackground();
 	}
-
-	protected class Peg {
-		int x = 0;
-		int y = 0;
-		int id = 0;
-
-		float sx = 0;
-		float sy = 0;
-		boolean selected = false;
-		Color color = null;
-		Color textColor = Color.BLACK;
-		Ellipse2D.Double shape = new Ellipse2D.Double();
-		Font font = Font.decode("DejaVu Serif-12");
-
-		public Peg(int i, int x, int y) {
-			id = i;
-			this.x = x;
-			this.y = y;
-		}
-
-		public void updateState(Model.Peg state) {
-			switch (state) {
-			case BLACK: color = Color.BLACK; textColor = Color.WHITE; break;
-			case WHITE: color = Color.WHITE; textColor = Color.BLACK; break;
-			case NORMAL: color = Color.RED; textColor = Color.BLACK; break;
-			default: 
-				color = getBackgroundPegColor(id);
-				textColor = Color.BLACK; break;
-			}
-
-			if (selected) color = Color.CYAN;
-		}
-
-		private void updateGraphic() {
-			double cellWidth = getCellSize().getWidth();
-			double cellHeight = getCellSize().getHeight();
-
-			double cellSmallest = (cellWidth > cellHeight)?cellHeight:cellWidth;
-			double circleDiameter = cellSmallest / CIRCLE_MULTIPLIER;
-
-			double circleX = (cellWidth - circleDiameter)/2 + cellWidth*x;
-			double circleY = (cellHeight - circleDiameter)/2 + cellHeight*y;
-
-			shape.setFrame(circleX, circleY, circleDiameter, circleDiameter);
-		}
-
-		private void updateText(Graphics2D g2) {
-			font = font.deriveFont((float)shape.getWidth()/2);
-
-			double cellWidth = getCellSize().getWidth();
-			double cellHeight = getCellSize().getHeight();
-
-			String text = "" + id;
-
-			LineMetrics lineMetrics = font.getLineMetrics(text, g2.getFontRenderContext());
-			Rectangle2D bounds = font.getStringBounds(text, g2.getFontRenderContext());
-
-			sx = (float)(cellWidth*x + (cellWidth - bounds.getWidth())/2);
-			sy = (float)(cellHeight*y + (cellHeight - bounds.getHeight())/2 + lineMetrics.getAscent());
-
-		}
-
-		public void draw(Graphics2D g2) {
-			updateGraphic();
-			updateText(g2);
-
-			if (color != null) {
-				g2.setColor(color);
-				g2.fill(shape);
-			}
-
-			g2.setColor(Color.BLACK);
-			g2.draw(shape);
-			g2.setColor(textColor);
-			g2.setFont(font);
-			g2.drawString(""+id, sx, sy);
-		}
-
-		public boolean contains(Point pt) {
-			return shape.contains(pt);
-		}
-
-		public void setSelected(boolean b) {
-			selected = b;
-		}
-	}
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

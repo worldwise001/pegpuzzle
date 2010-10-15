@@ -41,21 +41,6 @@ public class Model {
 		return pegs[pt.x][pt.y]; 
 	}
 
-	//
-	//	public boolean movePeg(int firstClick, int secondClick) {
-	//		// TODO Auto-generated method stub
-	//		if (secondClick == firstClick + 2) {
-	//			if (pegs[firstClick] && pegs[firstClick + 1]
-	//					&& !pegs[firstClick + 2]) {
-	//				pegs[firstClick+2] = true;
-	//				pegs[firstClick] = false;
-	//				pegs[firstClick+1] = false;
-	//				return true;
-	//			}
-	//		}
-	//		return false;
-	//	}
-
 	public void setPegAt(Peg p, int i) {
 		Point pt = pegIDToPoint(i);
 		pegs[pt.x][pt.y] = p;
