@@ -44,11 +44,11 @@ public class S015LegalMoveTest {
 	@Test
 	public void test2DRepresentationToPegID()
 	{
-		assertEquals("Peg ID at (0,3) should be 2", 2, model.pointToPegID(0, 3));
-		assertEquals("Peg ID at (1,3) should be 5", 5, model.pointToPegID(1, 3));
-		assertEquals("Peg ID at (3,3) should be 17", 17, model.pointToPegID(3, 3));
+		assertEquals("Peg ID at (0,3) should be 2", 2, model.pointToPegID(new Point(0, 3)));
+		assertEquals("Peg ID at (1,3) should be 5", 5, model.pointToPegID(new Point(1, 3)));
+		assertEquals("Peg ID at (3,3) should be 17", 17, model.pointToPegID(new Point(3, 3)));
 
-		assertEquals("Peg ID at (5,3) should be 29", 29, model.pointToPegID(5, 3));
+		assertEquals("Peg ID at (5,3) should be 29", 29, model.pointToPegID(new Point(5, 3)));
 	}
 	
 	@Test

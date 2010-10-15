@@ -25,7 +25,7 @@ public class PegPuzzleModel extends Model{
 	/**
 	 * do not allow hop in PegPuzzle Game
 	 */
-	public boolean checkHop(Point p1,Point p2){
+	public boolean checkSlide(Point p1,Point p2){
 		return false;
 	}
 	public boolean checkHop(int id1,int id2){
@@ -72,8 +72,8 @@ public class PegPuzzleModel extends Model{
 		// TODO Auto-generated method stub
 		super.reset();
 		for(int i=1;i<=33;i++){
-			super.setPegAt(Peg.NORMAL, i);
+			super.setPeg(Peg.NORMAL, i);
 		}
-		setPegAt(Peg.NONE,CENTER_LOC);
+		setPeg(Peg.NONE,CENTER_LOC);
 	}
 }

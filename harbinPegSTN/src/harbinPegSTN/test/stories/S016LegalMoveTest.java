@@ -37,7 +37,7 @@ public class S016LegalMoveTest {
 	}
 	@Test 
 	public void testReset(){
-		model.setPegAt(Peg.NORMAL, 17);
+		model.setPeg(Peg.NORMAL, 17);
 		assertEquals("There is a peg at Location 17",Peg.NORMAL,model.getPeg(17));
 		model.reset();
 		assertEquals("There is no peg at Location 17 now",Peg.NONE,model.getPeg(17));

@@ -112,14 +112,14 @@ public class S017LegalMoveTest {
 	
 	@Test
 	public void testCheckMove () {
-		model.setPegAt(Peg.WHITE, 4);
-		model.setPegAt(Peg.WHITE, 9);
+		model.setPeg(Peg.WHITE, 4);
+		model.setPeg(Peg.WHITE, 9);
 		assertFalse("Ilegal move from 3 to 1", model.checkMove(3, 1));
 		assertTrue("Legal move from 17 to 10", model.checkMove(17, 10));
 		assertFalse("Ilegal move from 4 to 16", model.checkMove(4, 16));
 		
 		assertFalse("Ilegal move from 9 to 23", model.checkMove(9, 23));
-		model.setPegAt(Peg.NONE, 23);
+		model.setPeg(Peg.NONE, 23);
 		assertTrue("Legal move from 9 to 23 now",model.checkMove(9, 23));
 		
 	}
@@ -143,13 +143,13 @@ public class S017LegalMoveTest {
 		for (int i = 1; i <= 6; i++)
 		{
 			assertTrue("Able to place white on "+i, model.placeWhite(i));
-			model.setPegAt(Peg.NONE, i);
+			model.setPeg(Peg.NONE, i);
 		}
 		
 		for (int i = 9; i <= 11; i++)
 		{
 			assertTrue("Able to place white on "+i, model.placeWhite(i));
-			model.setPegAt(Peg.NONE, i);
+			model.setPeg(Peg.NONE, i);
 		}
 	}
 	

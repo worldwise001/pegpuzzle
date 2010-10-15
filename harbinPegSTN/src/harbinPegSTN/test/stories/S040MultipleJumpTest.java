@@ -25,10 +25,10 @@ public class S040MultipleJumpTest {
 		assertFalse("Cannot start a jump outside the boundary", model.isFutureJumpPossible(34));
 		
 		model.placeWhite(6);
-		model.setPegAt(Peg.BLACK, 11);
-		model.setPegAt(Peg.NONE, 18);
-		model.setPegAt(Peg.NONE, 16);
-		model.setPegAt(Peg.BLACK, 9);
+		model.setPeg(Peg.BLACK, 11);
+		model.setPeg(Peg.NONE, 18);
+		model.setPeg(Peg.NONE, 16);
+		model.setPeg(Peg.BLACK, 9);
 		
 		assertTrue("More jumps possible", model.isFutureJumpPossible(6));
 		model.makeMove(6, 18);

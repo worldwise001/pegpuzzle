@@ -60,10 +60,10 @@ public class SaveTheNetworkModel extends Model {
 		return super.checkJump(fPt, sPt, true);
 	}
 	public boolean checkHop(int id1,int id2){
-		return checkHop(pegIDToPoint(id1),pegIDToPoint(id2));
+		return checkSlide(pegIDToPoint(id1),pegIDToPoint(id2));
 	}
-	public boolean checkHop(Point fPt, Point sPt){
-		if( !super.checkHop(fPt, sPt, true))
+	public boolean checkSlide(Point fPt, Point sPt){
+		if( !super.checkSlide(fPt, sPt, true))
 			return false;
 		//black can only move forward and sideways
 		if(pegs[fPt.x][fPt.y]==Peg.BLACK){
@@ -87,7 +87,7 @@ public class SaveTheNetworkModel extends Model {
 			return false;
 		case BLACK:
 			// black dots can only move forward and sideways
-			if (checkHop(fPt,sPt)) {
+			if (checkSlide(fPt,sPt)) {
 				return !isPegAtLocation(sPt);
 			}
 			return false;
@@ -95,7 +95,7 @@ public class SaveTheNetworkModel extends Model {
 		case WHITE:
 			// white can move either way
 			// 1: move
-			if (checkHop(fPt,sPt)) {
+			if (checkSlide(fPt,sPt)) {
 				return !this.isPegAtLocation(sPt);
 			}
 			else if(checkJump(fPt,sPt)){
@@ -122,7 +122,7 @@ public class SaveTheNetworkModel extends Model {
 		case WHITE:
 			// white can move either way
 			// 1: move
-			if (checkHop(fPt,sPt)) {
+			if (checkSlide(fPt,sPt)) {
 				pegs[fPt.x][fPt.y] = Peg.NONE;
 				pegs[sPt.x][sPt.y] = Peg.WHITE;
 				return true;
@@ -165,19 +165,19 @@ public class SaveTheNetworkModel extends Model {
 	public void reset() {
 		super.reset();
 		// Board is NONE by default
-		setPegAt(Peg.BLACK, 7);
-		setPegAt(Peg.BLACK, 8);
-		setPegAt(Peg.BLACK, 12);
-		setPegAt(Peg.BLACK, 13);
+		setPeg(Peg.BLACK, 7);
+		setPeg(Peg.BLACK, 8);
+		setPeg(Peg.BLACK, 12);
+		setPeg(Peg.BLACK, 13);
 		for (int i = 14; i <= 33; i++)
-			super.setPegAt(Peg.BLACK, i);
+			super.setPeg(Peg.BLACK, i);
 		turn = Peg.WHITE;
 	}
 	
 	public boolean placeWhite(int i) {
 		if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11))
 		{
-			this.setPegAt(Peg.WHITE, i);
+			this.setPeg(Peg.WHITE, i);
 			return true;
 		}
 		else

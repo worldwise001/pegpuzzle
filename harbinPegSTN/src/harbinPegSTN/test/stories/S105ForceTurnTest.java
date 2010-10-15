@@ -18,7 +18,7 @@ SaveTheNetworkModel model = null;
 	
 	@Test
 	public void testForceTurn(){
-		model.setPegAt(Peg.WHITE, 4);
+		model.setPeg(Peg.WHITE, 4);
 		assertFalse("Start with white's turn, so all black move is illegal, try black move from 8 to 9", model.makeMove(8, 9));
 		assertTrue("White legal move from 4 to 9", model.makeMove(4, 9));
 		model.reverseTurn();
