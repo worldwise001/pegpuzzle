@@ -1,7 +1,7 @@
 package harbinPegSTN.snippets;
 
 import harbinPegSTN.model.Model;
-import harbinPegSTN.model.Model.Peg;
+import harbinPegSTN.model.Peg;
 import harbinPegSTN.model.SaveTheNetworkModel;
 
 import java.awt.Color;

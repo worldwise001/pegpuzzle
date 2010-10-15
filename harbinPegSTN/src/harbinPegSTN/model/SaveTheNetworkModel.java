@@ -66,7 +66,7 @@ public class SaveTheNetworkModel extends Model {
 		if( !super.checkHop(fPt, sPt, true))
 			return false;
 		//black can only move forward and sideways
-		if(pegs[fPt.x][fPt.y]==Model.Peg.BLACK){
+		if(pegs[fPt.x][fPt.y]==Peg.BLACK){
 			if(sPt.x>fPt.x)
 				return false;
 		}

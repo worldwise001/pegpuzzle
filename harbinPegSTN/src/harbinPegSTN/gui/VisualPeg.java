@@ -1,6 +1,6 @@
 package harbinPegSTN.gui;
 
-import harbinPegSTN.model.Model;
+import harbinPegSTN.model.Peg;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -34,7 +34,7 @@ public class VisualPeg {
 		this.parent = parent;
 	}
 
-	public void updateState(Model.Peg state) {
+	public void updateState(Peg state) {
 		switch (state) {
 		case BLACK: color = Color.BLACK; textColor = Color.WHITE; break;
 		case WHITE: color = Color.WHITE; textColor = Color.BLACK; break;

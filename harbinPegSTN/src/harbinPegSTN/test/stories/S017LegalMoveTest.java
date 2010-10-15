@@ -3,7 +3,7 @@ package harbinPegSTN.test.stories;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import harbinPegSTN.model.Model.Peg;
+import harbinPegSTN.model.Peg;
 import harbinPegSTN.model.SaveTheNetworkModel;
 
 import java.awt.Point;

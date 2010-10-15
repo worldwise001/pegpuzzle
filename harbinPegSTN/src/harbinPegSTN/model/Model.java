@@ -3,8 +3,6 @@ package harbinPegSTN.model;
 import java.awt.Point;
 
 public class Model {
-
-	public enum Peg { NONE, NORMAL, WHITE, BLACK, BLANK, INVALID };
 	
 	private int previousClicked;
 	protected Peg[][] pegs;

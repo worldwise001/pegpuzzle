@@ -2,8 +2,8 @@ package harbinPegSTN.test.stories;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import harbinPegSTN.model.Peg;
 import harbinPegSTN.model.SaveTheNetworkModel;
-import harbinPegSTN.model.Model.Peg;
 
 import org.junit.Before;
 import org.junit.Test;
