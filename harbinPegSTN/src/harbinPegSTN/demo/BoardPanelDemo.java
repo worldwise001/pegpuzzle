@@ -22,7 +22,7 @@ public class BoardPanelDemo extends SwingDemoCase {
 	
 	@Demo
 	public void demoDrawPegScreen() {
-		PegPuzzleBoardPanel panel = new PegPuzzleBoardPanel();
+		PegPuzzleBoardPanel panel = new PegPuzzleBoardPanel(null);
 		panel.setMinimumSize(new Dimension(400,300));
 		panel.setPreferredSize(new Dimension(400,300));
 		show(panel);
@@ -30,7 +30,7 @@ public class BoardPanelDemo extends SwingDemoCase {
 	
 	@Demo
 	public void demoDrawSTNScreen() {
-		SaveTheNetworkBoardPanel panel = new SaveTheNetworkBoardPanel();
+		SaveTheNetworkBoardPanel panel = new SaveTheNetworkBoardPanel(null);
 		panel.setMinimumSize(new Dimension(400,300));
 		panel.setPreferredSize(new Dimension(400,300));
 		show(panel);
