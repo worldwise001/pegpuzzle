@@ -13,7 +13,9 @@ public class Model {
 	private Peg[][] pegs;
 	private boolean diagonalMovesAllowed = false;
 
+	private Status status;
 	public Model() {
+		status=Status.INVALID;
 		reset();
 	}
 	
@@ -182,6 +184,7 @@ public class Model {
 		if (!isPegLocationValid(loc)) return false;
 		if (selectedPeg == PEG_ID_NONE) {
 			selectedPeg = loc;
+			
 			return true;
 		} else {
 			if (selectedPeg == loc) {
@@ -190,6 +193,7 @@ public class Model {
 			}
 			else if (makeMove(selectedPeg, loc)) {
 				selectedPeg = PEG_ID_NONE;
+				
 				return true;
 			}
 		}
@@ -203,9 +207,11 @@ public class Model {
 	public void getError() {
 		
 	}
-	
+	public void setStatus(Status s){
+		status=s;
+	}
 	public Status getStatus() {
-		return Status.INVALID;
+		return status;
 	}
 	
 	protected enum Move { JUMP, SLIDE, NONE, INVALID }

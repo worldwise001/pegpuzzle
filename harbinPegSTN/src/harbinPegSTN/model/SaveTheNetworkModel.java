@@ -15,10 +15,13 @@ public class SaveTheNetworkModel extends Model {
 		if (!isPegLocationValid(loc)) return false;
 		if (numWhitePegsToPlace > 0 && placeWhite(loc)) {
 			numWhitePegsToPlace--;
+			super.setStatus(Status.WHITE_CLICK);
 			return true;
 		}
 		if (getSelectedPeg() == PEG_ID_NONE) {
 			selectPeg(loc);
+			
+			
 			return true;
 		} else {
 			if (getSelectedPeg() == loc) {
@@ -32,6 +35,7 @@ public class SaveTheNetworkModel extends Model {
 					if (isJumping) {
 						isJumping = false;
 						selectPeg(PEG_ID_NONE);
+						super.setStatus(Status.BLACK_TURN);
 						reverseTurn();
 						return false;
 					}
@@ -39,9 +43,13 @@ public class SaveTheNetworkModel extends Model {
 					{
 						if (makeMove(getSelectedPeg(), loc)){
 							selectPeg(PEG_ID_NONE);
+							if(turn==Peg.WHITE)
+								super.setStatus(Status.BLACK_TURN);
+							else super.setStatus(Status.WHITE_TURN);
 							reverseTurn();
 							return true;
 						}
+						super.setStatus(Status.INVALID);
 						return false;
 					}
 				case JUMP:
@@ -53,6 +61,7 @@ public class SaveTheNetworkModel extends Model {
 							selectPeg(PEG_ID_NONE);
 							reverseTurn();
 						}
+						super.setStatus(Status.WHITE_JUMP);
 						return true;
 					}
 					return false;
