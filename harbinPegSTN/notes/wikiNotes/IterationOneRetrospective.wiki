@@ -1,0 +1,44 @@
+One of the benefits of iteration is that we get to learn from our mistakes and continually work to improve our process. So Now that the iteration is over, how did it go? What can we learn to improve our process.
+Answer these questions four your group as a way to help self-assess how your process/project is going. Remember you can consult the repository to review history, old versions etc. Try using A,B,C, etc. as a shorthand for expressing to what level a practice was followed. If not A, a short note explaining deficiency/possible solution is useful.
+
+| *Num* | *Level* | *Assessment Question* |
+| 1. | xxx |  Does code follow the suggested coding standards consistently? (Including conventions like buildGUI and updateGUI) |
+| discussion |
+| 2. | xxx | Are static methods/fields used only for appropriate reasons? Except for constants, class fields are not accessed directly outside of the class. Is Javadoc being used? |
+| discussion |
+| 3. | xxx | Is code staying refactored? Obvious things to check for are: Are good names being used (classes, methods, fields)? Is deadcode present? Have methods become too complex( too long, too many branches Ð conditional logic)? |
+| discussion |
+| 4. | xxx | Does the code continue to support MVC?  Verify that the model logic hasn't spilled into view or controller. |
+| discussion |
+| 5. | xxx | All tests should be independent and the model should be unaware of tests, controller or view. (However the model should have the correct functionality to support the View and Controller. Tests should not be overly complicated, keep logic in model) Do tests all contain appropriate asserts? Are tests covering the model well? Are they meaningful? |
+| discussion |
+| 6. | xxx | Are tests easy to follow so they clearly demonstrate the expected behavior of the code? Are they also being refactored to stay clear and working as the model changes? Are setup, helper methods being used? Is one there one class that will run all the JUnit tests for the project? |
+| discussion |
+| 7. | xxx | Did the team practice Test Driven Development? (for the Model(s))
+| discussion |
+| 8. | xxx | Does the repository indicate frequent commits (with comments & from all team members)? Does the committed code compile? |
+| discussion |
+| 9. | xxx | Did the team practice Pair Programming? Do all team members feel ownership of all code? |
+| discussion |
+| 10. | xxx | Is the wiki updated? Does it reflect current progress on priority stories? Does it contain design sketches, thoughts etc. esp. from talking with customer? |
+| discussion |
+| 11. | xxx | Are the developers communicating well with the customer(and each other) to help remove ambiguity about the stories, split stories, etc.? |
+| discussion |
+| 12. | xxx | Are customer tests and demos provided to assure the customers that stories have been implemented properly? |
+| discussion |
+| 13. | xxx | Is the work being accomplished consistent with customer priorities? |
+| discussion |
+| 14. | xxx | Was sufficient work accomplished? How did actual work time compare to estimated effort for this iteration's stories? Does velocity need to be updated? |
+| discussion |
+
+---++ Summarize (May also include other aspects not covered in above questions)
+
+---+++ What worked well?
+
+---+++ What can we do better?
+
+---+++ Suggestions?
+
+
+
+Back to your wiki project home
