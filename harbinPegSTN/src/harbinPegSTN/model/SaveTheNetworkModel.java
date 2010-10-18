@@ -21,12 +21,16 @@ public class SaveTheNetworkModel extends Model {
 		return processMove(loc);
 	}
 
+	
+			
+			
 	protected boolean processMove(int loc) {
 		switch (getMoveType(pegIDToPoint(getSelectedPeg()), pegIDToPoint(loc))) {
 		case SLIDE:
 			if (isJumping) {
 				isJumping = false;
 				selectPeg(PEG_ID_NONE);
+				super.setStatus(Status.BLACK_TURN);
 				reverseTurn();
 				return false;
 			}
@@ -34,9 +38,13 @@ public class SaveTheNetworkModel extends Model {
 			{
 				if (makeMove(getSelectedPeg(), loc)){
 					selectPeg(PEG_ID_NONE);
+					if(turn==Peg.WHITE)
+						super.setStatus(Status.BLACK_TURN);
+					else super.setStatus(Status.WHITE_TURN);
 					reverseTurn();
 					return true;
 				}
+				super.setStatus(Status.INVALID);
 				return false;
 			}
 		case JUMP:
@@ -48,19 +56,17 @@ public class SaveTheNetworkModel extends Model {
 					selectPeg(PEG_ID_NONE);
 					reverseTurn();
 				}
+				super.setStatus(Status.WHITE_JUMP);
 				return true;
 			}
 			return false;
 		case NONE:
-			if (isJumping) {
-				isJumping = false;
-				reverseTurn();
-			}
-			selectPeg(PEG_ID_NONE);
+			isJumping = false;
 			return true;
-		default:
+		case INVALID:
 			return false;
 		}
+		return false;
 	}
 
 	public boolean processWhiteClick(int i) {
@@ -68,6 +74,7 @@ public class SaveTheNetworkModel extends Model {
 			if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11))
 			{
 				this.setPeg(Peg.WHITE, i);
+				super.setStatus(Status.WHITE_CLICK);
 				numWhitePegsToPlace--;
 				return true;
 			}
