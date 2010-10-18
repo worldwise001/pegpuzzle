@@ -25,12 +25,16 @@ public class Model {
 		pegs = new Peg[BOARD_SIZE][BOARD_SIZE];
 		for (int x = 0; x < BOARD_SIZE; x++) {
 			for (int y = 0; y < BOARD_SIZE; y++) {
-				if ((x < 2 && y < 2) || (x < 2 && y > 4) || (x > 4 && y < 2) || (x > 4 && y > 4)) pegs[x][y] = Peg.BLANK;
+				if (isLocationBlank(x, y)) pegs[x][y] = Peg.BLANK;
 				else pegs[x][y] = Peg.NONE;
 			}
 		}
 
 		selectedPeg = PEG_ID_NONE;
+	}
+
+	protected boolean isLocationBlank(int x, int y) {
+		return (x < 2 && y < 2) || (x < 2 && y > 4) || (x > 4 && y < 2) || (x > 4 && y > 4);
 	}
 	
 	protected void selectPeg(int pegLocation){
@@ -126,26 +130,27 @@ public class Model {
 
 	protected Point getMiddlePeg(Point p1, Point p2)
 	{
-		Point mid=new Point();
+		if (Math.abs(p1.x-p2.x)!=2 && Math.abs(p1.y-p2.y)!=2) return null;
 		if(Math.abs(p1.x-p2.x)==2 && p1.y==p2.y)
 		{
-			mid.y=p1.y;
+			Point mid = p1;
 			if(p1.x>p2.x)
 				mid.x=p1.x-1;
 			else
 				mid.x=p1.x+1;
 			return mid;
 		}
-		if(Math.abs(p1.y-p2.y)==2 && p1.x==p2.x)
+		else if(Math.abs(p1.y-p2.y)==2 && p1.x==p2.x)
 		{
-			mid.x=p1.x;
+			Point mid = p1;
 			if(p1.y>p2.y)
 				mid.y=p1.y-1;
 			else
 				mid.y=p1.y+1;
 			return mid;
 		}
-		if(diagonalMovesAllowed && Math.abs(p1.x-p2.x)==2 && Math.abs(p1.y-p2.y)==2){
+		else if(diagonalMovesAllowed){
+			Point mid = new Point();
 			mid.x=(p1.x>p2.x)?(p1.x-1):(p1.x+1);
 			mid.y=(p1.y>p2.y)?(p1.y-1):(p1.y+1);
 			return mid;

@@ -18,13 +18,13 @@ SaveTheNetworkModel model = null;
 		model = new SaveTheNetworkModel();
 	}
 	
-	@Test
-	public void testCheckMove(){
-		model.setPeg(Peg.WHITE, 10);
-		model.setPeg(Peg.NONE, 24);
-		assertTrue("White potential jump from 10 to 24", model.checkMove(10, 24));
-		assertTrue("White potential jump from 10 to 9", model.checkMove(10, 9));
-		assertFalse("Illegal move from 10 to 22",model.checkMove(10, 22));
-		
-	}
+//	@Test
+//	public void testCheckMove(){
+//		model.setPeg(Peg.WHITE, 10);
+//		model.setPeg(Peg.NONE, 24);
+//		assertTrue("White potential jump from 10 to 24", model.checkMove(10, 24));
+//		assertTrue("White potential jump from 10 to 9", model.checkMove(10, 9));
+//		assertFalse("Illegal move from 10 to 22",model.checkMove(10, 22));
+//		
+//	}
 }

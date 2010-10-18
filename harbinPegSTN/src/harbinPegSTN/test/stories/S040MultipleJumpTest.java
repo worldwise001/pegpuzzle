@@ -24,7 +24,7 @@ public class S040MultipleJumpTest {
 		assertFalse("Cannot start a jump outside the boundary", model.isFutureJumpPossible(0));
 		assertFalse("Cannot start a jump outside the boundary", model.isFutureJumpPossible(34));
 		
-		model.placeWhite(6);
+		model.processWhiteClick(6);
 		model.setPeg(Peg.BLACK, 11);
 		model.setPeg(Peg.NONE, 18);
 		model.setPeg(Peg.NONE, 16);

@@ -40,12 +40,16 @@ public class BoardPanel extends JPanel implements MouseListener {
 		int b = 0;
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
-				if (!(i < 2 && j < 2) && !(i < 2 && j > 4) &&
-						!(i > 4 && j < 2) && !(i > 4 && j > 4))
+				if (isLocationUsable(i, j))
 					pegs[++b] = new VisualPeg(this, b, j, i);
 			}
 		}
 		addMouseListener(this);
+	}
+
+	protected boolean isLocationUsable(int i, int j) {
+		return !(i < 2 && j < 2) && !(i < 2 && j > 4) &&
+				!(i > 4 && j < 2) && !(i > 4 && j > 4);
 	}
 
 	protected void updateGUI() {

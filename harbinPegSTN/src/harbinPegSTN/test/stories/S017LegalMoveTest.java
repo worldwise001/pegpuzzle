@@ -34,8 +34,8 @@ public class S017LegalMoveTest {
 	
 	@Test
 	public void testReset(){
-		model.placeWhite(4);
-		model.placeWhite(6);
+		model.processWhiteClick(4);
+		model.processWhiteClick(6);
 		
 		model.makeMove(4, 5);
 		model.reverseTurn();
@@ -110,23 +110,23 @@ public class S017LegalMoveTest {
 //		assertFalse("Illegal jump from 8 to 6", model.checkJump(p1, p2));
 //	}
 	
-	@Test
-	public void testCheckMove () {
-		model.setPeg(Peg.WHITE, 4);
-		model.setPeg(Peg.WHITE, 9);
-		assertFalse("Ilegal move from 3 to 1", model.checkMove(3, 1));
-		assertTrue("Legal move from 17 to 10", model.checkMove(17, 10));
-		assertFalse("Ilegal move from 4 to 16", model.checkMove(4, 16));
-		
-		assertFalse("Ilegal move from 9 to 23", model.checkMove(9, 23));
-		model.setPeg(Peg.NONE, 23);
-		assertTrue("Legal move from 9 to 23 now",model.checkMove(9, 23));
-		
-	}
+//	@Test
+//	public void testCheckMove () {
+//		model.setPeg(Peg.WHITE, 4);
+//		model.setPeg(Peg.WHITE, 9);
+//		assertFalse("Ilegal move from 3 to 1", model.checkMove(3, 1));
+//		assertTrue("Legal move from 17 to 10", model.checkMove(17, 10));
+//		assertFalse("Ilegal move from 4 to 16", model.checkMove(4, 16));
+//
+//		assertFalse("Ilegal move from 9 to 23", model.checkMove(9, 23));
+//		model.setPeg(Peg.NONE, 23);
+//		assertTrue("Legal move from 9 to 23 now",model.checkMove(9, 23));
+//
+//	}
 	
 	@Test
 	public void testSTNMove() {
-		model.placeWhite(4);
+		model.processWhiteClick(4);
 		assertTrue("Legal move from 4 to 9", model.makeMove(model.pegIDToPoint(4), model.pegIDToPoint(9)));
 		assertTrue("Legal move from 9 to 5", model.makeMove(model.pegIDToPoint(9), model.pegIDToPoint(5)));
 		
@@ -142,13 +142,13 @@ public class S017LegalMoveTest {
 	{
 		for (int i = 1; i <= 6; i++)
 		{
-			assertTrue("Able to place white on "+i, model.placeWhite(i));
+			assertTrue("Able to place white on "+i, model.processWhiteClick(i));
 			model.setPeg(Peg.NONE, i);
 		}
 		
 		for (int i = 9; i <= 11; i++)
 		{
-			assertTrue("Able to place white on "+i, model.placeWhite(i));
+			assertTrue("Able to place white on "+i, model.processWhiteClick(i));
 			model.setPeg(Peg.NONE, i);
 		}
 	}
