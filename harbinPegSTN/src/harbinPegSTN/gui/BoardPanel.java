@@ -22,6 +22,9 @@ public class BoardPanel extends JPanel implements MouseListener {
 	private int prevClick = 0;
 	public static final int GRID_SIZE = 7;
 	
+	
+	public String status[]={"white peg placed", "white click", "White jump","white slide","white removed","its white's turn"
+			,"its black's turn","black click", "black slide", "Peg Jump", "its invalid move/click"};
 	private Model model = null;
 	private VisualPeg[] pegs = new VisualPeg[34];
 
@@ -99,47 +102,11 @@ public class BoardPanel extends JPanel implements MouseListener {
 			}
 
 		}
-		String status = "";
-		switch( model.getStatus()){
-		case BLACK_CLICK:
-			status="black pegs selected!";
-			break;
-		case BLACK_SLIDE:
-			status="slide black peg";
-			break;
-		case BLACK_TURN:
-			status="it's black's turn";
-			break;
-		case INVALID:
-			status="invalid move or click, please try again";
-			break;
-		case PEG_JUMP:
-			status="peg jumped";
-			break;
-		case WHITE_CLICK:
-			status="white peg selected";
-			break;
-		case WHITE_JUMP:
-			status="white peg jumpped";
-			break;
-		case WHITE_PLACE:
-			status="white peg is placed";
-			break;
-		case WHITE_REMOVED:
-			status="white peg is removed";
-			break;
-		case WHITE_SLIDE:
-			status="slide white peg";
-			break;
-		case WHITE_TURN:
-			status="it's white's turn";
-			break;
-			default :
-				status="invalid input";
-				break;
-		}
+		String s = status[Status.toInt(model.getStatus())];
+		
+		
 		if(mainWindow!=null)
-			mainWindow.updateStatus(status);
+			mainWindow.updateStatus(s);
 	}
 
 	protected boolean processClick(int i) {
