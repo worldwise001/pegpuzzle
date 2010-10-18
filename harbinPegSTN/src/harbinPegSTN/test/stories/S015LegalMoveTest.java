@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import java.awt.Point;
 
 import harbinPegSTN.model.Model;
+import harbinPegSTN.model.Status;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -51,4 +52,11 @@ public class S015LegalMoveTest {
 		assertEquals("Peg ID at (5,3) should be 29", 29, model.pointToPegID(new Point(5, 3)));
 	}
 
+	@Test
+	public void testStatus(){
+		assertEquals("Should be invalid in the begining",Status.INVALID,model.getStatus());
+		model.setStatus(Status.WHITE_CLICK);
+		assertEquals("Should be white click",Status.WHITE_CLICK,model.getStatus());
+		
+	}
 }
