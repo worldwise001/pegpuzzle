@@ -59,56 +59,56 @@ public class S017LegalMoveTest {
 		assertEquals("Now is white's turn", Peg.WHITE, model.whoseTurn());
 	}
 	
-	@Test
-	public void testCheckHop(){
-		assertTrue("Legal hop from 12 to 11", model.checkHop(12, 11));
-		assertFalse("Illegal hop from 6 to 7", model.checkHop(6, 7));
-		assertFalse("Illegal hop from 27 to 28", model.checkHop(27, 28));
-	}
-
-	@Test
-	public void testCheckJump () {
-		assertTrue("Legal jump from 3 to 1", model.checkJump(3, 1));
-		assertTrue("Legal jump from 3 to 9", model.checkJump(3, 9));
-		assertTrue("Legal jump from 10 to 22", model.checkJump(10, 22));
-		assertTrue("Legal jump from 5 to 17", model.checkJump(5, 17));
-		assertTrue("Legal jump from 23 to 25", model.checkJump(23, 25));
-		assertFalse("Illegal jump from 3 to 4", model.checkJump(3, 4));
-		assertFalse("Illegal jump from 8 to 6", model.checkJump(8, 6));
-		assertFalse("Illegal jump out of boundary 2 to 0", model.checkJump(2, 0));
-		assertFalse("Illegal jump out of boundary 32 to 24", model.checkJump(32, 34));
-		
-		Point p1 = new Point();
-		Point p2 = new Point();
-		
-		p1.setLocation(0, 2);
-		p2.setLocation(0, 4);
-		assertTrue("Legal jump from 3 to 1", model.checkJump(p1, p2));
-		
-		p1.setLocation(0, 4);
-		p2.setLocation(2, 2);
-		assertTrue("Legal jump from 3 to 9", model.checkJump(p1, p2));
-		
-		p1.setLocation(2, 3);
-		p2.setLocation(4, 1);
-		assertTrue("Legal jump from 10 to 22", model.checkJump(p1, p2));
-		
-		p1.setLocation(1, 3);
-		p2.setLocation(3, 3);
-		assertTrue("Legal jump from 5 to 17", model.checkJump(p1, p2));
-		
-		p1.setLocation(4, 2);
-		p2.setLocation(4, 4);
-		assertTrue("Legal jump from 23 to 25", model.checkJump(p1, p2));
-		
-		p1.setLocation(0, 4);
-		p2.setLocation(1, 2);
-		assertFalse("Illegal jump from 3 to 4", model.checkJump(p1, p2));
-		
-		p1.setLocation(2, 1);
-		p2.setLocation(1, 4);
-		assertFalse("Illegal jump from 8 to 6", model.checkJump(p1, p2));
-	}
+//	@Test
+//	public void testCheckHop(){
+//		assertTrue("Legal hop from 12 to 11", model.checkHop(12, 11));
+//		assertFalse("Illegal hop from 6 to 7", model.checkHop(6, 7));
+//		assertFalse("Illegal hop from 27 to 28", model.checkHop(27, 28));
+//	}
+//
+//	@Test
+//	public void testCheckJump () {
+//		assertTrue("Legal jump from 3 to 1", model.checkJump(3, 1));
+//		assertTrue("Legal jump from 3 to 9", model.checkJump(3, 9));
+//		assertTrue("Legal jump from 10 to 22", model.checkJump(10, 22));
+//		assertTrue("Legal jump from 5 to 17", model.checkJump(5, 17));
+//		assertTrue("Legal jump from 23 to 25", model.checkJump(23, 25));
+//		assertFalse("Illegal jump from 3 to 4", model.checkJump(3, 4));
+//		assertFalse("Illegal jump from 8 to 6", model.checkJump(8, 6));
+//		assertFalse("Illegal jump out of boundary 2 to 0", model.checkJump(2, 0));
+//		assertFalse("Illegal jump out of boundary 32 to 24", model.checkJump(32, 34));
+//		
+//		Point p1 = new Point();
+//		Point p2 = new Point();
+//		
+//		p1.setLocation(0, 2);
+//		p2.setLocation(0, 4);
+//		assertTrue("Legal jump from 3 to 1", model.checkJump(p1, p2));
+//		
+//		p1.setLocation(0, 4);
+//		p2.setLocation(2, 2);
+//		assertTrue("Legal jump from 3 to 9", model.checkJump(p1, p2));
+//		
+//		p1.setLocation(2, 3);
+//		p2.setLocation(4, 1);
+//		assertTrue("Legal jump from 10 to 22", model.checkJump(p1, p2));
+//		
+//		p1.setLocation(1, 3);
+//		p2.setLocation(3, 3);
+//		assertTrue("Legal jump from 5 to 17", model.checkJump(p1, p2));
+//		
+//		p1.setLocation(4, 2);
+//		p2.setLocation(4, 4);
+//		assertTrue("Legal jump from 23 to 25", model.checkJump(p1, p2));
+//		
+//		p1.setLocation(0, 4);
+//		p2.setLocation(1, 2);
+//		assertFalse("Illegal jump from 3 to 4", model.checkJump(p1, p2));
+//		
+//		p1.setLocation(2, 1);
+//		p2.setLocation(1, 4);
+//		assertFalse("Illegal jump from 8 to 6", model.checkJump(p1, p2));
+//	}
 	
 	@Test
 	public void testCheckMove () {

@@ -80,21 +80,5 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 		else
 			return DEEP_ORANGE;
 	}
-	
-	protected boolean processClick(int i) {
-		SaveTheNetworkModel m = (SaveTheNetworkModel)getModel();
-		boolean result = false;
-		if (pegsToPlace > 0) {
-			result = m.placeWhite(i);
-			if (result) pegsToPlace--;
-			updateGUI();
-		}
-		else {
-			result=m.togglePeg(i);
-			super.processClick(i);
-			
-		}
-		return result;
-	}
 
 }

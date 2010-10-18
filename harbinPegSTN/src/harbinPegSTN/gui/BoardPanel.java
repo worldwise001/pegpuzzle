@@ -99,7 +99,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 			}
 
 		}
-		String status;
+		String status = "";
 		switch( model.getStatus()){
 		case BLACK_CLICK:
 			status="black pegs selected!";
@@ -111,10 +111,10 @@ public class BoardPanel extends JPanel implements MouseListener {
 			status="it's black's turn";
 			break;
 		case INVALID:
-			status="invalid mvoe or click, plese try again";
+			status="invalid move or click, please try again";
 			break;
 		case PEG_JUMP:
-			status="peg jumpped";
+			status="peg jumped";
 			break;
 		case WHITE_CLICK:
 			status="white peg selected";
@@ -143,17 +143,13 @@ public class BoardPanel extends JPanel implements MouseListener {
 	}
 
 	protected boolean processClick(int i) {
-		boolean result = false;
+		boolean result = model.togglePeg(i);
 		for(int j=1;j<34;j++)
 			pegs[j].setSelected(false);
-		if(model.getPreviousClicked()!=-1)
-			pegs[model.getPreviousClicked()].setSelected(true);
+		if(model.getSelectedPeg() != Model.PEG_ID_NONE)
+			pegs[model.getSelectedPeg()].setSelected(true);
 		updateGUI();
 		return result;
-	}
-
-	private boolean executeMove(int loc1, int loc2) {
-		return model.makeMove(loc1, loc2);
 	}
 	
 	protected Model getModel() {

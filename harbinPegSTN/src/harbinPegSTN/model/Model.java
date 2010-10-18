@@ -4,11 +4,14 @@ import java.awt.Point;
 
 public class Model {
 
-	private static final int BOARD_SIZE = 7;
-	private static final int BOARD_RIGHT_BOUND = 33;
-	private static final int BOARD_LEFT_BOUND = 1;
-	private int previousClicked;
-	protected Peg[][] pegs;
+	public static final int PEG_ID_NONE = -1;
+	protected static final int BOARD_SIZE = 7;
+	protected static final int BOARD_RIGHT_BOUND = 33;
+	protected static final int BOARD_LEFT_BOUND = 1;
+	
+	private int selectedPeg = PEG_ID_NONE;
+	private Peg[][] pegs;
+	private boolean diagonalMovesAllowed = false;
 
 	public Model() {
 		reset();
@@ -25,41 +28,66 @@ public class Model {
 			}
 		}
 
-		previousClicked = -1;
+		selectedPeg = PEG_ID_NONE;
 	}
 	
-	public void setPreviousClicked(int pegLocation){
-		previousClicked=pegLocation;
+	protected void selectPeg(int pegLocation){
+		selectedPeg = pegLocation;
 	}
-	public int getPreviousClicked(){
-		return previousClicked;
+	
+	public int getSelectedPeg(){
+		return selectedPeg;
+	}
+	
+	protected boolean isDiagonalMovesAllowed() {
+		return diagonalMovesAllowed;
+	}
+
+	protected void setDiagonalMovesAllowed(boolean diagonalMovesAllowed) {
+		this.diagonalMovesAllowed = diagonalMovesAllowed;
+	}
+	
+	protected boolean isPegLocationValid(int pegLocation) {
+		return !(pegLocation < BOARD_LEFT_BOUND || pegLocation > BOARD_RIGHT_BOUND);
+	}
+	
+	protected boolean isPegLocationValid(Point pegLocation) {
+		return (pegLocation != null) && !(pegLocation.x < 0 || pegLocation.y < 0 || pegLocation.x > 6 || pegLocation.y > 6);
 	}
 	
 	public boolean isPegAtLocation(int pegLocation) {
-		if (pegLocation < BOARD_LEFT_BOUND || pegLocation > BOARD_RIGHT_BOUND) return false;
+		if (!isPegLocationValid(pegLocation)) return false;
 		Point pt = pegIDToPoint(pegLocation);
 		return isPegAtLocation(pt); 
 	}
 
 	public boolean isPegAtLocation(Point pegLocation) {
-		return (pegs[pegLocation.x][pegLocation.y] != Peg.INVALID) && (pegs[pegLocation.x][pegLocation.y] != Peg.NONE) && (pegs[pegLocation.x][pegLocation.y] != Peg.BLANK); 
+		return  (isPegLocationValid(pegLocation)) &&
+				(pegs[pegLocation.x][pegLocation.y] != Peg.INVALID) &&
+				(pegs[pegLocation.x][pegLocation.y] != Peg.NONE) &&
+				(pegs[pegLocation.x][pegLocation.y] != Peg.BLANK); 
 	}
 
 	public Peg getPeg(int pegLocation) {
-		if (pegLocation < BOARD_LEFT_BOUND || pegLocation > BOARD_RIGHT_BOUND) return Peg.INVALID;
-		Point pt = pegIDToPoint(pegLocation);
-		if (pegs[pt.x][pt.y] == null) return Peg.INVALID;
-		return pegs[pt.x][pt.y];
+		return getPeg(pegIDToPoint(pegLocation));
+	}
+	
+	protected Peg getPeg(Point pegLocation) {
+		if (!isPegLocationValid(pegLocation)) return Peg.INVALID;
+		return pegs[pegLocation.x][pegLocation.y];
 	}
 
 	public void setPeg(Peg peg, int pegLocation) {
-		Point pt = pegIDToPoint(pegLocation);
-		if (pt == null) return;
-		pegs[pt.x][pt.y] = peg;
+		setPeg(peg, pegIDToPoint(pegLocation));
+	}
+	
+	protected void setPeg(Peg peg, Point pegLocation) {
+		if (!isPegLocationValid(pegLocation)) return;
+		pegs[pegLocation.x][pegLocation.y] = peg;
 	}
 
 	public Point pegIDToPoint(int pegLocation) {
-		if (pegLocation < 1 || pegLocation > 33) return null;
+		if (!isPegLocationValid(pegLocation)) return null;
 		Point p = new Point();
 		if (pegLocation >= 1 && pegLocation <= 6)
 		{
@@ -82,8 +110,9 @@ public class Model {
 	public int pointToPegID(Point pegLocation) {
 		int x = pegLocation.x;
 		int y = pegLocation.y;
-		if (x < 0 || y < 0 || x > 6 || y > 6) return -1;
-		int id = -1;
+		int id = PEG_ID_NONE;
+		
+		if (!isPegLocationValid(pegLocation)) return id;
 		if (x <= 1 && (y >= 2 && y <= 4))
 			id = (y-1)+(x*3);
 		else if (x >= 2 && x <= 4)
@@ -93,23 +122,7 @@ public class Model {
 		return id;
 	}
 
-	public int getMiddlePeg(int peg1, int peg2)
-	{
-		return getMiddlePeg(peg1, peg2, false);
-	}
-
-	public int getMiddlePeg(int loc1, int loc2, boolean allowDiag) {
-		Point p = getMiddlePeg(pegIDToPoint(loc1), pegIDToPoint(loc2), allowDiag);
-		if (p == null) return -1;
-		return pointToPegID(p);
-	}
-
 	protected Point getMiddlePeg(Point p1, Point p2)
-	{
-		return getMiddlePeg(p1, p2, false);
-	}
-
-	protected Point getMiddlePeg(Point p1, Point p2, boolean allowDiag)
 	{
 		Point mid=new Point();
 		if(Math.abs(p1.x-p2.x)==2 && p1.y==p2.y)
@@ -130,7 +143,7 @@ public class Model {
 				mid.y=p1.y+1;
 			return mid;
 		}
-		if(allowDiag && Math.abs(p1.x-p2.x)==2 && Math.abs(p1.y-p2.y)==2){
+		if(diagonalMovesAllowed && Math.abs(p1.x-p2.x)==2 && Math.abs(p1.y-p2.y)==2){
 			mid.x=(p1.x>p2.x)?(p1.x-1):(p1.x+1);
 			mid.y=(p1.y>p2.y)?(p1.y-1):(p1.y+1);
 			return mid;
@@ -140,25 +153,23 @@ public class Model {
 
 	protected boolean checkJump(Point p1, Point p2)
 	{
-		return checkJump(p1, p2, false);
-	}
-
-	protected boolean checkJump(Point p1, Point p2, boolean allowDiag)
-	{
-		Point mid = getMiddlePeg(p1, p2, allowDiag);
+		Point mid = getMiddlePeg(p1, p2);
 		return mid != null;
 	}
 
 	protected boolean checkSlide(Point p1, Point p2)
 	{
-		return checkSlide(p1, p2, false);
-	}
-
-	protected boolean checkSlide(Point p1, Point p2, boolean allowDiag)
-	{
 		return ((Math.abs(p1.x - p2.x) == 1 && p1.y == p2.y) ||
 				(Math.abs(p1.y - p2.y) == 1 && p1.x == p2.x) ||
-				(allowDiag && Math.abs(p1.y - p2.y) == 1 && (Math.abs(p1.x - p2.x) == 1)));
+				(diagonalMovesAllowed && Math.abs(p1.y - p2.y) == 1 && (Math.abs(p1.x - p2.x) == 1)));
+	}
+	
+	protected Move getMoveType(Point p1, Point p2) {
+		if (!isPegLocationValid(p1) || !isPegLocationValid(p2)) return Move.INVALID;
+		if (p1.equals(p2)) return Move.NONE;
+		if (checkSlide(p1,p2)) return Move.SLIDE;
+		if (checkJump(p1,p2)) return Move.JUMP;
+		return Move.INVALID;
 	}
 
 	//please reimplement this!
@@ -168,6 +179,20 @@ public class Model {
 	}
 	
 	public boolean togglePeg(int loc) {
+		if (!isPegLocationValid(loc)) return false;
+		if (selectedPeg == PEG_ID_NONE) {
+			selectedPeg = loc;
+			return true;
+		} else {
+			if (selectedPeg == loc) {
+				selectedPeg = PEG_ID_NONE;
+				return true;
+			}
+			else if (makeMove(selectedPeg, loc)) {
+				selectedPeg = PEG_ID_NONE;
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -182,5 +207,7 @@ public class Model {
 	public Status getStatus() {
 		return Status.INVALID;
 	}
+	
+	protected enum Move { JUMP, SLIDE, NONE, INVALID }
 
 }
