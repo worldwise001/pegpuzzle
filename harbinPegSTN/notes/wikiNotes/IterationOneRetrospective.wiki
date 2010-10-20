@@ -1,41 +1,41 @@
 One of the benefits of iteration is that we get to learn from our mistakes and continually work to improve our process. So Now that the iteration is over, how did it go? What can we learn to improve our process.
-Answer these questions four your group as a way to help self-assess how your process/project is going. Remember you can consult the repository to review history, old versions etc. Try using A,B,C, etc. as a shorthand for expressing to what level a practice was followed. If not A, a short note explaining deficiency/possible solution is useful.
+Answer these questions for your group as a way to help self-assess how your process/project is going. Remember you can consult the repository to review history, old versions etc. Try using A,B,C, etc. as a shorthand for expressing to what level a practice was followed. If not A, a short note explaining deficiency/possible solution is useful.
 
 | *Num* | *Level* | *Assessment Question* |
-| 1. | xxx |  Does code follow the suggested coding standards consistently? (Including conventions like buildGUI and updateGUI) |
-| discussion |
-| 2. | xxx | Are static methods/fields used only for appropriate reasons? Except for constants, class fields are not accessed directly outside of the class. Is Javadoc being used? |
-| discussion |
-| 3. | xxx | Is code staying refactored? Obvious things to check for are: Are good names being used (classes, methods, fields)? Is deadcode present? Have methods become too complex( too long, too many branches Ð conditional logic)? |
-| discussion |
-| 4. | xxx | Does the code continue to support MVC?  Verify that the model logic hasn't spilled into view or controller. |
-| discussion |
-| 5. | xxx | All tests should be independent and the model should be unaware of tests, controller or view. (However the model should have the correct functionality to support the View and Controller. Tests should not be overly complicated, keep logic in model) Do tests all contain appropriate asserts? Are tests covering the model well? Are they meaningful? |
-| discussion |
-| 6. | xxx | Are tests easy to follow so they clearly demonstrate the expected behavior of the code? Are they also being refactored to stay clear and working as the model changes? Are setup, helper methods being used? Is one there one class that will run all the JUnit tests for the project? |
-| discussion |
-| 7. | xxx | Did the team practice Test Driven Development? (for the Model(s))
-| discussion |
-| 8. | xxx | Does the repository indicate frequent commits (with comments & from all team members)? Does the committed code compile? |
-| discussion |
-| 9. | xxx | Did the team practice Pair Programming? Do all team members feel ownership of all code? |
-| discussion |
-| 10. | xxx | Is the wiki updated? Does it reflect current progress on priority stories? Does it contain design sketches, thoughts etc. esp. from talking with customer? |
-| discussion |
-| 11. | xxx | Are the developers communicating well with the customer(and each other) to help remove ambiguity about the stories, split stories, etc.? |
-| discussion |
-| 12. | xxx | Are customer tests and demos provided to assure the customers that stories have been implemented properly? |
-| discussion |
-| 13. | xxx | Is the work being accomplished consistent with customer priorities? |
-| discussion |
-| 14. | xxx | Was sufficient work accomplished? How did actual work time compare to estimated effort for this iteration's stories? Does velocity need to be updated? |
-| discussion |
+| 1. | B |  Does code follow the suggested coding standards consistently? (Including conventions like buildGUI and updateGUI) |
+| For the most part, suggested coding standards were followed rather consistently; subclassing the models and the views also forced the following of some these conventions |
+| 2. | C | Are static methods/fields used only for appropriate reasons? Except for constants, class fields are not accessed directly outside of the class. Is Javadoc being used? |
+| There may be some magic constants lingering around in the code... Javadoc conventions were not followed |
+| 3. | B | Is code staying refactored? Obvious things to check for are: Are good names being used (classes, methods, fields)? Is deadcode present? Have methods become too complex( too long, too many branches ï¿½ conditional logic)? |
+| For the most part, the code is remaining refactored. Some names were initially ambiguous (thus confusing programming logic), but were clarified in later refactorings |
+| 4. | A | Does the code continue to support MVC?  Verify that the model logic hasn't spilled into view or controller. |
+| Yes; there was one instance we had logic spill into the controller regarding the processing of mouse clicks; this was quickly migrated over to the model in subsequent refactorings |
+| 5. | B | All tests should be independent and the model should be unaware of tests, controller or view. (However the model should have the correct functionality to support the View and Controller. Tests should not be overly complicated, keep logic in model) Do tests all contain appropriate asserts? Are tests covering the model well? Are they meaningful? |
+| The tests initially did cover most of the functionality of the model. However, subsequent refactorings ended up breaking some of the tests, which have not yet been rewritten. |
+| 6. | B | Are tests easy to follow so they clearly demonstrate the expected behavior of the code? Are they also being refactored to stay clear and working as the model changes? Are setup, helper methods being used? Is one there one class that will run all the JUnit tests for the project? |
+| Some of the tests are unclear |
+| 7. | B | Did the team practice Test Driven Development? (for the Model(s))
+| There were instances where the team got too ahead of itself with test-driven development |
+| 8. | A | Does the repository indicate frequent commits (with comments & from all team members)? Does the committed code compile? |
+| Yes |
+| 9. | A | Did the team practice Pair Programming? Do all team members feel ownership of all code? |
+| For the most part, pair programming was practiced on the more complex components of the model logic. There were instances where while tasks were divided amongst the groupmates, there was a lot of flip-flopping in roles and pointing out errors in each others' code |
+| 10. | A | Is the wiki updated? Does it reflect current progress on priority stories? Does it contain design sketches, thoughts etc. esp. from talking with customer? |
+| Yes |
+| 11. | B | Are the developers communicating well with the customer(and each other) to help remove ambiguity about the stories, split stories, etc.? |
+| For the most part this is working out. Sometimes the developers are prone to overthink the task or request or featureset required by the user |
+| 12. | A | Are customer tests and demos provided to assure the customers that stories have been implemented properly? |
+| Some of the tests have been written in response to specific stories, to assure the customer that a particular task has been completed. The demos need to be more thorough in covering the GUI components. |
+| 13. | A | Is the work being accomplished consistent with customer priorities? |
+| Yes |
+| 14. | A | Was sufficient work accomplished? How did actual work time compare to estimated effort for this iteration's stories? Does velocity need to be updated? |
+| Yes, this worked well |
 
 ---++ Summarize (May also include other aspects not covered in above questions)
 
 ---+++ What worked well?
 The test driven developing works well in the beginning. In the middle, when we found a lot things need to be done, we tend to work ahead of test, then come up with the test cases. 
-The code follows the coding standards. MVC pattern is the guidance for our design. In the end of Iteration 1, we did some refactoring to clearify the relation of mdoel and controller, by shifting logic to model. 
+The code follows the coding standards. MVC pattern is the guidance for our design. In the end of Iteration 1, we did some refactoring to clarify the relation of model and controller, by shifting logic to model. 
 We indeed made a lot of commits.
 The work was accomplished consistently with customer priorities. The iteration one finished well with the time plan.
 
@@ -43,7 +43,7 @@ The work was accomplished consistently with customer priorities. The iteration o
 Pair Programming: 
      Sometimes, we just too focused on our work, neglect the importance of communication.
 Coding:
-     We are not skilled in coding, some interfaces/method turns out to be useless. A lot of majic numbers and bad names to be refactored at last.
+     We are not skilled in coding, some interfaces/method turns out to be useless. A lot of magic numbers and bad names to be refactored at last.
 Test Driven: 
      As this is the fist time to do test driven developing, we can do better next time and improve the coverage of test cases.
 ---+++ Suggestions?

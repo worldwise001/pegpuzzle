@@ -10,7 +10,7 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
    * JUnit Test Status: puzzleHome:/junitReport/index.html 
    
 ---+++ Retrospective
-   * Thoughts on stuff......
+   * [[Iteration One Retrospective]]
 
 ---+++ Current Stories
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
@@ -19,10 +19,10 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 | [[016]] | W |  Legal Moves | Peg Puzzle Legal Moves | 0 | 3 | 15 | - | 1 |
 | [[017]] | W |  Legal Moves | Save The Network | 0 | 3 | 10 | - | 1 |
 | [[035]] | W |  New Game | User can start a new game at any time | 0 | 2 | 15 | - | 1 |
-| [[040]] | SP |  Multiple Jumps | Allow multiple jumps in a single turn | 1 | 2 | 20 | 030,041 | 1 |
+| [[040]] | SW |  Multiple Jumps | Allow multiple jumps in a single turn | 1 | 2 | 20 | 030,041 | 1 |
 | [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 1 | 2 | xxx | 030 | |
 | [[045]] | W |  Attractive Board | Board is displayed with images or graphics (not text) | 0 | 3 | 25 | - | 1 |
-| [[100]] | W |  White setup | Allow white to position for start | 0 | 1 | 15 | - | 1 |
+| [[100]] | P |  White setup | Allow white to position for start | 0 | 1 | 15 | - | 1 |
 | [[105]] | W |  Enforce turns | Enforce/indicate White/Black turn-taking | 0 | 3 | xxx | - | 1 |
 | [[110]] | W |  White legal moves | Permit valid white moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
