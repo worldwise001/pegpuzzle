@@ -205,13 +205,12 @@ public class Model {
 		return false;
 	}
 	
-	public boolean processMoveSequence(int[][] sequence) {
-		return false;
-	}
+	// not used yet
+//	public boolean processMoveSequence(int[][] sequence) {
+//		return false;
+//	}
 	
-	public void getError() {
-		
-	}
+	
 	public void setStatus(Status s){
 		status=s;
 	}
