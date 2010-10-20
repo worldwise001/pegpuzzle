@@ -34,9 +34,18 @@ Answer these questions four your group as a way to help self-assess how your pro
 ---++ Summarize (May also include other aspects not covered in above questions)
 
 ---+++ What worked well?
+The test driven developing works well in the beginning. In the middle, when we found a lot things need to be done, we tend to work ahead of test, then come up with the test cases. 
+The code follows the coding standards. MVC pattern is the guidance for our design. In the end of Iteration 1, we did some refactoring to clearify the relation of mdoel and controller, by shifting logic to model. 
+We indeed made a lot of commits.
+The work was accomplished consistently with customer priorities. The iteration one finished well with the time plan.
 
 ---+++ What can we do better?
-
+Pair Programming: 
+     Sometimes, we just too focused on our work, neglect the importance of communication.
+Coding:
+     We are not skilled in coding, some interfaces/method turns out to be useless. A lot of majic numbers and bad names to be refactored at last.
+Test Driven: 
+     As this is the fist time to do test driven developing, we can do better next time and improve the coverage of test cases.
 ---+++ Suggestions?
 
 
