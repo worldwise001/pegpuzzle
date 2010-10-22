@@ -28,6 +28,11 @@ public class S015LegalMoveTest {
 	}
 	
 	@Test
+	public void checkDefaultDiagonalMovesDisabled() {
+		assertFalse("Diagonal moves are not allowed by default", model.isDiagonalMovesAllowed());
+	}
+	
+	@Test
 	public void testPegIDTo2DRepresentation()
 	{
 		Point p = model.pegIDToPoint(1);
@@ -66,7 +71,8 @@ public class S015LegalMoveTest {
 		assertTrue("now toggle peg at 19", model.togglePeg(19));
 		assertFalse("now toggle peg at 17, should be false because not jump possible for base model",model.togglePeg(17));
 		assertEquals("selected peg should be 19 now",19,model.getSelectedPeg());
-		
+		assertTrue("now toggle peg at 19", model.togglePeg(19));
+		assertTrue("now toggle peg at 19", model.togglePeg(19));
 	}
 	@Test
 	public void testIsPegAtLocation(){
@@ -89,5 +95,13 @@ public class S015LegalMoveTest {
 		assertEquals("true",4,Status.toInt(Status.WHITE_REMOVED));
 		assertEquals("true",6,Status.toInt(Status.BLACK_TURN));
 		
+	}
+	
+	@Test
+	public void testGetMoveType() {
+		assertEquals("Move of type jump", Model.Move.JUMP, model.getMoveType(new Point(1, 2), new Point(3, 2)));
+		assertEquals("Move of type slide", Model.Move.SLIDE, model.getMoveType(new Point(1, 2), new Point(2, 2)));
+		assertEquals("Move of type none", Model.Move.NONE, model.getMoveType(new Point(1, 2), new Point(1, 2)));
+		assertEquals("Move of type invalid", Model.Move.INVALID, model.getMoveType(new Point(1, 2), new Point(0, 0)));
 	}
 }

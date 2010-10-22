@@ -30,7 +30,7 @@ public class Model {
 			}
 		}
 
-		selectedPeg = PEG_ID_NONE;
+		selectPeg(PEG_ID_NONE);
 	}
 
 	protected boolean isLocationBlank(int x, int y) {
@@ -45,7 +45,7 @@ public class Model {
 		return selectedPeg;
 	}
 	
-	protected boolean isDiagonalMovesAllowed() {
+	public boolean isDiagonalMovesAllowed() {
 		return diagonalMovesAllowed;
 	}
 
@@ -119,12 +119,15 @@ public class Model {
 		int id = PEG_ID_NONE;
 		
 		if (!isPegLocationValid(pegLocation)) return id;
-		if (x <= 1 && (y >= 2 && y <= 4))
-			id = (y-1)+(x*3);
-		else if (x >= 2 && x <= 4)
+		if (x >= 2 && x <= 4)
 			id = (x-1)*7+y;
-		else if (x >= 5 && (y >= 2 && y <= 4))
-			id = (y-1)+(x+4)*3;
+		else if (y >= 2 && y <= 4)
+		{
+			if (x <= 1)
+				id = (y-1)+(x*3);
+			else
+				id = (y-1)+(x+4)*3;
+		}
 		return id;
 	}
 
@@ -133,20 +136,14 @@ public class Model {
 		if (Math.abs(p1.x-p2.x)!=2 && Math.abs(p1.y-p2.y)!=2) return null;
 		if(Math.abs(p1.x-p2.x)==2 && p1.y==p2.y)
 		{
-			Point mid = p1;
-			if(p1.x>p2.x)
-				mid.x=p1.x-1;
-			else
-				mid.x=p1.x+1;
+			Point mid = (Point)p1.clone();
+			mid.x += (p2.x-p1.x)/2;
 			return mid;
 		}
 		else if(Math.abs(p1.y-p2.y)==2 && p1.x==p2.x)
 		{
-			Point mid = p1;
-			if(p1.y>p2.y)
-				mid.y=p1.y-1;
-			else
-				mid.y=p1.y+1;
+			Point mid = (Point)p1.clone();
+			mid.y += (p2.y-p1.y)/2;
 			return mid;
 		}
 		else if(diagonalMovesAllowed){
@@ -171,7 +168,7 @@ public class Model {
 				(diagonalMovesAllowed && Math.abs(p1.y - p2.y) == 1 && (Math.abs(p1.x - p2.x) == 1)));
 	}
 	
-	protected Move getMoveType(Point p1, Point p2) {
+	public Move getMoveType(Point p1, Point p2) {
 		if (!isPegLocationValid(p1) || !isPegLocationValid(p2)) return Move.INVALID;
 		if (p1.equals(p2)) return Move.NONE;
 		if (checkSlide(p1,p2)) return Move.SLIDE;
@@ -187,18 +184,16 @@ public class Model {
 	
 	public boolean togglePeg(int loc) {
 		if (!isPegLocationValid(loc)) return false;
-		if (selectedPeg == PEG_ID_NONE) {
-			selectedPeg = loc;
-			
+		if (getSelectedPeg() == PEG_ID_NONE) {
+			selectPeg(loc);
 			return true;
 		} else {
-			if (selectedPeg == loc) {
-				selectedPeg = PEG_ID_NONE;
+			if (getSelectedPeg() == loc) {
+				selectPeg(PEG_ID_NONE);
 				return true;
 			}
-			else if (makeMove(selectedPeg, loc)) {
-				selectedPeg = PEG_ID_NONE;
-				
+			else if (makeMove(getSelectedPeg(), loc)) {
+				selectPeg(PEG_ID_NONE);
 				return true;
 			}
 		}
@@ -218,6 +213,6 @@ public class Model {
 		return status;
 	}
 	
-	protected enum Move { JUMP, SLIDE, NONE, INVALID }
+	public enum Move { JUMP, SLIDE, NONE, INVALID }
 
 }

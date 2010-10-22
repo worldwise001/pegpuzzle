@@ -14,23 +14,19 @@ public class SaveTheNetworkModel extends Model {
 	public boolean togglePeg(int loc) {
 		if (!isPegLocationValid(loc)) return false;
 		if (processWhiteClick(loc)) return true;
-		if (getSelectedPeg() == PEG_ID_NONE) {
+		if (getSelectedPeg() == PEG_ID_NONE && isPegAtLocation(loc)) {
 			selectPeg(loc);
 			return true;
 		}
 		return processMove(loc);
 	}
 
-	
-			
-			
 	protected boolean processMove(int loc) {
 		switch (getMoveType(pegIDToPoint(getSelectedPeg()), pegIDToPoint(loc))) {
 		case SLIDE:
 			if (isJumping) {
 				isJumping = false;
 				selectPeg(PEG_ID_NONE);
-				super.setStatus(Status.BLACK_TURN);
 				reverseTurn();
 				return false;
 			}
@@ -38,13 +34,10 @@ public class SaveTheNetworkModel extends Model {
 			{
 				if (makeMove(getSelectedPeg(), loc)){
 					selectPeg(PEG_ID_NONE);
-					if(turn==Peg.WHITE)
-						super.setStatus(Status.BLACK_TURN);
-					else super.setStatus(Status.WHITE_TURN);
 					reverseTurn();
 					return true;
 				}
-				super.setStatus(Status.INVALID);
+				setStatus(Status.INVALID);
 				return false;
 			}
 		case JUMP:
@@ -56,14 +49,20 @@ public class SaveTheNetworkModel extends Model {
 					selectPeg(PEG_ID_NONE);
 					reverseTurn();
 				}
-				super.setStatus(Status.WHITE_JUMP);
+				setStatus(Status.WHITE_JUMP);
 				return true;
 			}
+			selectPeg(PEG_ID_NONE);
+			setStatus(Status.INVALID);
 			return false;
 		case NONE:
 			isJumping = false;
+			selectPeg(PEG_ID_NONE);
 			return true;
 		case INVALID:
+			isJumping = false;
+			selectPeg(PEG_ID_NONE);
+			setStatus(Status.INVALID);
 			return false;
 		}
 		return false;
@@ -73,8 +72,8 @@ public class SaveTheNetworkModel extends Model {
 		if (numWhitePegsToPlace > 0) {
 			if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11))
 			{
-				this.setPeg(Peg.WHITE, i);
-				super.setStatus(Status.WHITE_CLICK);
+				setPeg(Peg.WHITE, i);
+				setStatus(Status.WHITE_CLICK);
 				numWhitePegsToPlace--;
 				return true;
 			}
@@ -88,17 +87,21 @@ public class SaveTheNetworkModel extends Model {
 
 	public void reverseTurn() {
 		if(turn==Peg.WHITE)
+		{
 			turn=Peg.BLACK;
-		else turn=Peg.WHITE;
+			setStatus(Status.BLACK_TURN);
+		}
+		else
+		{
+			turn=Peg.WHITE;
+			setStatus(Status.WHITE_TURN);
+		}
 	}
 
 	public boolean checkSlide(Point fPt, Point sPt){
 		if (!super.checkSlide(fPt, sPt)) return false;
 		//black can only move forward and sideways
-		if (getPeg(fPt) == Peg.BLACK) {
-			if (sPt.x > fPt.x) return false;
-		}
-		return true;
+		return (getPeg(fPt) == Peg.BLACK && (sPt.x <= fPt.x)) || (getPeg(fPt) == Peg.WHITE);
 	}
 
 	public boolean checkMove(Point fPt, Point sPt) {
@@ -167,6 +170,7 @@ public class SaveTheNetworkModel extends Model {
 		for (int i = 14; i <= 33; i++)
 			super.setPeg(Peg.BLACK, i);
 		turn = Peg.WHITE;
+		numWhitePegsToPlace = 2;
 	}
 
 	public boolean isFutureJumpPossible(int loc){

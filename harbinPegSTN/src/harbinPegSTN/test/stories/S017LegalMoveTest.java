@@ -3,10 +3,9 @@ package harbinPegSTN.test.stories;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import harbinPegSTN.model.Model;
 import harbinPegSTN.model.Peg;
 import harbinPegSTN.model.SaveTheNetworkModel;
-
-import java.awt.Point;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -143,14 +142,47 @@ public class S017LegalMoveTest {
 		for (int i = 1; i <= 6; i++)
 		{
 			assertTrue("Able to place white on "+i, model.processWhiteClick(i));
-			model.setPeg(Peg.NONE, i);
+			model.reset();
 		}
 		
 		for (int i = 9; i <= 11; i++)
 		{
 			assertTrue("Able to place white on "+i, model.processWhiteClick(i));
-			model.setPeg(Peg.NONE, i);
+			model.reset();
 		}
+	}
+	
+	@Test
+	public void testTogglePeg() {
+		assertFalse("no selection made yet, so toggle return false",model.togglePeg(0));
+		assertTrue("now toggle peg at 19", model.togglePeg(19));
+		assertFalse("now toggle peg at 17, should be false because not jump possible for base model",model.togglePeg(17));
+		assertEquals("selected peg should be 19 now",Model.PEG_ID_NONE,model.getSelectedPeg());
+		assertTrue("now toggle peg at 19", model.togglePeg(19));
+		assertTrue("now toggle peg at 19", model.togglePeg(19));
+	}
+	
+	@Test
+	public void testSimulation() {
+		model.togglePeg(3);
+		model.togglePeg(2);
+		
+		model.togglePeg(3);
+		model.togglePeg(6);
+		
+		model.togglePeg(18);
+		model.togglePeg(11);
+		
+		model.togglePeg(2);
+		model.togglePeg(5);
+		
+		model.togglePeg(16);
+		model.togglePeg(9);
+		
+		model.togglePeg(6);
+		model.togglePeg(18);
+		model.togglePeg(16);
+		model.togglePeg(17);
 	}
 	
 }
