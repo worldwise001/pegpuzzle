@@ -19,8 +19,8 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 | [[016]] | W |  Legal Moves | Peg Puzzle Legal Moves | 0 | 3 | 15 | - | 1 |
 | [[017]] | W |  Legal Moves | Save The Network | 0 | 3 | 10 | - | 1 |
 | [[035]] | W |  New Game | User can start a new game at any time | 0 | 2 | 15 | - | 1 |
-| [[040]] | SW |  Multiple Jumps | Allow multiple jumps in a single turn | 1 | 2 | 20 | 030,041 | 1 |
-| [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 1 | 2 | xxx | 030 | |
+| [[040]] | SW |  Multiple Jumps | Allow multiple jumps in a single turn | 0 | 2 | 20 | 030,041 | 1 |
+| [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 0 | 2 | xxx | 030 | |
 | [[045]] | W |  Attractive Board | Board is displayed with images or graphics (not text) | 0 | 3 | 25 | - | 1 |
 | [[100]] | P |  White setup | Allow white to position for start | 0 | 1 | 15 | - | 1 |
 | [[105]] | W |  Enforce turns | Enforce/indicate White/Black turn-taking | 0 | 3 | xxx | - | 1 |
