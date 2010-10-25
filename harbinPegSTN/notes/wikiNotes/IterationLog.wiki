@@ -29,7 +29,7 @@ in a 2-week iteration -> 18 units
 | [[035]] | W |  New Game | User can start a new game at any time | 0 | 2 | 15 | - | 1 |
 | [[040]] | SW |  Multiple Jumps | Allow multiple jumps in a single turn | 0 | 2 | 20 | 030,041 | 1 |
 | [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 0 | 2 | xxx | 030 | |
-| [[042]] | N |  Multiple Jumps (drag-n-drop) | Allow multiple jumps in a single turn by mouse drag-n-drop | 2 | 2 | xxx | 030 | |
+| [[042]] | N |  Multiple Jumps (drag-n-drop) | Allow multiple jumps in a single turn by mouse drag-n-drop | 3 | 3 | xxx | 030 | |
 | [[045]] | W |  Attractive Board | Board is displayed with images or graphics (not text) | 0 | 3 | 25 | - | 1 |
 | [[050]] | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | 5 | xxx | - | |
 | [[055]] | N |  Take Back | A move can be taken back | 3 | 3 | xxx | 050 | |
@@ -51,4 +51,4 @@ in a 2-week iteration -> 18 units
 | [[320]] | N |  Display Location Numbers | Turn location numbers on/off | 0.5 | 0.5 | xxx | - | |
 | [[330]] | N |  Print Board | Print board or Save board as image | 1 | 1 | xxx | - | |
 | [[340]] | N |  Deployment | Deployment | 0.5 | 0.5 | xxx | - | |
-| TOTAL | | | | | 52 | | | |
+| TOTAL | | | | | 55 | | | |
