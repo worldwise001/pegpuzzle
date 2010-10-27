@@ -6,6 +6,7 @@ I found a situation that permits white to take an illegal jump.
 
 Assuming White is on 17, black is on 11, and 12 is empty.
 Your implementation currently lets me jump black by moving
-17 to 12.
+17 to 12. Possibly related to this is white 26 to 29 jumping
+black at 30.
 
 Consider this a bug.
