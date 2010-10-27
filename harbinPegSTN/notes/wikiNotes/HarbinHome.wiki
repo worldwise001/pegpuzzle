@@ -12,7 +12,7 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 ---+++ Retrospective
    * [[Iteration One Retrospective]]
 
----+++ Current Stories
+---+++ Iteration One Stories
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
 | [[010]] | W |  Direct Manipulation | User indicates moves graphically | 0 | 3 | 10 | - | 1 |
 | [[015]] | S |  Legal Moves | Only legal moves are permitted | - | - | xxx | 016,017 | 1 |
@@ -22,7 +22,32 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 | [[040]] | SW |  Multiple Jumps | Allow multiple jumps in a single turn | 0 | 2 | 20 | 030,041 | 1 |
 | [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 0 | 2 | xxx | 030 | |
 | [[045]] | W |  Attractive Board | Board is displayed with images or graphics (not text) | 0 | 3 | 25 | - | 1 |
-| [[100]] | P |  White setup | Allow white to position for start | 0 | 1 | 15 | - | 1 |
+| [[100]] | W |  White setup | Allow white to position for start | 0 | 1 | 15 | - | 1 |
 | [[105]] | W |  Enforce turns | Enforce/indicate White/Black turn-taking | 0 | 3 | xxx | - | 1 |
 | [[110]] | W |  White legal moves | Permit valid white moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
+
+---+++ Remaining Stories
+| *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
+| [[020]] | N |  Move Feedback | If an illegal move is attempted, a helpful message is displayed | 2 | 2 | xxx | 015 | |
+| [[025]] | N |  Pegs Remaining | Keep track and display the number of pegs remaining | 2 | 2 | xxx | - | |
+| [[030]] | S |  Game Over Message | Once game has ended, a Game Over message is displayed | - | - | xxx | 031,032 | |
+| [[031]] | N |  Game Over Message | Determine Game Over when Peg Puzzle game has ended | 4 | 4 | 30 | 015 | |
+| [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 2 | 2 | 30 | 015 | |
+| [[042]] | N |  Multiple Jumps (drag-n-drop) | Allow multiple jumps in a single turn by mouse drag-n-drop | 3 | 3 | xxx | 030 | |
+| [[050]] | N |  Replay Game | The moves of a game can be reviewed/replayed | 5 | 5 | xxx | - | |
+| [[055]] | N |  Take Back | A move can be taken back | 3 | 3 | xxx | 050 | |
+| [[060]] | N |  Demo Mode | Sample Game(s) are played as a demonstration | 2 | 2 | xxx | 050 | |
+| [[120]] | N |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 30 | 041 | |
+| [[125]] | N |  Recognize winner | Recognize winner and give message | 3 | 3 | 30 | 030,041 | |
+| [[130]] | N |  White AI | AI for white | 5 | 5 | xxx | 041 | |
+| [[135]] | N |  Black AI | AI for black | 5 | 5 | xxx | 015 | |
+| [[200]] | N |  Game Choice | Allow user to select Peg Puzzle or Save The Network game to play | 0.5 | 0.5 | 20 | - | 1 |
+| [[205]] | N |  Help | Offer help/instructions | 0.5 | 0.5 | xxx | - | |
+| [[210]] | N |  Credits | Show Credits | 0.5 | 0.5 | xxx | - | |
+| [[300]] | N |  Save Game | Save game in standard XML format | 1 | 1 | xxx | - | |
+| [[310]] | N |  Load Game | Load game in standard XML format | 1 | 1 | xxx | - | |
+| [[320]] | N |  Display Location Numbers | Turn location numbers on/off | 0.5 | 0.5 | xxx | - | |
+| [[330]] | N |  Print Board | Print board or Save board as image | 1 | 1 | xxx | - | |
+| [[340]] | N |  Deployment | Deployment | 0.5 | 0.5 | xxx | - | |
+| TOTAL | | | | | 42 | | | |
