@@ -41,7 +41,7 @@ in a 2-week iteration -> 18 units
 | [[115]] | W |  Black legal moves | Permit valid black moves | 0 | 0.5 | 10 | 015,105 | 1 |
 | [[120]] | N |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 30 | 041 | |
 | [[125]] | N |  Recognize winner | Recognize winner and give message | 3 | 3 | 30 | 030,041 | |
-| [[130]] | R |  White AI | AI for white | 5 | 5 | xxx | 041 | |
+| [[130]] | R |  White AI | AI for white | 3 | 3 | xxx | 041 | |
 | [[135]] | R |  Black AI | AI for black | 5 | 5 | xxx | 015 | |
 | [[200]] | N |  Game Choice | Allow user to select Peg Puzzle or Save The Network game to play | 0.5 | 0.5 | 20 | - | 1 |
 | [[205]] | N |  Help | Offer help/instructions | 0.5 | 0.5 | xxx | - | |
