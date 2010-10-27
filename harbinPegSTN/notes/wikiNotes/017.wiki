@@ -1,3 +1,11 @@
 Back to HarbinHome
 
 Status: Finished, waiting to be check out.
+
+I found a situation that permits white to take an illegal jump.
+
+Assuming White is on 17, black is on 11, and 12 is empty.
+Your implementation currently lets me jump black by moving
+17 to 12.
+
+Consider this a bug.
