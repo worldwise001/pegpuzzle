@@ -33,10 +33,10 @@ public class SaveTheNetworkModel extends Model {
 			else
 			{
 				if (makeMove(getSelectedPeg(), loc)){
-					selectPeg(PEG_ID_NONE);
 					reverseTurn();
 					return true;
 				}
+				selectPeg(PEG_ID_NONE);
 				setStatus(Status.INVALID);
 				return false;
 			}
@@ -46,9 +46,9 @@ public class SaveTheNetworkModel extends Model {
 				if (isFutureJumpPossible(loc)) selectPeg(loc);
 				else {
 					isJumping = false;
-					selectPeg(PEG_ID_NONE);
 					reverseTurn();
 				}
+				selectPeg(PEG_ID_NONE);
 				setStatus(Status.WHITE_JUMP);
 				return true;
 			}
