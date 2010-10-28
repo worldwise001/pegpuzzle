@@ -14,7 +14,10 @@ public class SaveTheNetworkModel extends Model {
 	public boolean togglePeg(int loc) {
 		if (!isPegLocationValid(loc)) return false;
 		if (processWhiteClick(loc)) return true;
-		if (getSelectedPeg() == PEG_ID_NONE && isPegAtLocation(loc)) {
+		if (getSelectedPeg() == PEG_ID_NONE && isPegAtLocation(loc))
+		{
+			if(this.whoseTurn()!= getPeg(loc))
+				return false;
 			selectPeg(loc);
 			return true;
 		}
