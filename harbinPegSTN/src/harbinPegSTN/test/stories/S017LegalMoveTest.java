@@ -163,6 +163,40 @@ public class S017LegalMoveTest {
 	}
 	
 	@Test
+	public void testWeirdJumps() {
+		int[] whitePlacement = {5,6};
+		model.processToggleSequence(whitePlacement);
+		
+		int[] setup = {5, 10, 17, 9, 10, 17, 12, 11};
+		model.processToggleSequence(setup);
+		
+		assertTrue("Toggle Jump p1", model.togglePeg(17));
+		assertFalse("Toggle Jump p2", model.togglePeg(12));
+		
+		model.reset();
+		whitePlacement = new int[]{2,5};
+		model.processToggleSequence(whitePlacement);
+		
+		setup = new int[]{5, 6, 8, 9, 6, 3, 9, 4};
+		model.processToggleSequence(setup);
+		
+		assertTrue("Toggle Jump p1", model.togglePeg(2));
+		assertFalse("Toggle Jump p2", model.togglePeg(8));
+		
+	}
+	
+	@Test
+	public void testWeirdSlides() {
+		int[] whitePlacement = {2,5};
+		model.processToggleSequence(whitePlacement);
+		
+		int[] setup = {5, 6, 8};
+		model.processToggleSequence(setup);
+		
+		assertFalse("Black shouldn't slide diagonally", model.togglePeg(4));
+	}
+	
+	@Test
 	public void testSimulation() {
 		model.togglePeg(3);
 		model.togglePeg(2);

@@ -133,7 +133,6 @@ public class Model {
 
 	protected Point getMiddlePeg(Point p1, Point p2)
 	{
-		if (Math.abs(p1.x-p2.x)!=2 && Math.abs(p1.y-p2.y)!=2) return null;
 		if(Math.abs(p1.x-p2.x)==2 && p1.y==p2.y)
 		{
 			Point mid = (Point)p1.clone();
@@ -146,10 +145,10 @@ public class Model {
 			mid.y += (p2.y-p1.y)/2;
 			return mid;
 		}
-		else if(diagonalMovesAllowed){
-			Point mid = new Point();
-			mid.x=(p1.x>p2.x)?(p1.x-1):(p1.x+1);
-			mid.y=(p1.y>p2.y)?(p1.y-1):(p1.y+1);
+		else if(diagonalMovesAllowed && (Math.abs(p1.x-p2.x)==2 && Math.abs(p1.y-p2.y)==2)){
+			Point mid = (Point)p1.clone();
+			mid.x += (p2.x-p1.x)/2;
+			mid.y += (p2.y-p1.y)/2;
 			return mid;
 		}
 		return null;
@@ -201,9 +200,12 @@ public class Model {
 	}
 	
 	// not used yet
-//	public boolean processMoveSequence(int[][] sequence) {
-//		return false;
-//	}
+	public void processToggleSequence(int[] sequence) {
+		for (int i = 0; i < sequence.length; i++)
+		{
+			togglePeg(sequence[i]);
+		}
+	}
 	
 	
 	public void setStatus(Status s){

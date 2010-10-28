@@ -101,7 +101,20 @@ public class SaveTheNetworkModel extends Model {
 	public boolean checkSlide(Point fPt, Point sPt){
 		if (!super.checkSlide(fPt, sPt)) return false;
 		//black can only move forward and sideways
+		if (getSquaredDistance(fPt, getNearestCorner(fPt)) == 5 && getSquaredDistance(sPt, getNearestCorner(sPt)) == 5)
+			return false;
 		return (getPeg(fPt) == Peg.BLACK && (sPt.x <= fPt.x)) || (getPeg(fPt) == Peg.WHITE);
+	}
+	
+	private int getSquaredDistance(Point p1, Point p2) {
+		return (int)((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
+	}
+	
+	private Point getNearestCorner(Point p) {
+		Point corner = new Point();
+		corner.x = (p.x / (BOARD_SIZE/2+1))*(BOARD_SIZE-1);
+		corner.y = (p.y / (BOARD_SIZE/2+1))*(BOARD_SIZE-1);
+		return corner;
 	}
 
 	public boolean checkMove(Point fPt, Point sPt) {
@@ -120,6 +133,15 @@ public class SaveTheNetworkModel extends Model {
 		default:
 			return false;
 		}
+	}
+
+	@Override
+	protected boolean checkJump(Point p1, Point p2) {
+		if (!super.checkJump(p1, p2)) return false;
+		if ((getSquaredDistance(p1, getNearestCorner(p1)) == 5 && getSquaredDistance(p2, getNearestCorner(p2)) == 9) ||
+				(getSquaredDistance(p1, getNearestCorner(p1)) == 9 && getSquaredDistance(p2, getNearestCorner(p2)) == 5))
+			return false;
+		return true;
 	}
 
 	public boolean makeMove(Point fPt, Point sPt) {
