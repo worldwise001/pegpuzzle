@@ -36,6 +36,7 @@ public class SaveTheNetworkModel extends Model {
 			else
 			{
 				if (makeMove(getSelectedPeg(), loc)){
+					selectPeg(PEG_ID_NONE);
 					reverseTurn();
 					return true;
 				}
