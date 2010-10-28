@@ -72,6 +72,7 @@ public class SaveTheNetworkModel extends Model {
 		if (numWhitePegsToPlace > 0) {
 			if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11))
 			{
+				if (getPeg(i) == Peg.WHITE) return false;
 				setPeg(Peg.WHITE, i);
 				setStatus(Status.WHITE_CLICK);
 				numWhitePegsToPlace--;
