@@ -192,7 +192,7 @@ public class SaveTheNetworkModel extends Model {
 		setPeg(Peg.BLACK, 13);
 		for (int i = 14; i <= 33; i++)
 			super.setPeg(Peg.BLACK, i);
-		turn = Peg.WHITE;
+		turn = Peg.BLACK;
 		numWhitePegsToPlace = 2;
 	}
 
