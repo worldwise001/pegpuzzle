@@ -10,3 +10,6 @@ Your implementation currently lets me jump black by moving
 black at 30.
 
 Consider this a bug.
+
+UPDATE:
+ - Bugs have been fixed, and related JUnit tests have been added to suite
