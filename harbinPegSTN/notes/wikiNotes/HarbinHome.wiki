@@ -11,7 +11,7 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
    
 ---+++ Retrospective
    * [[Iteration One Retrospective]]
-
+ 
 ---+++ Iteration One Stories
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
 | [[010]] | W |  Direct Manipulation | User indicates moves graphically | 0 | 3 | 10 | - | 1 |
