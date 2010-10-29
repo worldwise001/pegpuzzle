@@ -154,12 +154,16 @@ public class S017LegalMoveTest {
 	
 	@Test
 	public void testTogglePeg() {
+		int[] whitePlacement = {5,6};
+		model.processToggleSequence(whitePlacement);
+		
+		
 		assertFalse("no selection made yet, so toggle return false",model.togglePeg(0));
-		assertTrue("now toggle peg at 19", model.togglePeg(19));
+		assertFalse("now toggle peg at 19,its valid beacuse current turn is not black", model.togglePeg(19));
 		assertFalse("now toggle peg at 17, should be false because not jump possible for base model",model.togglePeg(17));
-		assertEquals("selected peg should be 19 now",Model.PEG_ID_NONE,model.getSelectedPeg());
-		assertTrue("now toggle peg at 19", model.togglePeg(19));
-		assertTrue("now toggle peg at 19", model.togglePeg(19));
+		assertEquals("selected peg should be none now",Model.PEG_ID_NONE,model.getSelectedPeg());
+		assertTrue("now toggle peg at 5", model.togglePeg(5));
+		assertFalse("now toggle peg at 6", model.togglePeg(6));
 	}
 	
 	@Test
