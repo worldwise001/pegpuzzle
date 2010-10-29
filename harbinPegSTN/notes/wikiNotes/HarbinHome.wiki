@@ -22,7 +22,7 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 | [[040]] | SW |  Multiple Jumps | Allow multiple jumps in a single turn | 0 | 2 | 20 | 030,041 | 1 |
 | [[041]] | W |  Detect Potential Jumps | Check if a jump is possible | 0 | 2 | xxx | 030 | 1 |
 | [[045]] | W |  Attractive Board | Board is displayed with images or graphics (not text) | 0 | 3 | 25 | - | 1 |
-| [[065]] | W |  Visual Feedback | Give visual feedback to the user of the first location selected | 0 | 0 | xxx | 100 | 1 |
+| [[065]] | W |  Visual Feedback | Give visual feedback to the user of the first location selected | 0 | 0 | xxx | 040 | 1 |
 | [[100]] | W |  White setup | Allow white to position for start | 0 | 1 | 15 | - | 1 |
 | [[105]] | W |  Enforce turns | Enforce/indicate White/Black turn-taking | 0 | 3 | xxx | - | 1 |
 | [[110]] | W |  White legal moves | Permit valid white moves | 0 | 0.5 | 10 | 015,105 | 1 |
@@ -33,17 +33,17 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 ---+++ Iteration Two Stories
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
 | [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 2 | 2 | 30 | 015 | 2 |
-| [[043]] | N |  Multiple Jumps (continue button) | Allow multiple jumps in a single turn by continue button | 0.5 | 0.5 | xxx | 030 | 2 |
-| [[070]] | N |  History stepthru | Step through all moves so far in the game | 2 | 2 | xxx | 050 | 2 |
+| [[043]] | N |  Multiple Jumps (continue button) | Allow multiple jumps in a single turn by continue button | 0.5 | 0.5 | xxx | 040 | 2 |
+| [[070]] | N |  History stepthru | Step through all moves so far in the game | 2 | 2 | xxx | 015| 2 |
 | [[071]] | N |  Save/Load History | Save/Load History of all moves | 1 | 1 | xxx | 070 | 2 |
 | [[120]] | N |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 30 | 041 | 2 |
-| [[130]] | R |  White AI | AI for white | 3 | 3 | xxx | 041 | 2 |
-| [[135]] | R |  Black AI | AI for black | 5 | 5 | xxx | 015 | 2 |
+| [[130]] | R |  White AI | AI for white | 3 | 3 | xxx | 041,017 | 2 |
+| [[135]] | R |  Black AI | AI for black | 5 | 5 | xxx | 017 | 2 |
 | [[210]] | N |  Credits | Show Credits | 0.5 | 0.5 | xxx | - | 2 |
-| [[300]] | N |  Save Game | Save game in standard XML format | 1 | 1 | xxx | - | 2 |
-| [[310]] | N |  Load Game | Load game in standard XML format | 1 | 1 | xxx | - | 2 |
-| [[320]] | N |  Display Location Numbers | Turn location numbers on/off | 0.5 | 0.5 | xxx | - | 2 |
-| [[330]] | N |  Print Board | Print board or Save board as image | 1 | 1 | xxx | - | 2 |
+| [[300]] | N |  Save Game | Save game in standard XML format | 1 | 1 | xxx | 015 | 2 |
+| [[310]] | N |  Load Game | Load game in standard XML format | 1 | 1 | xxx | 015 | 2 |
+| [[320]] | N |  Display Location Numbers | Turn location numbers on/off | 0.5 | 0.5 | xxx | 045 | 2 |
+| [[330]] | N |  Print Board | Print board or Save board as image | 1 | 1 | xxx | 045 | 2 |
 | [[340]] | N |  Deployment | Deployment | 0.5 | 0.5 | xxx | - | 2 |
 | TOTAL | | | | 18.5 | 18.5 | | | |
 
