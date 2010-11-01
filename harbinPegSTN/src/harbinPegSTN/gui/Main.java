@@ -1,5 +1,8 @@
 package harbinPegSTN.gui;
 
+import harbinPegSTN.model.SaveTheNetworkModel;
+import harbinPegSTN.model.Status;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -27,8 +30,10 @@ public class Main extends JFrame {
 		stnPuzzle=new SaveTheNetworkBoardPanel(this);
 		buildGUI();
 	}
-	public void updateStatus(String st){
-		statusArea.setText(st);
+	public void updateStatus(Status st){
+		if(st==Status.WHITE_JUMP)
+			continueButton.setEnabled(true);
+		statusArea.setText(Status.toString(st));
 	}
 	private void buildGUI() {
 		// TODO Convert this to two BoardPanels using CardLayout
@@ -77,6 +82,14 @@ public class Main extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					resetBoard();
+				}
+			});
+			continueButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					stnPuzzle.endWhiteJump();
+					continueButton.setEnabled(false);
+					
 				}
 			});
 			switchButton.addActionListener(new ActionListener() {

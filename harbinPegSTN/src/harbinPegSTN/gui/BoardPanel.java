@@ -99,12 +99,15 @@ public class BoardPanel extends JPanel implements MouseListener {
 				break;
 			}
 		}
-		String s = status[Status.toInt(model.getStatus())];
 		
 		if(mainWindow!=null)
-			mainWindow.updateStatus(s);
+			mainWindow.updateStatus(model.getStatus());
 	}
-
+	public void deSelectCurrentPeg(){
+		if(model.getSelectedPeg() != Model.PEG_ID_NONE)
+			pegs[model.getSelectedPeg()].setSelected(false);
+		model.selectPeg(Model.PEG_ID_NONE);
+	}
 	protected boolean processClick(int i) {
 		boolean result = model.togglePeg(i);
 		for(int j=1;j<34;j++)

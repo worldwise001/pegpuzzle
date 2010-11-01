@@ -35,7 +35,7 @@ public class Model {
 		return (x < 2 && y < 2) || (x < 2 && y > 4) || (x > 4 && y < 2) || (x > 4 && y > 4);
 	}
 	
-	protected void selectPeg(int pegLocation){
+	public void selectPeg(int pegLocation){
 		selectedPeg = pegLocation;
 	}
 	
