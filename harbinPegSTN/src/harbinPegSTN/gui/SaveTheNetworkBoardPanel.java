@@ -21,7 +21,6 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 		mainWindow=mWin;
 
 		pegsToPlace = 2;
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void colorBackground(Graphics2D g2) {
