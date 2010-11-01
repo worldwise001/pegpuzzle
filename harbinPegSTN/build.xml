@@ -5,7 +5,8 @@
 	<property name="build.dir" value="build" />
 	<property name="dist.dir" value="dist" />
 	<property name="src.dir" value="src" />
-	<property name="resources.dir" value="${src.dir}/harbinPegSTN" />
+	<property name="base.dir" value="${src.dir}/harbinPegSTN" />
+	<property name="rsrc.name" value="rsrc" />
 	<property name="jdemoCoreJar" value="lib/jdemo_core.jar" />
 	<property name="jdemoRunnerJar" value="lib/jdemo_runner.jar" />
 	<property name="junit.output.dir" value="junitReport" />
@@ -23,6 +24,11 @@
 				<pathelement location="${jdemoCoreJar}" />
 			</classpath>
 		</javac>
+		<copy todir="${build.dir}/classes">
+			<fileset dir="${base.dir}">
+				<filename name="**/${rsrc.name}/**"/>
+			</fileset>
+		 </copy>
 	</target>
 	<target name="run" depends="compile" description="Run the Application">
 		<java classname="harbinPegSTN.gui.Main" failonerror="true" fork="true">
@@ -86,10 +92,12 @@
 		      <attribute name="Built-Date" value="${TODAY}"/>                 
 		  </manifest>
 
-		  <jar destfile="${dist.dir}/harbinPegSTN_${BUILDDATE}.jar" basedir="${build.dir}/classes" manifest="${build.dir}/MANIFEST.MF">
-		    <fileset dir="${build.dir}/classes"/>
-		    <fileset dir="${resources.dir}">
-		    	<filename name="**/rsrc/**"/>
+		  <jar destfile="${dist.dir}/harbinPegSTN_${BUILDDATE}.jar" manifest="${build.dir}/MANIFEST.MF">
+		    <fileset dir="${build.dir}/classes">
+		    	<filename name="**/*.class"/>
+		    </fileset>
+		    <fileset dir="${base.dir}">
+		    	<filename name="**/${rsrc.name}/**"/>
 		    </fileset>
 		  </jar>
 		</target>
