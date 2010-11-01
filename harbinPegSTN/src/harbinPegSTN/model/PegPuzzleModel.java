@@ -33,7 +33,6 @@ public class PegPuzzleModel extends Model{
 	}
 	
 	public void reset() {
-		// TODO Auto-generated method stub
 		super.reset();
 		setDiagonalMovesAllowed(false);
 		for(int i = BOARD_LEFT_BOUND; i <= BOARD_RIGHT_BOUND; i++){

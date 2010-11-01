@@ -18,8 +18,6 @@ public class Main extends JFrame {
 	private BoardState state = BoardState.SAVE_THE_NETWORK;
 	private JPanel boardArea = new JPanel();
 	private JLabel statusArea = new JLabel();
-
-	private Main mainWindow;
 	
 	public Main()
 	{
@@ -27,7 +25,6 @@ public class Main extends JFrame {
 		pegPuzzle=new PegPuzzleBoardPanel(this);
 		stnPuzzle=new SaveTheNetworkBoardPanel(this);
 		buildGUI();
-		pack();
 	}
 	public void updateStatus(String st){
 		statusArea.setText(st);
@@ -45,6 +42,8 @@ public class Main extends JFrame {
 		this.add(boardArea, BorderLayout.CENTER);
 		this.add(new BottomPanel(), BorderLayout.SOUTH);
 		this.add(statusArea, BorderLayout.NORTH);
+
+		setSize(600, 600);
 	}
 
 	public static void main(String[] args)
@@ -63,24 +62,33 @@ public class Main extends JFrame {
 			// TODO Auto-generated method stub
 			JButton newButton = new JButton("New Game");
 			JButton switchButton = new JButton("Switch Games");
-			this.add(newButton);
-			this.add(switchButton);
+			JButton displayNumberButton = new JButton("Toggle Number Display");
+			add(newButton);
+			add(switchButton);
+			add(displayNumberButton);
 
-			this.setMinimumSize(new Dimension(80, 36));
-			this.setMaximumSize(new Dimension(Short.MAX_VALUE, 36));
+			setMinimumSize(new Dimension(80, 36));
+			setMaximumSize(new Dimension(Short.MAX_VALUE, 36));
 
 			newButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					resetBoard();
 				}
 			});
 			switchButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					switchBoard();
+				}
+			});
+			displayNumberButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					pegPuzzle.setShowNumbers(!pegPuzzle.isShowNumbers());
+					pegPuzzle.repaint();
+					stnPuzzle.setShowNumbers(!stnPuzzle.isShowNumbers());
+					stnPuzzle.repaint();
 				}
 			});
 		}

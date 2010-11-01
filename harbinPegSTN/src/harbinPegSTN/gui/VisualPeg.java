@@ -78,7 +78,6 @@ public class VisualPeg {
 
 	public void draw(Graphics2D g2) {
 		updateGraphic();
-		updateText(g2);
 
 		if (color != null) {
 			g2.setColor(color);
@@ -87,6 +86,10 @@ public class VisualPeg {
 
 		g2.setColor(Color.BLACK);
 		g2.draw(shape);
+	}
+	
+	public void drawText(Graphics2D g2) {
+		updateText(g2);
 		g2.setColor(textColor);
 		g2.setFont(font);
 		g2.drawString(""+id, strX, strY);

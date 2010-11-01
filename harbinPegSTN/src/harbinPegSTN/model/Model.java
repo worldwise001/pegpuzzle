@@ -20,8 +20,6 @@ public class Model {
 	}
 	
 	public void reset() {
-		// TODO Auto-generated method stub
-
 		pegs = new Peg[BOARD_SIZE][BOARD_SIZE];
 		for (int x = 0; x < BOARD_SIZE; x++) {
 			for (int y = 0; y < BOARD_SIZE; y++) {
