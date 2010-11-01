@@ -18,6 +18,7 @@ public class Main extends JFrame {
 	private BoardState state = BoardState.SAVE_THE_NETWORK;
 	private JPanel boardArea = new JPanel();
 	private JLabel statusArea = new JLabel();
+	private JButton continueButton = new JButton("Continue");
 	
 	public Main()
 	{
@@ -44,6 +45,7 @@ public class Main extends JFrame {
 		this.add(statusArea, BorderLayout.NORTH);
 
 		setSize(600, 600);
+		continueButton.setEnabled(false);
 	}
 
 	public static void main(String[] args)
@@ -66,6 +68,7 @@ public class Main extends JFrame {
 			add(newButton);
 			add(switchButton);
 			add(displayNumberButton);
+			add(continueButton);
 
 			setMinimumSize(new Dimension(80, 36));
 			setMaximumSize(new Dimension(Short.MAX_VALUE, 36));

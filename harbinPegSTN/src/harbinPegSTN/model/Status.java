@@ -6,8 +6,8 @@ public enum Status { WHITE_PLACE, WHITE_CLICK, WHITE_JUMP,
 	PEG_JUMP, INVALID ;
 
 
-public static int toInt(Status st) {
-	switch (st) {
+	public static int toInt(Status st) {
+		switch (st) {
 		case WHITE_PLACE: { return 0; }
 		case WHITE_CLICK: { return 1; }
 		case WHITE_JUMP: { return 2; }
@@ -20,8 +20,8 @@ public static int toInt(Status st) {
 		case PEG_JUMP: { return 9; }
 		case INVALID: { return 10; }
 		default: { return -1; }
+		}
 	}
-}
 
 
 }
