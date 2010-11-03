@@ -22,8 +22,9 @@ public class S110WhiteLegalMoveTest {
 	 */
 	@Test
 	public void testWhiteMove(){
-		model.setPeg(Peg.WHITE, 4);
-		model.setPeg(Peg.WHITE, 5);
+		model.togglePeg(4);
+		model.togglePeg(5);
+		model.reverseTurn();
 		assertTrue("check white hop from 4 to 9", model.makeMove(4, 9));
 		assertFalse("check illegal hop from 9 to 16",model.makeMove(9, 16));
 		assertFalse("check illegal jump from 9 to 23",model.makeMove(9, 23));

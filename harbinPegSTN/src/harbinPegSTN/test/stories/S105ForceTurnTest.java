@@ -18,12 +18,14 @@ SaveTheNetworkModel model = null;
 	
 	@Test
 	public void testForceTurn(){
-		model.setPeg(Peg.WHITE, 4);
-		assertFalse("Start with white's turn, so all black move is illegal, try black move from 8 to 9", model.makeMove(8, 9));
-		assertTrue("White legal move from 4 to 9", model.makeMove(4, 9));
+		model.togglePeg(4);
+		model.togglePeg(5);
+		assertTrue("Start with black's turn, so try black move from 8 to 9", model.makeMove(8, 9));
+		model.reverseTurn();
+		assertTrue("White legal move from 4 to 10", model.makeMove(4, 10));
 		model.reverseTurn();
 		assertTrue("Now black's turn, legal move from 12 to 11",model.makeMove(12, 11));
-		assertFalse("illegal white's turn from 9 to 8", model.makeMove(9, 8));
+		assertFalse("illegal balck's turn from 9 to 15", model.makeMove(9, 15));
 		
 	}
 }

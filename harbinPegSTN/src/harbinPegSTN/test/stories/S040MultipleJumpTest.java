@@ -32,9 +32,10 @@ public class S040MultipleJumpTest {
 		
 		assertTrue("More jumps possible", model.isFutureJumpPossible(6));
 		model.makeMove(6, 18);
-		assertTrue("More jumps possible", model.isFutureJumpPossible(18));
+		//model.reverseTurn();
+		assertFalse("No more jumps possible", model.isFutureJumpPossible(18));
 		model.makeMove(18, 16);
-		assertTrue("More jumps possible", model.isFutureJumpPossible(16));
+		assertFalse("No more jumps possible", model.isFutureJumpPossible(16));
 		assertFalse("No jumps possible", model.isFutureJumpPossible(18));
 		model.makeMove(16, 4);
 		assertFalse("No jumps possible", model.isFutureJumpPossible(4));

@@ -51,11 +51,11 @@ public class S017LegalMoveTest {
 	
 	@Test
 	public void testReverseTurn() {
-		assertEquals("Starts off as white's turn", Peg.WHITE, model.whoseTurn());
-		model.reverseTurn();
-		assertEquals("Now is black's turn", Peg.BLACK, model.whoseTurn());
+		assertEquals("Starts off as Black's turn", Peg.BLACK, model.whoseTurn());
 		model.reverseTurn();
 		assertEquals("Now is white's turn", Peg.WHITE, model.whoseTurn());
+		model.reverseTurn();
+		assertEquals("Now is black's turn", Peg.BLACK, model.whoseTurn());
 	}
 	
 //	@Test
@@ -126,14 +126,15 @@ public class S017LegalMoveTest {
 	@Test
 	public void testSTNMove() {
 		model.processWhiteClick(4);
-		assertTrue("Legal move from 4 to 9", model.makeMove(model.pegIDToPoint(4), model.pegIDToPoint(9)));
-		assertTrue("Legal move from 9 to 5", model.makeMove(model.pegIDToPoint(9), model.pegIDToPoint(5)));
+		model.processWhiteClick(5);
+
+		model.togglePeg(8);
+		assertTrue("Legal move from 8 to 9", model.makeMove(model.pegIDToPoint(8), model.pegIDToPoint(9)));
 		
-		model.reverseTurn();
+		//model.reverseTurn();
 		
-		assertTrue("Legal move from 8 to 9", model.makeMove(8, 9));
-		assertTrue("Legal move from 9 to 4", model.makeMove(9, 4));
-		assertFalse("Illgal move from 4 to 10",model.makeMove(4, 9));
+		assertFalse("Illegal move from 4 to 10", model.makeMove(9, 4));
+		assertFalse("Illgal move from 9 to 5 ",model.makeMove(4, 9));
 	}
 	
 	@Test
@@ -159,9 +160,12 @@ public class S017LegalMoveTest {
 		
 		
 		assertFalse("no selection made yet, so toggle return false",model.togglePeg(0));
-		assertFalse("now toggle peg at 19,its valid beacuse current turn is not black", model.togglePeg(19));
-		assertFalse("now toggle peg at 17, should be false because not jump possible for base model",model.togglePeg(17));
+		assertTrue("now toggle peg at 19,its valid beacuse current turn is black", model.togglePeg(19));
+		assertFalse("now toggle peg at 17, should be false because no jump possible for base model",model.togglePeg(17));
 		assertEquals("selected peg should be none now",Model.PEG_ID_NONE,model.getSelectedPeg());
+		assertTrue("now toggle peg at 12", model.togglePeg(12));
+		assertTrue("now toggle peg at 11", model.togglePeg(11));
+		
 		assertTrue("now toggle peg at 5", model.togglePeg(5));
 		assertFalse("now toggle peg at 6", model.togglePeg(6));
 	}
@@ -174,7 +178,7 @@ public class S017LegalMoveTest {
 		int[] setup = {5, 10, 17, 9, 10, 17, 12, 11};
 		model.processToggleSequence(setup);
 		
-		assertTrue("Toggle Jump p1", model.togglePeg(17));
+		assertFalse("Toggle Jump p1", model.togglePeg(17));
 		assertFalse("Toggle Jump p2", model.togglePeg(12));
 		
 		model.reset();
