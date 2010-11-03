@@ -87,12 +87,14 @@ public class SaveTheNetworkModel extends Model {
 		if(turn==Peg.WHITE)
 		{
 			turn=Peg.BLACK;
-			setStatus(Status.BLACK_TURN);
+
+			setStatus(Status.BLACK_MOVE);
+
 		}
 		else
 		{
 			turn=Peg.WHITE;
-			setStatus(Status.WHITE_TURN);
+			setStatus(Status.WHITE_MOVE);
 		}
 		isJumping=false;
 		selectPeg(PEG_ID_NONE);
