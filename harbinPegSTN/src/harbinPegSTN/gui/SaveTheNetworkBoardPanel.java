@@ -11,25 +11,19 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 
 	public static final Color DEEP_BLUE = new Color(0x77, 0x77, 0xBB);
 	public static final Color DEEP_ORANGE = new Color(0xDD, 0x77, 0x33);
-	//private int pegsToPlace = 0;
 	private RoundRectangle2D.Double bgSafeZone = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	private RoundRectangle2D.Double bgDangerZone1 = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	private RoundRectangle2D.Double bgDangerZone2 = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	
 	public void endWhiteJump(){
 		SaveTheNetworkModel m=(SaveTheNetworkModel)getModel();
-		System.out.println("before:"+m.whoseTurn().toString());
 		m.reverseTurn();
-		super.deSelectCurrentPeg();
-		super.updateGUI();
-		System.out.println("after:"+m.whoseTurn().toString());
+		updateGUI();
 		
 	}
 	public SaveTheNetworkBoardPanel(Main mWin) {
 		super(new SaveTheNetworkModel());
 		mainWindow=mWin;
-
-		//pegsToPlace = 2;
 	}
 
 	protected void colorBackground(Graphics2D g2) {

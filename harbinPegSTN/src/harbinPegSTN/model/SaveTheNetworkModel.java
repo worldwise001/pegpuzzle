@@ -29,14 +29,12 @@ public class SaveTheNetworkModel extends Model {
 		case SLIDE:
 			if (isJumping) {
 				isJumping = false;
-				selectPeg(PEG_ID_NONE);
 				reverseTurn();
 				return false;
 			}
 			else
 			{
 				if (makeMove(getSelectedPeg(), loc)){
-					selectPeg(PEG_ID_NONE);
 					reverseTurn();
 					return true;
 				}
@@ -47,8 +45,7 @@ public class SaveTheNetworkModel extends Model {
 		case JUMP:
 			if (makeMove(getSelectedPeg(), loc)) {
 				isJumping = true;
-				 selectPeg(loc);
-				
+				selectPeg(loc);
 				setStatus(Status.WHITE_JUMP);
 				return true;
 			}
@@ -99,6 +96,7 @@ public class SaveTheNetworkModel extends Model {
 			setStatus(Status.WHITE_TURN);
 		}
 		isJumping=false;
+		selectPeg(PEG_ID_NONE);
 	}
 
 	public boolean checkSlide(Point fPt, Point sPt){
