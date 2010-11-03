@@ -89,11 +89,11 @@ public class S015LegalMoveTest {
 
 		assertEquals("true",1,Status.toInt(Status.WHITE_CLICK));
 		assertEquals("true",2,Status.toInt(Status.WHITE_JUMP));
-		assertEquals("true",5,Status.toInt(Status.WHITE_TURN));
+		assertEquals("true",5,Status.toInt(Status.WHITE_MOVE));
 		
 
 		assertEquals("true",4,Status.toInt(Status.WHITE_REMOVED));
-		assertEquals("true",6,Status.toInt(Status.BLACK_TURN));
+		assertEquals("true",6,Status.toInt(Status.BLACK_MOVE));
 		
 	}
 	
