@@ -15,19 +15,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Main extends JFrame {
+	private static final String CARD_PEG = "PEG";
+	private static final String CARD_STN = "STN";
+	private static final String CARD_CREDITS = "CREDITS";
 	private PegPuzzleBoardPanel pegPuzzle ;
 	private SaveTheNetworkBoardPanel stnPuzzle ;
+	private CreditsPanel credits;
 
 	private BoardState state = BoardState.SAVE_THE_NETWORK;
+	private boolean showCredits = false;
 	private JPanel boardArea = new JPanel();
 	private JLabel statusArea = new JLabel();
+	
 	private JButton continueButton = new JButton("Continue");
+	private JButton newButton = new JButton("New Game");
+	private JButton switchButton = new JButton("Switch Games");
+	private JButton credGameToggleButton = new JButton("Show Credits");
+	private JButton displayNumberButton = new JButton("Toggle Number Display");
 	
 	public Main()
 	{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pegPuzzle=new PegPuzzleBoardPanel(this);
 		stnPuzzle=new SaveTheNetworkBoardPanel(this);
+		credits = new CreditsPanel();
 		buildGUI();
 	}
 	
@@ -37,18 +48,17 @@ public class Main extends JFrame {
 	}
 	
 	private void buildGUI() {
-		// TODO Convert this to two BoardPanels using CardLayout
-
-		this.setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		CardLayout cardStack = new CardLayout();
 		boardArea.setLayout(cardStack);
 
-		boardArea.add(stnPuzzle, "STN");
-		boardArea.add(pegPuzzle, "PEG");
+		boardArea.add(stnPuzzle, CARD_STN);
+		boardArea.add(pegPuzzle, CARD_PEG);
+		boardArea.add(credits, CARD_CREDITS);
 		
-		this.add(boardArea, BorderLayout.CENTER);
-		this.add(new BottomPanel(), BorderLayout.SOUTH);
-		this.add(statusArea, BorderLayout.NORTH);
+		add(boardArea, BorderLayout.CENTER);
+		add(new BottomPanel(), BorderLayout.SOUTH);
+		add(statusArea, BorderLayout.NORTH);
 
 		setSize(600, 600);
 		continueButton.setEnabled(false);
@@ -67,14 +77,11 @@ public class Main extends JFrame {
 		}
 
 		private void buildGUI() {
-			// TODO Auto-generated method stub
-			JButton newButton = new JButton("New Game");
-			JButton switchButton = new JButton("Switch Games");
-			JButton displayNumberButton = new JButton("Toggle Number Display");
 			add(newButton);
 			add(switchButton);
 			add(displayNumberButton);
 			add(continueButton);
+			add(credGameToggleButton);
 
 			setMinimumSize(new Dimension(80, 36));
 			setMaximumSize(new Dimension(Short.MAX_VALUE, 36));
@@ -88,9 +95,7 @@ public class Main extends JFrame {
 			continueButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					stnPuzzle.endWhiteJump();
-					continueButton.setEnabled(false);
-					
+					endJump();
 				}
 			});
 			switchButton.addActionListener(new ActionListener() {
@@ -102,19 +107,22 @@ public class Main extends JFrame {
 			displayNumberButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					pegPuzzle.setShowNumbers(!pegPuzzle.isShowNumbers());
-					pegPuzzle.repaint();
-					stnPuzzle.setShowNumbers(!stnPuzzle.isShowNumbers());
-					stnPuzzle.repaint();
+					toggleNumbers();
 				}
 			});
+			credGameToggleButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					toggleCredits();
+				}
+			});
+			
 		}
 	}
 
 	public enum BoardState { PEG_PUZZLE, SAVE_THE_NETWORK }
 
 	protected void resetBoard() {
-		// TODO Auto-generated method stub
 		switch (state) {
 		case PEG_PUZZLE:
 			pegPuzzle.reset();
@@ -126,17 +134,56 @@ public class Main extends JFrame {
 	}
 
 	protected void switchBoard() {
-		// TODO Auto-generated method stub
-		
 		switch (state) {
 		case PEG_PUZZLE:
-			((CardLayout)boardArea.getLayout()).next(boardArea);
+			((CardLayout)boardArea.getLayout()).show(boardArea, CARD_STN);
 			state = BoardState.SAVE_THE_NETWORK;
 			break;
 		case SAVE_THE_NETWORK:
-			((CardLayout)boardArea.getLayout()).next(boardArea);
+			((CardLayout)boardArea.getLayout()).show(boardArea, CARD_PEG);
 			state = BoardState.PEG_PUZZLE;
 			break;
 		}
 	};
+	
+	protected void toggleNumbers() {
+		pegPuzzle.setShowNumbers(!pegPuzzle.isShowNumbers());
+		pegPuzzle.repaint();
+		stnPuzzle.setShowNumbers(!stnPuzzle.isShowNumbers());
+		stnPuzzle.repaint();
+	}
+
+	protected void endJump() {
+		stnPuzzle.endWhiteJump();
+		continueButton.setEnabled(false);
+	}
+
+	protected void toggleCredits() {
+		if (!showCredits) {
+			((CardLayout)boardArea.getLayout()).show(boardArea, CARD_CREDITS);
+			showCredits = true;
+			continueButton.setEnabled(false);
+			newButton.setEnabled(false);
+			switchButton.setEnabled(false);
+			displayNumberButton.setEnabled(false);
+			credGameToggleButton.setText("Back to Game");
+		}
+		else
+		{
+			switch (state) {
+			case PEG_PUZZLE:
+				((CardLayout)boardArea.getLayout()).show(boardArea, CARD_PEG);
+				break;
+			case SAVE_THE_NETWORK:
+				((CardLayout)boardArea.getLayout()).show(boardArea, CARD_STN);
+				break;
+			}
+			showCredits = false;
+			continueButton.setEnabled(true);
+			newButton.setEnabled(true);
+			switchButton.setEnabled(true);
+			displayNumberButton.setEnabled(true);
+			credGameToggleButton.setText("Show Credits");
+		}
+	}
 }
