@@ -88,7 +88,6 @@ public class SaveTheNetworkModel extends Model {
 		{
 			turn=Peg.BLACK;
 			setStatus(Status.BLACK_TURN);
-			
 		}
 		else
 		{

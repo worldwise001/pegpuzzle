@@ -30,11 +30,12 @@ public class Main extends JFrame {
 		stnPuzzle=new SaveTheNetworkBoardPanel(this);
 		buildGUI();
 	}
+	
 	public void updateStatus(Status st){
-		if(st==Status.WHITE_JUMP)
-			continueButton.setEnabled(true);
+		continueButton.setEnabled((st == Status.WHITE_JUMP));
 		statusArea.setText(Status.toString(st));
 	}
+	
 	private void buildGUI() {
 		// TODO Convert this to two BoardPanels using CardLayout
 

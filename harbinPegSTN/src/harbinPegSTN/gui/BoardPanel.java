@@ -47,9 +47,12 @@ public class BoardPanel extends JPanel implements MouseListener {
 	}
 
 	protected void updateGUI() {
+		for(int j=1;j<34;j++)
+			pegs[j].setSelected(false);
+		if(model.getSelectedPeg() != Model.PEG_ID_NONE)
+			pegs[model.getSelectedPeg()].setSelected(true);
 		for (int i = 1; i < 34; i++)
 			pegs[i].updateState(model.getPeg(i));
-
 		repaint();
 	}
 
@@ -106,10 +109,6 @@ public class BoardPanel extends JPanel implements MouseListener {
 	
 	protected boolean processClick(int i) {
 		boolean result = model.togglePeg(i);
-		for(int j=1;j<34;j++)
-			pegs[j].setSelected(false);
-		if(model.getSelectedPeg() != Model.PEG_ID_NONE)
-			pegs[model.getSelectedPeg()].setSelected(true);
 		updateGUI();
 		return result;
 	}

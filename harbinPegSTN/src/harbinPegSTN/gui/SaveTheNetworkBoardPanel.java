@@ -19,7 +19,6 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 		SaveTheNetworkModel m=(SaveTheNetworkModel)getModel();
 		m.reverseTurn();
 		updateGUI();
-		
 	}
 	public SaveTheNetworkBoardPanel(Main mWin) {
 		super(new SaveTheNetworkModel());
