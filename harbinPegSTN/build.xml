@@ -7,8 +7,8 @@
 	<property name="src.dir" value="src" />
 	<property name="base.dir" value="${src.dir}/harbinPegSTN" />
 	<property name="rsrc.name" value="rsrc" />
-	<property name="jdemoCoreJar" value="lib/jdemo_core.jar" />
-	<property name="jdemoRunnerJar" value="lib/jdemo_runner.jar" />
+	<property name="jdemo.dir" value="lib/jdemo" />
+	<property name="jdom.dir" value="lib/jdom" />
 	<property name="junit.output.dir" value="junitReport" />
 	<target description="Creates temporary directories" name="init">
 		<mkdir dir="${build.dir}/classes" />
@@ -21,7 +21,10 @@
 		<javac debug="true" deprecation="true" fork="true" destdir="${build.dir}/classes" srcdir="${src.dir}" verbose="true">
 			<classpath>
 				<pathelement location="${junitJar}" />
-				<pathelement location="${jdemoCoreJar}" />
+				<pathelement location="${hamcrestJar}" />
+				<pathelement location="${jdemo.dir}/jdemo_core.jar" />
+				<pathelement location="${jdemo.dir}/jdemo_runner.jar" />
+				<pathelement location="${jdom.dir}/jdom.jar" />
 			</classpath>
 		</javac>
 		<copy todir="${build.dir}/classes">
@@ -41,8 +44,9 @@
 	<target name="run gui demos" depends="compile" description="Run GUI Demos">
 		<java classname="de.jdemo.swingui.DemoRunner" failonerror="true" fork="true">
 			<classpath>
-				<pathelement location="${jdemoCoreJar}" />
-				<pathelement location="${jdemoRunnerJar}" />
+				<pathelement location="${jdemo.dir}/jdemo_core.jar" />
+				<pathelement location="${jdemo.dir}/jdemo_runner.jar" />
+				<pathelement location="${jdom.dir}/jdom.jar" />
 				<pathelement location="${build.dir}/classes" />
 				<pathelement location="${build.dir}/.." />
 			</classpath>
@@ -56,6 +60,7 @@
 			<classpath>
 				<pathelement location="${junitJar}" />
 				<pathelement location="${hamcrestJar}" />
+				<pathelement location="${jdom.dir}/jdom.jar" />
 				<pathelement location="${build.dir}/classes" />
 			</classpath>
 			<formatter type="xml" />
@@ -95,10 +100,14 @@
 		  <jar destfile="${dist.dir}/harbinPegSTN_${BUILDDATE}.jar" manifest="${build.dir}/MANIFEST.MF">
 		    <fileset dir="${build.dir}/classes">
 		    	<filename name="**/*.class"/>
+				<exclude name="**/test/**" />
+				<exclude name="**/demo/**" />
+				<exclude name="**/snippets/**" />
 		    </fileset>
 		    <fileset dir="${base.dir}">
 		    	<filename name="**/${rsrc.name}/**"/>
 		    </fileset>
+		  	<zipfileset src="${jdom.dir}/jdom.jar" includes="**/*.class"/>
 		  </jar>
 		</target>
 </project>
