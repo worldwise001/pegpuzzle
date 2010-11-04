@@ -4,11 +4,17 @@ import java.awt.Point;
 
 public class SaveTheNetworkModel extends Model {
 	private Peg turn;
-	private boolean isJumping = false;
 	private int numWhitePegsToPlace = 2;
-
+	//keep track which white jump
+	private int jumpingWhite;
+	//keep track of which white slide
+	private int slidingWhite;
+	
+	private boolean jumpPossible;
+	
 	public SaveTheNetworkModel() {
 		reset();
+		
 	}
 
 	public boolean togglePeg(int loc) {
@@ -27,14 +33,16 @@ public class SaveTheNetworkModel extends Model {
 	protected boolean processMove(int loc) {
 		switch (getMoveType(pegIDToPoint(getSelectedPeg()), pegIDToPoint(loc))) {
 		case SLIDE:
-			if (isJumping) {
-				isJumping = false;
+			if (jumpingWhite!=PEG_ID_NONE) {
+				jumpingWhite = PEG_ID_NONE;
+				slidingWhite=loc;
 				reverseTurn();
 				return false;
 			}
 			else
 			{
 				if (makeMove(getSelectedPeg(), loc)){
+					slidingWhite=loc;
 					reverseTurn();
 					return true;
 				}
@@ -44,7 +52,7 @@ public class SaveTheNetworkModel extends Model {
 			}
 		case JUMP:
 			if (makeMove(getSelectedPeg(), loc)) {
-				isJumping = true;
+				jumpingWhite = loc;
 				selectPeg(loc);
 				setStatus(Status.WHITE_JUMP);
 				return true;
@@ -53,11 +61,11 @@ public class SaveTheNetworkModel extends Model {
 			setStatus(Status.INVALID);
 			return false;
 		case NONE:
-			isJumping = false;
+			jumpingWhite = PEG_ID_NONE;
 			selectPeg(PEG_ID_NONE);
 			return true;
 		case INVALID:
-			isJumping = false;
+			jumpingWhite = PEG_ID_NONE;
 			selectPeg(PEG_ID_NONE);
 			setStatus(Status.INVALID);
 			return false;
@@ -82,21 +90,46 @@ public class SaveTheNetworkModel extends Model {
 	public Peg whoseTurn(){
 		return turn;
 	}
-
+	private int [] returnWhiteLoc(){
+		int whitePegs[]= {PEG_ID_NONE,PEG_ID_NONE};
+		
+		int count=0;
+		for(int i=1;i<=33;i++){
+			if(getPeg(i)==Peg.WHITE)
+				whitePegs[count++]=i;
+			
+		}
+		return whitePegs;
+	}
 	public void reverseTurn() {
 		if(turn==Peg.WHITE)
 		{
 			turn=Peg.BLACK;
-
-			setStatus(Status.BLACK_MOVE);
-
+			//reverse turn to black,need to check penalty for white
+			int whitePegs[]=returnWhiteLoc();
+			if(jumpPossible&&slidingWhite!=PEG_ID_NONE){
+				setStatus(Status.PENALTY_REQUIRED);
+				
+			
+			}
+			
+			else {
+				setStatus(Status.BLACK_MOVE);
+			}
 		}
 		else
 		{
 			turn=Peg.WHITE;
+			slidingWhite=PEG_ID_NONE;
+			jumpingWhite=PEG_ID_NONE;
+			int whitePegs[]=returnWhiteLoc();
+			if(isFutureJumpPossible(whitePegs[0])||isFutureJumpPossible(whitePegs[1])){
+				jumpPossible=true;
+			}
+			else jumpPossible=false;
 			setStatus(Status.WHITE_MOVE);
 		}
-		isJumping=false;
+		jumpingWhite = PEG_ID_NONE;
 		selectPeg(PEG_ID_NONE);
 	}
 
@@ -195,6 +228,9 @@ public class SaveTheNetworkModel extends Model {
 			super.setPeg(Peg.BLACK, i);
 		turn = Peg.BLACK;
 		numWhitePegsToPlace = 2;
+		jumpingWhite=PEG_ID_NONE;
+		slidingWhite=PEG_ID_NONE;
+		jumpPossible=false;
 	}
 
 	public boolean isFutureJumpPossible(int loc){
