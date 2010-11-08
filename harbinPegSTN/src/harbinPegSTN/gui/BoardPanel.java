@@ -18,8 +18,6 @@ public class BoardPanel extends JPanel implements MouseListener {
 	public static final int GRID_SIZE = 7;
 	private boolean showNumbers = true;
 	
-	public String status[]={"white peg placed", "white click", "White jump","white slide","white removed","its white's turn"
-			,"its black's turn","black click", "black slide", "Peg Jump", "its invalid move/click"};
 	private Model model = null;
 	private VisualPeg[] pegs = new VisualPeg[34];
 

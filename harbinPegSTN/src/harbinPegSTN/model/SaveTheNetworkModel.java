@@ -10,19 +10,37 @@ public class SaveTheNetworkModel extends Model {
 	//keep track of which white slide
 	private int slidingWhite;
 	
-	private boolean jumpPossible;
+	int whitePegs[]= {PEG_ID_NONE,PEG_ID_NONE};
+	private int possibleJumpingWhite1;
+	private int possibleJumpingWhite2;
 	
+	//who is winning
+	private Peg winning;
 	public SaveTheNetworkModel() {
 		reset();
 		
 	}
 	public int getPenaltyWhtieLoc(){
-		return slidingWhite;
+		if(possibleJumpingWhite1!=PEG_ID_NONE&&possibleJumpingWhite2!=PEG_ID_NONE)
+			return slidingWhite;
+		int white;
+		if(possibleJumpingWhite1!=PEG_ID_NONE){
+			white=possibleJumpingWhite1;
+		}
+		else white=possibleJumpingWhite2;
+		whitePegs=returnWhiteLoc();
+		
+		if(white!=whitePegs[0]&&white!=whitePegs[1])
+			return slidingWhite;
+		else return white;
 	}
 	public void doPenalty(){
 		if(slidingWhite!=PEG_ID_NONE){
-			super.setPeg(Peg.NONE, slidingWhite);
-			setStatus(Status.BLACK_MOVE);
+			super.setPeg(Peg.NONE, this.getPenaltyWhtieLoc());
+			whitePegs=this.returnWhiteLoc();
+			if(whitePegs[0]==PEG_ID_NONE&&whitePegs[1]==PEG_ID_NONE)
+				setStatus(Status.WINNER_BLACK);
+			else setStatus(Status.BLACK_MOVE);
 		}
 	}
 	public boolean togglePeg(int loc) {
@@ -101,8 +119,9 @@ public class SaveTheNetworkModel extends Model {
 		return turn;
 	}
 	private int [] returnWhiteLoc(){
-		int whitePegs[]= {PEG_ID_NONE,PEG_ID_NONE};
 		
+		whitePegs[0]=PEG_ID_NONE;
+		whitePegs[1]=PEG_ID_NONE;
 		int count=0;
 		for(int i=1;i<=33;i++){
 			if(getPeg(i)==Peg.WHITE)
@@ -111,18 +130,27 @@ public class SaveTheNetworkModel extends Model {
 		}
 		return whitePegs;
 	}
+	private boolean isBlackLose(){
+		int count=0;
+		for(int i=1;i<=33;i++){
+			if(getPeg(i)==Peg.BLACK)
+				count++;
+		}
+		return count<18;
+	}
 	public void reverseTurn() {
 		if(turn==Peg.WHITE)
 		{
+			if(this.isBlackLose()){
+				setStatus(Status.WINNER_WHITE);
+				return;
+			}
 			turn=Peg.BLACK;
 			//reverse turn to black,need to check penalty for white
 			int whitePegs[]=returnWhiteLoc();
-			if(jumpPossible&&slidingWhite!=PEG_ID_NONE){
-				setStatus(Status.PENALTY_REQUIRED);
-				
-			
+			if((possibleJumpingWhite1!=PEG_ID_NONE||possibleJumpingWhite2!=PEG_ID_NONE)&&slidingWhite!=PEG_ID_NONE){
+				setStatus(Status.PENALTY_REQUIRED);			
 			}
-			
 			else {
 				setStatus(Status.BLACK_MOVE);
 			}
@@ -133,10 +161,14 @@ public class SaveTheNetworkModel extends Model {
 			slidingWhite=PEG_ID_NONE;
 			jumpingWhite=PEG_ID_NONE;
 			int whitePegs[]=returnWhiteLoc();
-			if(isFutureJumpPossible(whitePegs[0])||isFutureJumpPossible(whitePegs[1])){
-				jumpPossible=true;
+			if(isFutureJumpPossible(whitePegs[0]))
+				possibleJumpingWhite1=whitePegs[0];
+			else possibleJumpingWhite1=PEG_ID_NONE;
+			if(isFutureJumpPossible(whitePegs[1])){
+				possibleJumpingWhite2=whitePegs[1]; 
 			}
-			else jumpPossible=false;
+			else possibleJumpingWhite2=PEG_ID_NONE;
+			
 			setStatus(Status.WHITE_MOVE);
 		}
 		jumpingWhite = PEG_ID_NONE;
@@ -240,7 +272,8 @@ public class SaveTheNetworkModel extends Model {
 		numWhitePegsToPlace = 2;
 		jumpingWhite=PEG_ID_NONE;
 		slidingWhite=PEG_ID_NONE;
-		jumpPossible=false;
+		possibleJumpingWhite1=PEG_ID_NONE;
+		possibleJumpingWhite2=PEG_ID_NONE;
 	}
 
 	public boolean isFutureJumpPossible(int loc){

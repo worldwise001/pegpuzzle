@@ -58,6 +58,7 @@ public class Main extends JFrame {
 				break;
 			case SAVE_THE_NETWORK:
 				status = stnPuzzle.getModel().getStatus();
+					 
 				break;
 		}
 		continueButton.setEnabled((status == Status.WHITE_JUMP)||(status == Status.PENALTY_REQUIRED));
