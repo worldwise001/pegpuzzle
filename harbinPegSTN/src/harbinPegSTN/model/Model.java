@@ -2,6 +2,13 @@ package harbinPegSTN.model;
 
 import java.awt.Point;
 
+/**
+ * Base Model class, subclassed by specific games requiring specific models.
+ * Provides general basic logic and peg storage, reducing the code needed by subclasses.
+ * 
+ * @author sarah
+ *
+ */
 public class Model {
 
 	public static final int PEG_ID_NONE = -1;
@@ -14,11 +21,15 @@ public class Model {
 	private boolean diagonalMovesAllowed = false;
 
 	private Status status;
+	
 	public Model() {
-		status=Status.INVALID;
+		status = Status.NONE;
 		reset();
 	}
 	
+	/**
+	 * Resets/initializes the board to basic state for use
+	 */
 	public void reset() {
 		pegs = new Peg[BOARD_SIZE][BOARD_SIZE];
 		for (int x = 0; x < BOARD_SIZE; x++) {
@@ -27,18 +38,32 @@ public class Model {
 				else pegs[x][y] = Peg.NONE;
 			}
 		}
-
 		selectPeg(PEG_ID_NONE);
 	}
 
+	/**
+	 * Checks if the location is in a playable area
+	 * @param x Location (x-coordinate)
+	 * @param y Location (y-coordinate)
+	 * @return Returns true if location is in playable area, false if not
+	 */
 	protected boolean isLocationBlank(int x, int y) {
 		return (x < 2 && y < 2) || (x < 2 && y > 4) || (x > 4 && y < 2) || (x > 4 && y > 4);
 	}
 	
+	/**
+	 * Selects a peg at the specific location
+	 * TODO: make private/protected?
+	 * @param pegLocation Location of the peg (numeric)
+	 */
 	public void selectPeg(int pegLocation){
 		selectedPeg = pegLocation;
 	}
 	
+	/**
+	 * Gets the location of the currently selected peg
+	 * @return Returns the location of the selected peg
+	 */
 	public int getSelectedPeg(){
 		return selectedPeg;
 	}
@@ -209,10 +234,23 @@ public class Model {
 	public void setStatus(Status s){
 		status=s;
 	}
+	
 	public Status getStatus() {
 		return status;
 	}
 	
 	public enum Move { JUMP, SLIDE, NONE, INVALID }
+
+	@Override
+	public int hashCode() {
+		return 42; // TODO think of something to uniquely identify boards
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj); // TODO working on it...
+	}
+	
+	
 
 }
