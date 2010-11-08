@@ -81,22 +81,6 @@ public class S015LegalMoveTest {
 		assertTrue("have a peg at location 17",model.isPegAtLocation(17));
 	}
 	
-	@Test 
-	public void testStatusToInt(){
-		assertEquals("true",3,Status.toInt(Status.WHITE_SLIDE));
-		assertEquals("true",10,Status.toInt(Status.INVALID));
-		assertEquals("true",7,Status.toInt(Status.BLACK_CLICK));
-
-		assertEquals("true",1,Status.toInt(Status.WHITE_CLICK));
-		assertEquals("true",2,Status.toInt(Status.WHITE_JUMP));
-		assertEquals("true",5,Status.toInt(Status.WHITE_MOVE));
-		
-
-		assertEquals("true",4,Status.toInt(Status.WHITE_REMOVED));
-		assertEquals("true",6,Status.toInt(Status.BLACK_MOVE));
-		
-	}
-	
 	@Test
 	public void testGetMoveType() {
 		assertEquals("Move of type jump", Model.Move.JUMP, model.getMoveType(new Point(1, 2), new Point(3, 2)));
