@@ -6,6 +6,7 @@ import harbinPegSTN.model.Status;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,15 +42,32 @@ public class Main extends JFrame {
 		stnPuzzle=new SaveTheNetworkBoardPanel(this);
 		credits = new CreditsPanel();
 		buildGUI();
+		updateGUI();
 	}
 	
-	public void updateStatus(Status st){
-		continueButton.setEnabled((st == Status.WHITE_JUMP)||st==Status.PENALTY_REQUIRED);
-		statusArea.setText(Status.toString(st));
+	public void updateGUI() {
+		if (showCredits) {
+			statusArea.setVisible(false);
+			return;
+		}
+		statusArea.setVisible(true);
+		Status status = Status.NONE;
+		switch (state) {
+			case PEG_PUZZLE:
+				status = pegPuzzle.getModel().getStatus();
+				break;
+			case SAVE_THE_NETWORK:
+				status = stnPuzzle.getModel().getStatus();
+				break;
+		}
+		continueButton.setEnabled((status == Status.WHITE_JUMP)||(status == Status.PENALTY_REQUIRED));
+		statusArea.setText(Status.toString(status));
 	}
 	
 	private void buildGUI() {
-		setLayout(new BorderLayout());
+		BorderLayout layout = new BorderLayout();
+		setLayout(layout);
+		Font font = Font.decode("DejaVu Serif-24");
 		CardLayout cardStack = new CardLayout();
 		boardArea.setLayout(cardStack);
 
@@ -57,14 +75,16 @@ public class Main extends JFrame {
 		boardArea.add(pegPuzzle, CARD_PEG);
 		boardArea.add(credits, CARD_CREDITS);
 		
+		statusArea.setPreferredSize(new Dimension(80, 48));
+		statusArea.setHorizontalAlignment(SwingConstants.CENTER);
+		statusArea.setFont(font);
+		
 		add(boardArea, BorderLayout.CENTER);
 		add(new BottomPanel(), BorderLayout.SOUTH);
 		add(statusArea, BorderLayout.NORTH);
 
 		setSize(600, 600);
 		continueButton.setEnabled(false);
-		statusArea.setSize(Integer.MAX_VALUE, 50);
-		statusArea.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
 	public static void main(String[] args)
@@ -147,7 +167,8 @@ public class Main extends JFrame {
 			state = BoardState.PEG_PUZZLE;
 			break;
 		}
-	};
+		updateGUI();
+	}
 	
 	protected void toggleNumbers() {
 		pegPuzzle.setShowNumbers(!pegPuzzle.isShowNumbers());
@@ -157,9 +178,8 @@ public class Main extends JFrame {
 	}
 
 	protected void endJump() {
-		
 		continueButton.setEnabled(!stnPuzzle.endWhiteJump());
-		updateStatus(stnPuzzle.getStatus());
+		updateGUI();
 		
 	}
 
@@ -190,5 +210,6 @@ public class Main extends JFrame {
 			displayNumberButton.setEnabled(true);
 			credGameToggleButton.setText("Show Credits");
 		}
+		updateGUI();
 	}
 }
