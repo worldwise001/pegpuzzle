@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Main extends JFrame {
 	private static final String CARD_PEG = "PEG";
@@ -62,6 +63,8 @@ public class Main extends JFrame {
 
 		setSize(600, 600);
 		continueButton.setEnabled(false);
+		statusArea.setSize(Integer.MAX_VALUE, 50);
+		statusArea.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
 	public static void main(String[] args)
