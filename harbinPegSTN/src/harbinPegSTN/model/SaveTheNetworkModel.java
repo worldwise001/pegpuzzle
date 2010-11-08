@@ -16,9 +16,19 @@ public class SaveTheNetworkModel extends Model {
 		reset();
 		
 	}
-
+	public int getPenaltyWhtieLoc(){
+		return slidingWhite;
+	}
+	public void doPenalty(){
+		if(slidingWhite!=PEG_ID_NONE){
+			super.setPeg(Peg.NONE, slidingWhite);
+			setStatus(Status.BLACK_MOVE);
+		}
+	}
 	public boolean togglePeg(int loc) {
 		if (!isPegLocationValid(loc)) return false;
+		if(getStatus()==Status.PENALTY_REQUIRED)
+			return false;
 		if (processWhiteClick(loc)) return true;
 		if (getSelectedPeg() == PEG_ID_NONE && isPegAtLocation(loc))
 		{

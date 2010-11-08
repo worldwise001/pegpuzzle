@@ -43,7 +43,7 @@ public class Main extends JFrame {
 	}
 	
 	public void updateStatus(Status st){
-		continueButton.setEnabled((st == Status.WHITE_JUMP));
+		continueButton.setEnabled((st == Status.WHITE_JUMP)||st==Status.PENALTY_REQUIRED);
 		statusArea.setText(Status.toString(st));
 	}
 	
@@ -154,8 +154,10 @@ public class Main extends JFrame {
 	}
 
 	protected void endJump() {
-		stnPuzzle.endWhiteJump();
-		continueButton.setEnabled(false);
+		
+		continueButton.setEnabled(!stnPuzzle.endWhiteJump());
+		updateStatus(stnPuzzle.getStatus());
+		
 	}
 
 	protected void toggleCredits() {

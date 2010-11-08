@@ -106,7 +106,9 @@ public class BoardPanel extends JPanel implements MouseListener {
 		if(mainWindow!=null)
 			mainWindow.updateStatus(model.getStatus());
 	}
-	
+	public Status getStatus(){
+		return model.getStatus();
+	}
 	protected boolean processClick(int i) {
 		boolean result = model.togglePeg(i);
 		updateGUI();

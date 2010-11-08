@@ -6,6 +6,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import harbinPegSTN.model.Model;
 import harbinPegSTN.model.SaveTheNetworkModel;
+import harbinPegSTN.model.Status;
 
 public class SaveTheNetworkBoardPanel extends BoardPanel {
 
@@ -15,10 +16,22 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 	private RoundRectangle2D.Double bgDangerZone1 = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	private RoundRectangle2D.Double bgDangerZone2 = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	
-	public void endWhiteJump(){
+	public boolean endWhiteJump(){
+		
 		SaveTheNetworkModel m=(SaveTheNetworkModel)getModel();
-		m.reverseTurn();
-		updateGUI();
+		if(m.getStatus()==Status.PENALTY_REQUIRED){
+			m.doPenalty();
+			updateGUI();
+			return true;
+		}
+		else{
+			m.reverseTurn();
+			updateGUI();
+			if(m.getStatus()==Status.PENALTY_REQUIRED){
+				return false;
+			}
+			else return true;
+		}
 	}
 	public SaveTheNetworkBoardPanel(Main mWin) {
 		super(new SaveTheNetworkModel());

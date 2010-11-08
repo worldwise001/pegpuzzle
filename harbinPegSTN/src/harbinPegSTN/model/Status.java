@@ -67,7 +67,7 @@ public static String toString(Status st){
 	case WINNER_WHITE:{return "White is winner!";}
 	case WINNER_BLACK:{return "Black is winner!";}
 	case DRAW:{return "Tie up";}
-	case PENALTY_REQUIRED:{return "penalty for white";}
+	case PENALTY_REQUIRED:{return "penalty for white, press continue button!";}
 	case BALCK_MOVE_OR_WHITE_MULTIJUMP:{return "black move/white multijump";}
 	default: { return "INVALID OPERATION"; }
 }
