@@ -20,7 +20,7 @@ public class SaveTheNetworkModel extends Model {
 		reset();
 		
 	}
-	public int getPenaltyWhtieLoc(){
+	public int getPenaltyWhiteLoc(){
 		if(possibleJumpingWhite1!=PEG_ID_NONE&&possibleJumpingWhite2!=PEG_ID_NONE)
 			return slidingWhite;
 		int white;
@@ -36,7 +36,7 @@ public class SaveTheNetworkModel extends Model {
 	}
 	public void doPenalty(){
 		if(slidingWhite!=PEG_ID_NONE){
-			super.setPeg(Peg.NONE, this.getPenaltyWhtieLoc());
+			super.setPeg(Peg.NONE, this.getPenaltyWhiteLoc());
 			whitePegs=this.returnWhiteLoc();
 			if(whitePegs[0]==PEG_ID_NONE&&whitePegs[1]==PEG_ID_NONE)
 				setStatus(Status.WINNER_BLACK);
@@ -274,6 +274,7 @@ public class SaveTheNetworkModel extends Model {
 		slidingWhite=PEG_ID_NONE;
 		possibleJumpingWhite1=PEG_ID_NONE;
 		possibleJumpingWhite2=PEG_ID_NONE;
+		super.setStatus(Status.STN_START);
 	}
 
 	public boolean isFutureJumpPossible(int loc){
