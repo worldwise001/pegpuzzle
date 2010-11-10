@@ -18,6 +18,7 @@ public class VisualPeg {
 	private float strX = 0;
 	private float strY = 0;
 	private boolean selected = false;
+	private boolean penalty = false;
 	private Color color = null;
 	private Color textColor = Color.BLACK;
 	private Ellipse2D.Double shape = new Ellipse2D.Double();
@@ -86,6 +87,12 @@ public class VisualPeg {
 
 		g2.setColor(Color.BLACK);
 		g2.draw(shape);
+		
+		if (penalty) {
+			g2.setColor(Color.RED);
+			g2.drawLine((int)shape.x, (int)shape.y, (int)(shape.x+shape.width), (int)(shape.y+shape.width));
+			g2.drawLine((int)(shape.x+shape.width), (int)shape.y, (int)shape.x, (int)(shape.y+shape.width));
+		}
 	}
 	
 	public void drawText(Graphics2D g2) {
@@ -101,5 +108,9 @@ public class VisualPeg {
 
 	public void setSelected(boolean b) {
 		selected = b;
+	}
+	
+	public void setPenalty(boolean b) {
+		penalty = b;
 	}
 }

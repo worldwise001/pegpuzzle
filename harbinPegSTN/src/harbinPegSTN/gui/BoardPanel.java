@@ -53,6 +53,11 @@ public class BoardPanel extends JPanel implements MouseListener {
 			pegs[i].updateState(model.getPeg(i));
 		repaint();
 	}
+	
+	protected VisualPeg getPeg(int loc) {
+		if (loc < 1 || loc > 34) return null;
+		return pegs[loc];
+	}
 
 	@Override
 	public void paint(Graphics g) {

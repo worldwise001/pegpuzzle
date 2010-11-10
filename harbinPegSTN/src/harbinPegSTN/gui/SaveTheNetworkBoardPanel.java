@@ -16,26 +16,25 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 	private RoundRectangle2D.Double bgDangerZone1 = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	private RoundRectangle2D.Double bgDangerZone2 = new RoundRectangle2D.Double(0,0,0,0,30,30);
 	
-	public boolean endWhiteJump(){
-		
-		SaveTheNetworkModel m=(SaveTheNetworkModel)getModel();
-		if(m.getStatus()==Status.PENALTY_REQUIRED){
-			m.doPenalty();
-			updateGUI();
-			return true;
-		}
-		else{
-			m.reverseTurn();
-			updateGUI();
-			if(m.getStatus()==Status.PENALTY_REQUIRED){
-				return false;
-			}
-			else return true;
-		}
-	}
 	public SaveTheNetworkBoardPanel(Main mWin) {
 		super(new SaveTheNetworkModel());
 		mainWindow=mWin;
+	}
+	
+	protected void updateGUI() {
+		SaveTheNetworkModel m = (SaveTheNetworkModel)getModel();
+		if (m.getStatus() == Status.PENALTY_REQUIRED)
+		{
+			int loc = m.getPenaltyWhiteLoc();
+			if (loc != Model.PEG_ID_NONE)
+				getPeg(loc).setPenalty(true);
+		}
+		else
+		{
+			for (int i = 1; i < 34; i++)
+				getPeg(i).setPenalty(false);
+		}
+		super.updateGUI();
 	}
 
 	protected void colorBackground(Graphics2D g2) {
@@ -93,6 +92,25 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 			return DEEP_BLUE;
 		else
 			return DEEP_ORANGE;
+	}
+	
+	public boolean endWhiteJump(){
+		
+		SaveTheNetworkModel m=(SaveTheNetworkModel)getModel();
+		if(m.getStatus()==Status.PENALTY_REQUIRED){
+			m.doPenalty();
+			updateGUI();
+			return true;
+		}
+		else{
+			boolean result = true;
+			m.reverseTurn();
+			if(m.getStatus()==Status.PENALTY_REQUIRED){
+				result = false;
+			}
+			updateGUI();
+			return result;
+		}
 	}
 
 }
