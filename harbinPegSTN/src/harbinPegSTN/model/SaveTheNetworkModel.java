@@ -20,10 +20,10 @@ public class SaveTheNetworkModel extends Model {
 		reset();
 		
 	}
-	public int getPenaltyWhiteLoc(){
+	public int getPenaltyWhiteLoc(){ 
 		if(possibleJumpingWhite1!=PEG_ID_NONE&&possibleJumpingWhite2!=PEG_ID_NONE)
 			return slidingWhite;
-		int white;
+		int white= PEG_ID_NONE;
 		if(possibleJumpingWhite1!=PEG_ID_NONE){
 			white=possibleJumpingWhite1;
 		}
