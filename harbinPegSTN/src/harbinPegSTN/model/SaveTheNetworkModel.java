@@ -20,23 +20,36 @@ public class SaveTheNetworkModel extends Model {
 		reset();
 		
 	}
-	public int getPenaltyWhiteLoc(){ 
+	
+	public int[] getPenaltyWhiteLoc(){ 
+		//0 is previous location
+		//1 is current location
+		int [] a=new int[2];
+		whitePegs=returnWhiteLoc();
 		if(possibleJumpingWhite1!=PEG_ID_NONE&&possibleJumpingWhite2!=PEG_ID_NONE)
-			return slidingWhite;
-		int white= PEG_ID_NONE;
+		{
+			if(possibleJumpingWhite1==whitePegs[0])
+				a[0]=possibleJumpingWhite2;
+			else a[0]=possibleJumpingWhite1;
+			a[1]=slidingWhite;
+			return a;
+		}
+		int white= PEG_ID_NONE;  
 		if(possibleJumpingWhite1!=PEG_ID_NONE){
 			white=possibleJumpingWhite1;
 		}
 		else white=possibleJumpingWhite2;
-		whitePegs=returnWhiteLoc();
 		
+		a[0]=white;
 		if(white!=whitePegs[0]&&white!=whitePegs[1])
-			return slidingWhite;
-		else return white;
+			a[1]= slidingWhite;
+		else a[1]= white;
+		
+		return a;
 	}
 	public void doPenalty(){
 		if(slidingWhite!=PEG_ID_NONE){
-			super.setPeg(Peg.NONE, this.getPenaltyWhiteLoc());
+			super.setPeg(Peg.NONE, this.getPenaltyWhiteLoc()[1]);
 			whitePegs=this.returnWhiteLoc();
 			if(whitePegs[0]==PEG_ID_NONE&&whitePegs[1]==PEG_ID_NONE)
 				setStatus(Status.WINNER_BLACK);

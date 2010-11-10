@@ -25,9 +25,9 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 		SaveTheNetworkModel m = (SaveTheNetworkModel)getModel();
 		if (m.getStatus() == Status.PENALTY_REQUIRED)
 		{
-			int loc = m.getPenaltyWhiteLoc();
-			if (loc != Model.PEG_ID_NONE)
-				getPeg(loc).setPenalty(true);
+			int[] loc = m.getPenaltyWhiteLoc();
+			if (loc[1] != Model.PEG_ID_NONE)
+				getPeg(loc[1]).setPenalty(true);
 		}
 		else
 		{
