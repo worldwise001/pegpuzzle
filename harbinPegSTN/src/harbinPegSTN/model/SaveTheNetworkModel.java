@@ -10,7 +10,8 @@ public class SaveTheNetworkModel extends Model {
 	//keep track of which white slide
 	private int slidingWhite;
 	
-	int whitePegs[]= {PEG_ID_NONE,PEG_ID_NONE};
+	private int whitePegs[]= {PEG_ID_NONE,PEG_ID_NONE};
+	private int penaltyWhite[]={PEG_ID_NONE,PEG_ID_NONE};
 	private int possibleJumpingWhite1;
 	private int possibleJumpingWhite2;
 	
@@ -20,19 +21,22 @@ public class SaveTheNetworkModel extends Model {
 		reset();
 		
 	}
-	
+	public void setPenaltyWhiteLoc(int p, int n){
+		penaltyWhite[0]=p;
+		penaltyWhite[1]=n;
+	}
 	public int[] getPenaltyWhiteLoc(){ 
 		//0 is previous location
 		//1 is current location
-		int [] a=new int[2];
+		
 		whitePegs=returnWhiteLoc();
 		if(possibleJumpingWhite1!=PEG_ID_NONE&&possibleJumpingWhite2!=PEG_ID_NONE)
 		{
 			if(possibleJumpingWhite1==whitePegs[0])
-				a[0]=possibleJumpingWhite2;
-			else a[0]=possibleJumpingWhite1;
-			a[1]=slidingWhite;
-			return a;
+				penaltyWhite[0]=possibleJumpingWhite2;
+			else penaltyWhite[0]=possibleJumpingWhite1;
+			penaltyWhite[1]=slidingWhite;
+			return penaltyWhite;
 		}
 		int white= PEG_ID_NONE;  
 		if(possibleJumpingWhite1!=PEG_ID_NONE){
@@ -40,21 +44,21 @@ public class SaveTheNetworkModel extends Model {
 		}
 		else white=possibleJumpingWhite2;
 		
-		a[0]=white;
+		penaltyWhite[0]=white;
 		if(white!=whitePegs[0]&&white!=whitePegs[1])
-			a[1]= slidingWhite;
-		else a[1]= white;
+			penaltyWhite[1]= slidingWhite;
+		else penaltyWhite[1]= white;
 		
-		return a;
+		return penaltyWhite;
 	}
 	public void doPenalty(){
-		if(slidingWhite!=PEG_ID_NONE){
+		
 			super.setPeg(Peg.NONE, this.getPenaltyWhiteLoc()[1]);
 			whitePegs=this.returnWhiteLoc();
 			if(whitePegs[0]==PEG_ID_NONE&&whitePegs[1]==PEG_ID_NONE)
 				setStatus(Status.WINNER_BLACK);
 			else setStatus(Status.BLACK_MOVE);
-		}
+		
 	}
 	public boolean togglePeg(int loc) {
 		if (!isPegLocationValid(loc)) return false;
@@ -288,6 +292,8 @@ public class SaveTheNetworkModel extends Model {
 		possibleJumpingWhite1=PEG_ID_NONE;
 		possibleJumpingWhite2=PEG_ID_NONE;
 		super.setStatus(Status.STN_START);
+		penaltyWhite[0]=PEG_ID_NONE;
+		penaltyWhite[1]=PEG_ID_NONE;
 	}
 	@Override
 	protected boolean isPegLocationValid(Point pegLocation) {
