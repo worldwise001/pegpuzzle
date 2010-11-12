@@ -21,6 +21,7 @@ public class VisualPeg {
 	private float strY = 0;
 	private boolean selected = false;
 	private boolean penalty = false;
+	private boolean oldPenalty = false;
 	private Color color = null;
 	private Color textColor = Color.BLACK;
 	private Ellipse2D.Double shape = new Ellipse2D.Double();
@@ -90,13 +91,17 @@ public class VisualPeg {
 		g2.setColor(Color.BLACK);
 		g2.draw(shape);
 		
-		if (penalty) {
+		if (penalty || oldPenalty) {
 			g2.setColor(Color.RED);
 			Stroke oldStroke = g2.getStroke();
 			BasicStroke stroke = new BasicStroke(5);
 			g2.setStroke(stroke);
-			g2.drawLine((int)shape.x, (int)shape.y, (int)(shape.x+shape.width), (int)(shape.y+shape.width));
-			g2.drawLine((int)(shape.x+shape.width), (int)shape.y, (int)shape.x, (int)(shape.y+shape.width));
+			if (penalty) {
+				g2.drawLine((int)shape.x, (int)shape.y, (int)(shape.x+shape.width), (int)(shape.y+shape.width));
+				g2.drawLine((int)(shape.x+shape.width), (int)shape.y, (int)shape.x, (int)(shape.y+shape.width));
+			} 
+			if (oldPenalty)
+				g2.drawRect((int)shape.x, (int)shape.y, (int)shape.width, (int)shape.height);
 			g2.setStroke(oldStroke);
 		}
 	}
@@ -118,5 +123,9 @@ public class VisualPeg {
 	
 	public void setPenalty(boolean b) {
 		penalty = b;
+	}
+	
+	public void setOldPenalty(boolean b) {
+		oldPenalty = b;
 	}
 }

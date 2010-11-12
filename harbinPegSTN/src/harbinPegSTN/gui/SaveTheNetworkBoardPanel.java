@@ -28,11 +28,16 @@ public class SaveTheNetworkBoardPanel extends BoardPanel {
 			int[] loc = m.getPenaltyWhiteLoc();
 			if (loc[1] != Model.PEG_ID_NONE)
 				getPeg(loc[1]).setPenalty(true);
+			if (loc[0] != Model.PEG_ID_NONE)
+				getPeg(loc[0]).setOldPenalty(true);
 		}
 		else
 		{
 			for (int i = 1; i < 34; i++)
+			{
 				getPeg(i).setPenalty(false);
+				getPeg(i).setOldPenalty(false);
+			}
 		}
 		super.updateGUI();
 	}
