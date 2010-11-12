@@ -26,6 +26,10 @@ public class SaveTheNetworkModel extends Model {
 		penaltyWhite[1]=n;
 	}
 	public int[] getPenaltyWhiteLoc(){ 
+		
+		return penaltyWhite;
+	}
+	private void checkPenalty(){
 		//0 is previous location
 		//1 is current location
 		
@@ -36,7 +40,6 @@ public class SaveTheNetworkModel extends Model {
 				penaltyWhite[0]=possibleJumpingWhite2;
 			else penaltyWhite[0]=possibleJumpingWhite1;
 			penaltyWhite[1]=slidingWhite;
-			return penaltyWhite;
 		}
 		int white= PEG_ID_NONE;  
 		if(possibleJumpingWhite1!=PEG_ID_NONE){
@@ -49,7 +52,6 @@ public class SaveTheNetworkModel extends Model {
 			penaltyWhite[1]= slidingWhite;
 		else penaltyWhite[1]= white;
 		
-		return penaltyWhite;
 	}
 	public void doPenalty(){
 		
@@ -166,7 +168,8 @@ public class SaveTheNetworkModel extends Model {
 			//reverse turn to black,need to check penalty for white
 			int whitePegs[]=returnWhiteLoc();
 			if((possibleJumpingWhite1!=PEG_ID_NONE||possibleJumpingWhite2!=PEG_ID_NONE)&&slidingWhite!=PEG_ID_NONE){
-				setStatus(Status.PENALTY_REQUIRED);			
+				setStatus(Status.PENALTY_REQUIRED);		
+				checkPenalty();
 			}
 			else {
 				setStatus(Status.BLACK_MOVE);
