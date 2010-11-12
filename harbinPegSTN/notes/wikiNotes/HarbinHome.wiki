@@ -32,7 +32,7 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 
 ---+++ Iteration Two Stories
 | *ID* | *Status* |  *Title* | *Description* | *Remaining* | *Estimate* | *Priority* | *Dependencies* | *Iteration #* |
-| [[032]] | N |  Game Over Message | Determine Game Over when Save The Network game has ended | 2 | 2 | 15 | 015 | 2 |
+| [[032]] | P |  Game Over Message | Determine Game Over when Save The Network game has ended | 2 | 2 | 15 | 015 | 2 |
 | [[043]] | W |  Multiple Jumps (continue button) | Allow multiple jumps in a single turn by continue button | 0 | 0.5 | 10 | 040 | 2 |
 | [[070]] | N |  History stepthru | Step through all moves so far in the game | 2 | 2 | 25 | 015 | 2 |
 | [[071]] | N |  Save/Load History | Save/Load History of all moves | 1 | 1 | 30 | 070 | 2 |

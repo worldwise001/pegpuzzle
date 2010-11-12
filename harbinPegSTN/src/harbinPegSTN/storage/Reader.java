@@ -5,5 +5,5 @@ import harbinPegSTN.model.Model;
 public interface Reader {
 
 	public Model readModel();
-	public boolean ready();
+	public boolean readyRead();
 }

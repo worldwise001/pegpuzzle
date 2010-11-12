@@ -2,10 +2,12 @@ package harbinPegSTN.gui;
 
 import harbinPegSTN.model.Peg;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Stroke;
 import java.awt.font.LineMetrics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
@@ -90,8 +92,12 @@ public class VisualPeg {
 		
 		if (penalty) {
 			g2.setColor(Color.RED);
+			Stroke oldStroke = g2.getStroke();
+			BasicStroke stroke = new BasicStroke(5);
+			g2.setStroke(stroke);
 			g2.drawLine((int)shape.x, (int)shape.y, (int)(shape.x+shape.width), (int)(shape.y+shape.width));
 			g2.drawLine((int)(shape.x+shape.width), (int)shape.y, (int)shape.x, (int)(shape.y+shape.width));
+			g2.setStroke(oldStroke);
 		}
 	}
 	

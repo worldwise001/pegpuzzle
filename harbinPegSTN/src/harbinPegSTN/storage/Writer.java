@@ -5,5 +5,5 @@ import harbinPegSTN.model.Model;
 public interface Writer {
 
 	public boolean writeModel(Model model);
-	public boolean ready();
+	public boolean readyWrite();
 }
