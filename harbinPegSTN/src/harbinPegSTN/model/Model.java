@@ -251,6 +251,15 @@ public class Model {
 		return super.equals(obj); // TODO working on it...
 	}
 	
-	
+	public Peg[] getBoard() {
+		Peg[] board = new Peg[BOARD_RIGHT_BOUND+1];
+		for (int i = 0; i < BOARD_LEFT_BOUND; i++) {
+			board[i] = Peg.BLANK;
+		}
+		for (int i = BOARD_LEFT_BOUND; i <= BOARD_RIGHT_BOUND; i++) {
+			board[i] = getPeg(i);
+		}
+		return board;
+	}
 
 }

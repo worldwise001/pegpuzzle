@@ -1,7 +1,7 @@
 package harbinPegSTN.gui;
 
-import harbinPegSTN.model.SaveTheNetworkModel;
 import harbinPegSTN.model.Status;
+import harbinPegSTN.storage.XMLEngine;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -34,6 +34,8 @@ public class Main extends JFrame {
 	private JButton switchButton = new JButton("Switch Games");
 	private JButton credGameToggleButton = new JButton("Show Credits");
 	private JButton displayNumberButton = new JButton("Toggle Number Display");
+	private JButton saveButton = new JButton("Save Game");
+	private JButton loadButton = new JButton("Load Game");
 	
 	public Main()
 	{
@@ -48,6 +50,8 @@ public class Main extends JFrame {
 	public void updateGUI() {
 		if (showCredits) {
 			statusArea.setVisible(false);
+			saveButton.setEnabled(false);
+			loadButton.setEnabled(false);
 			return;
 		}
 		statusArea.setVisible(true);
@@ -55,10 +59,13 @@ public class Main extends JFrame {
 		switch (state) {
 			case PEG_PUZZLE:
 				status = pegPuzzle.getModel().getStatus();
+				saveButton.setEnabled(false);
+				loadButton.setEnabled(false);
 				break;
 			case SAVE_THE_NETWORK:
 				status = stnPuzzle.getModel().getStatus();
-					 
+				saveButton.setEnabled(true);
+				loadButton.setEnabled(true);
 				break;
 		}
 		continueButton.setEnabled((status == Status.WHITE_JUMP)||(status == Status.PENALTY_REQUIRED));
@@ -84,7 +91,7 @@ public class Main extends JFrame {
 		add(new BottomPanel(), BorderLayout.SOUTH);
 		add(statusArea, BorderLayout.NORTH);
 
-		setSize(600, 600);
+		setSize(900, 800);
 		continueButton.setEnabled(false);
 	}
 
@@ -106,6 +113,8 @@ public class Main extends JFrame {
 			add(displayNumberButton);
 			add(continueButton);
 			add(credGameToggleButton);
+			add(saveButton);
+			add(loadButton);
 
 			setMinimumSize(new Dimension(80, 36));
 			setMaximumSize(new Dimension(Short.MAX_VALUE, 36));
@@ -138,6 +147,13 @@ public class Main extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					toggleCredits();
+				}
+			});
+			saveButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					XMLEngine engine = new XMLEngine();
+					engine.write(stnPuzzle.getModel());
 				}
 			});
 			
