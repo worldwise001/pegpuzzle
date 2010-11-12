@@ -4,14 +4,13 @@ import java.awt.Point;
 
 public class SaveTheNetworkModel extends Model {
 	private Peg turn;
-	private int numWhitePegsToPlace = 2;
 	//keep track which white jump
 	private int jumpingWhite;
 	//keep track of which white slide
 	private int slidingWhite;
 	
-	private int whitePegs[]= {PEG_ID_NONE,PEG_ID_NONE};
-	private int penaltyWhite[]={PEG_ID_NONE,PEG_ID_NONE};
+	private int[] whitePegs;
+	private int[] penaltyWhite;
 	private int possibleJumpingWhite1;
 	private int possibleJumpingWhite2;
 	
@@ -122,13 +121,13 @@ public class SaveTheNetworkModel extends Model {
 	}
 
 	public boolean processWhiteClick(int i) {
-		if (numWhitePegsToPlace > 0) {
+		if (getStatus() == Status.WHITE_PLACE_1ST || getStatus() == Status.WHITE_PLACE_2ND) {
 			if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11))
 			{
 				if (getPeg(i) == Peg.WHITE) return false;
 				setPeg(Peg.WHITE, i);
-				setStatus(Status.WHITE_CLICK);
-				numWhitePegsToPlace--;
+				if (getStatus() == Status.WHITE_PLACE_1ST) setStatus(Status.WHITE_PLACE_2ND);
+				else setStatus(Status.BLACK_MOVE);
 				return true;
 			}
 		}
@@ -290,14 +289,17 @@ public class SaveTheNetworkModel extends Model {
 		for (int i = 14; i <= 33; i++)
 			super.setPeg(Peg.BLACK, i);
 		turn = Peg.BLACK;
-		numWhitePegsToPlace = 2;
 		jumpingWhite=PEG_ID_NONE;
 		slidingWhite=PEG_ID_NONE;
 		possibleJumpingWhite1=PEG_ID_NONE;
 		possibleJumpingWhite2=PEG_ID_NONE;
-		super.setStatus(Status.STN_START);
+		penaltyWhite = new int[2];
 		penaltyWhite[0]=PEG_ID_NONE;
 		penaltyWhite[1]=PEG_ID_NONE;
+		whitePegs = new int[2];
+		whitePegs[0] = PEG_ID_NONE;
+		whitePegs[1] = PEG_ID_NONE;
+		super.setStatus(Status.WHITE_PLACE_1ST);
 	}
 	@Override
 	protected boolean isPegLocationValid(Point pegLocation) {

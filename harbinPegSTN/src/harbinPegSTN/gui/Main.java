@@ -1,5 +1,6 @@
 package harbinPegSTN.gui;
 
+import harbinPegSTN.model.Model;
 import harbinPegSTN.model.Status;
 import harbinPegSTN.storage.XMLEngine;
 
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,6 +38,7 @@ public class Main extends JFrame {
 	private JButton displayNumberButton = new JButton("Toggle Number Display");
 	private JButton saveButton = new JButton("Save Game");
 	private JButton loadButton = new JButton("Load Game");
+	private final JFileChooser chooser = new JFileChooser();
 	
 	public Main()
 	{
@@ -123,6 +126,7 @@ public class Main extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					resetBoard();
+					updateGUI();
 				}
 			});
 			continueButton.addActionListener(new ActionListener() {
@@ -152,11 +156,22 @@ public class Main extends JFrame {
 			saveButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					XMLEngine engine = new XMLEngine();
-					engine.write(stnPuzzle.getModel());
+					int result = chooser.showSaveDialog(boardArea);
+					if (result == JFileChooser.APPROVE_OPTION)
+						XMLEngine.write(stnPuzzle.getModel(), chooser.getSelectedFile());
 				}
 			});
-			
+			loadButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int result = chooser.showOpenDialog(boardArea);
+					if (result == JFileChooser.APPROVE_OPTION) {
+						Model m = XMLEngine.read(chooser.getSelectedFile());
+						stnPuzzle.setModel(m);
+						updateGUI();
+					}
+				}
+			});
 		}
 	}
 

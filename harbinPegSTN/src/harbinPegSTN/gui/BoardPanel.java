@@ -122,6 +122,11 @@ public class BoardPanel extends JPanel implements MouseListener {
 		return model;
 	}
 	
+	protected void setModel(Model m) {
+		model = m;
+		updateGUI();
+	}
+	
 	public void reset() {
 		model.reset();
 		updateGUI();

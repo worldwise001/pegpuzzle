@@ -261,5 +261,11 @@ public class Model {
 		}
 		return board;
 	}
+	
+	public void setBoard(Peg[] board) {
+		for (int i = BOARD_LEFT_BOUND; i <= BOARD_RIGHT_BOUND; i++) {
+			setPeg(board[i], i);
+		}
+	}
 
 }
