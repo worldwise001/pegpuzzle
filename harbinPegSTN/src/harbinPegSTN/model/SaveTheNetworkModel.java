@@ -289,7 +289,14 @@ public class SaveTheNetworkModel extends Model {
 		possibleJumpingWhite2=PEG_ID_NONE;
 		super.setStatus(Status.STN_START);
 	}
-
+	@Override
+	protected boolean isPegLocationValid(Point pegLocation) {
+		if(!super.isPegLocationValid(pegLocation))
+			return false;
+		if(this.getSquaredDistance(pegLocation, this.getNearestCorner(pegLocation))<=2)
+			return false;
+		return true;
+	}
 	public boolean isFutureJumpPossible(int loc){
 		if (!isPegLocationValid(loc)) return false;
 
