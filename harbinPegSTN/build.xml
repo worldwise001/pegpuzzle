@@ -17,7 +17,7 @@
 	<target depends="init" description="Removes temporary directories" name="clean">
 		<delete dir="${build.dir}" />
 	</target>
-	<target name="compile" depends="init">
+	<target name="compile_debug" depends="init">
 		<javac debug="true" deprecation="true" fork="true" destdir="${build.dir}/classes" srcdir="${src.dir}" verbose="true">
 			<classpath>
 				<pathelement location="${junitJar}" />
@@ -33,6 +33,21 @@
 			</fileset>
 		 </copy>
 	</target>
+	<target name="compile" depends="init">
+			<javac debug="true" deprecation="true" fork="true" destdir="${build.dir}/classes" srcdir="${src.dir}" verbose="true">
+				<classpath>
+					<pathelement location="${jdom.dir}/jdom.jar" />
+				</classpath>
+				<exclude name="**/test/**" />
+				<exclude name="**/demo/**" />
+				<exclude name="**/snippets/**" />
+			</javac>
+			<copy todir="${build.dir}/classes">
+				<fileset dir="${base.dir}">
+					<filename name="**/${rsrc.name}/**"/>
+				</fileset>
+			 </copy>
+		</target>
 	<target name="run" depends="compile" description="Run the Application">
 		<java classname="harbinPegSTN.gui.Main" failonerror="true" fork="true">
 			<classpath>
@@ -41,7 +56,7 @@
 			</classpath>
 		</java>
 	</target>
-	<target name="run gui demos" depends="compile" description="Run GUI Demos">
+	<target name="run gui demos" depends="compile_debug" description="Run GUI Demos">
 		<java classname="de.jdemo.swingui.DemoRunner" failonerror="true" fork="true">
 			<classpath>
 				<pathelement location="${jdemo.dir}/jdemo_core.jar" />
@@ -54,7 +69,7 @@
 			<arg path="${src.dir}" />
 		</java>
 	</target>
-	<target name="junit tests" depends="compile" description="Execute Unit Tests">
+	<target name="junit tests" depends="compile_debug" description="Execute Unit Tests">
 		<mkdir dir="${junit.output.dir}" />
 		<junit fork="yes" forkmode="once" printsummary="withOutAndErr">
 			<classpath>
