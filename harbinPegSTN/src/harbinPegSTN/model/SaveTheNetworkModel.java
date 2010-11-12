@@ -18,6 +18,7 @@ public class SaveTheNetworkModel extends Model {
 	//who is winning
 	private Peg winning;
 	public SaveTheNetworkModel() {
+		penaltyWhite=new int[2];
 		reset();
 		
 	}
