@@ -91,7 +91,7 @@ public class Main extends JFrame {
 		add(new BottomPanel(), BorderLayout.SOUTH);
 		add(statusArea, BorderLayout.NORTH);
 
-		setSize(900, 800);
+		setSize(900, 600);
 		continueButton.setEnabled(false);
 	}
 
