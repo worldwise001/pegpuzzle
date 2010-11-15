@@ -6,7 +6,7 @@ public enum Status { WHITE_PLACE, WHITE_CLICK, WHITE_JUMP,
 	PEG_JUMP, INVALID ,WHITE_PLACE_1ST, WHITE_PLACE_2ND, 
 	WINNER_WHITE, WINNER_BLACK, DRAW, PENALTY_REQUIRED, 
 	BLACK_MOVE_OR_WHITE_MULTIJUMP, 
-	STN_START,
+	STN_START, GAME_OVER,
 	NONE;
 
 
@@ -33,6 +33,7 @@ public static String toString(Status st){
 	case PENALTY_REQUIRED:{return "Penalty for white, press continue button!";}
 	case BLACK_MOVE_OR_WHITE_MULTIJUMP:{return "Black move/white multijump";}
 	case STN_START:{return "Game start! White need to place two pegs!";}
+	case GAME_OVER:{return "Game over!";}
 	case NONE: return "";
 	
 	default: { return "INVALID OPERATION"; }

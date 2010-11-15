@@ -165,8 +165,6 @@ public class SaveTheNetworkModel extends Model {
 				return;
 			}
 			turn=Peg.BLACK;
-			//reverse turn to black,need to check penalty for white
-			int whitePegs[]=returnWhiteLoc();
 			if((possibleJumpingWhite1!=PEG_ID_NONE||possibleJumpingWhite2!=PEG_ID_NONE)&&slidingWhite!=PEG_ID_NONE){
 				setStatus(Status.PENALTY_REQUIRED);		
 				checkPenalty();

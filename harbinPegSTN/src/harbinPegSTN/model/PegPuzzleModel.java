@@ -40,4 +40,12 @@ public class PegPuzzleModel extends Model{
 		}
 		setPeg(Peg.NONE,CENTER_LOC);
 	}
+	
+	public int remainingPegs() {
+		Peg[] board = getBoard();
+		int total = 0;
+		for (int i = 1; i < 34; i++)
+			if (board[i] == Peg.NORMAL) total++;
+		return total;
+	}
 }

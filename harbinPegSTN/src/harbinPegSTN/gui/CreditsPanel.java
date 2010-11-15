@@ -71,7 +71,7 @@ public class CreditsPanel extends javax.swing.JPanel {
 
 		jLabel10.setText("Written as part of group project for:");
 
-		jLabel11.setText("CS437 - Software Engineering (Fall 2010)");
+		jLabel11.setText("CS435 - Software Engineering (Fall 2010)");
 
 		jLabel12.setText("Southern Illinois University - Carbondale");
 

@@ -46,4 +46,9 @@ public class PegPuzzleBoardPanel extends BoardPanel {
 		g2.drawLine(lx1, ly2, lx2, ly2);
 	}
 
+	public int getPegCount() {
+		PegPuzzleModel m = (PegPuzzleModel)getModel();
+		return m.remainingPegs();
+	}
+
 }

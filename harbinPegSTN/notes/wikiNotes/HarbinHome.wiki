@@ -36,7 +36,7 @@ Class project to design and write [[Peg Puzzle]] and [[Save The Network]] games 
 | [[043]] | W |  Multiple Jumps (continue button) | Allow multiple jumps in a single turn by continue button | 0 | 0.5 | 10 | 040 | 2 |
 | [[070]] | N |  History stepthru | Step through all moves so far in the game | 2 | 2 | 25 | 015 | 2 |
 | [[071]] | N |  Save/Load History | Save/Load History of all moves | 1 | 1 | 30 | 070 | 2 |
-| [[120]] | P |  Remove white | Remove white if jump not taken | 0.5 | 0.5 | 10 | 041 | 2 |
+| [[120]] | W |  Remove white | Remove white if jump not taken | 0 | 0.5 | 10 | 041 | 2 |
 | [[130]] | R |  White AI | AI for white | 3 | 3 | 30 | 041,017 | 2 |
 | [[135]] | R |  Black AI | AI for black | 5 | 5 | 30 | 017 | 2 |
 | [[210]] | W |  Credits | Show Credits | 0 | 0.5 | 10 | - | 2 |

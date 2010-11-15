@@ -62,17 +62,21 @@ public class Main extends JFrame {
 		switch (state) {
 			case PEG_PUZZLE:
 				status = pegPuzzle.getModel().getStatus();
+				if (status == Status.GAME_OVER)
+					statusArea.setText(Status.toString(status));
+				else
+					statusArea.setText(pegPuzzle.getPegCount()+ " pegs remaining");
 				saveButton.setEnabled(false);
 				loadButton.setEnabled(false);
 				break;
 			case SAVE_THE_NETWORK:
 				status = stnPuzzle.getModel().getStatus();
+				statusArea.setText(Status.toString(status));
 				saveButton.setEnabled(true);
 				loadButton.setEnabled(true);
 				break;
 		}
 		continueButton.setEnabled((status == Status.WHITE_JUMP)||(status == Status.PENALTY_REQUIRED));
-		statusArea.setText(Status.toString(status));
 	}
 	
 	private void buildGUI() {
