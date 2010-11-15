@@ -131,6 +131,9 @@ public class SaveTheNetworkModel extends Model {
 				selectPeg(loc);
 				setStatus(Status.WHITE_JUMP);
 				return true;
+			} else if (lastWhiteMove == Move.JUMP) {
+				reverseTurn();
+				return true;
 			}
 			selectPeg(PEG_ID_NONE);
 			setStatus(Status.INVALID);
