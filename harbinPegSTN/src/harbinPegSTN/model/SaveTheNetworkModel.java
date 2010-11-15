@@ -60,22 +60,30 @@ public class SaveTheNetworkModel extends Model {
 		if (white[0][0] == from) white[0][1] = to;
 		if (white[1][0] == from) white[1][1] = to;
 	}
+	
+	private void printWhites() {
+		System.out.println(white[0][0] + " -> " + white[0][1]);
+		System.out.println(white[1][0] + " -> " + white[1][1]);
+	}
+	
+	private void tempFlipWhites(int i) {
+		if (getPeg(white[i][0]) == Peg.WHITE) setPeg(Peg.NONE, white[i][0]);
+		else setPeg(Peg.WHITE, white[i][0]);
+	}
 
 	private void checkPenalty() {
 		if (lastWhiteMove == Move.JUMP) return;
+		printWhites();
 		for (int i = 0; i < 2; i++) {
-			setPeg(Peg.WHITE, white[i][0]);
-			setPeg(Peg.NONE, white[i][1]);
+			if (white[i][0] != white[i][1]) tempFlipWhites(i);
 			if (isFutureJumpPossible(white[i][0])) {
-				setPeg(Peg.NONE, white[i][0]);
-				setPeg(Peg.WHITE, white[i][1]);
+				if (white[i][0] != white[i][1]) tempFlipWhites(i);
 				System.out.println("Penalty at "+white[i][0]+"!");
 				whitePenalty = i+1;
 				setStatus(Status.PENALTY_REQUIRED);
 				return;
 			}
-			setPeg(Peg.NONE, white[i][0]);
-			setPeg(Peg.WHITE, white[i][1]);
+			if (white[i][0] != white[i][1]) tempFlipWhites(i);
 		}
 		whitePenalty = 0;
 	}
@@ -180,6 +188,7 @@ public class SaveTheNetworkModel extends Model {
 	public void reverseTurn() {
 		if(turn==Peg.WHITE)
 		{
+			System.out.println("End white turn, last move="+lastWhiteMove);
 			selectPeg(PEG_ID_NONE);
 			checkPenalty();
 			lastWhiteMove = Move.NONE;
