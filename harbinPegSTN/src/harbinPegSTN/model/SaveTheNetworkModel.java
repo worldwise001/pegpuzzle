@@ -171,7 +171,7 @@ public class SaveTheNetworkModel extends Model {
 			if(getPeg(i)==Peg.BLACK)
 				count++;
 		}
-		return count<18;
+		return count<6;
 	}
 
 	public void reverseTurn() {
