@@ -98,7 +98,6 @@ public class XMLEngine { //implements Storage {
 					break;
 				}
 			}
-			model.setStatus(status);
 			if (status == Status.PENALTY_REQUIRED) {
 				Element ep = state.getChild("Penalty");
 				String[] sp = ep.getText().split(" ");
@@ -106,6 +105,7 @@ public class XMLEngine { //implements Storage {
 				int n = Integer.parseInt(sp[1]);
 				model.setPenaltyWhiteLoc(p, n);
 			}
+			model.setStatus(status);
 			return model;
 			
 		} catch (JDOMException e) {

@@ -4,73 +4,100 @@ import java.awt.Point;
 
 public class SaveTheNetworkModel extends Model {
 	private Peg turn;
-	//keep track which white jump
-	private int jumpingWhite;
-	//keep track of which white slide
-	private int slidingWhite;
-	
-	private int[] whitePegs;
-	private int[] penaltyWhite;
-	private int possibleJumpingWhite1;
-	private int possibleJumpingWhite2;
-	
+
+	private int[][] white = new int[2][2];
+	private Move lastWhiteMove = Move.NONE;
+	private int whitePenalty = 0;
+
 	//who is winning
 	private Peg winning;
 	public SaveTheNetworkModel() {
-		penaltyWhite=new int[2];
 		reset();
-		
+
 	}
-	public void setPenaltyWhiteLoc(int p, int n){
-		penaltyWhite[0]=p;
-		penaltyWhite[1]=n;
+	public void setPenaltyWhiteLoc(int p, int n) {
+		preWhiteMove();
+		if (white[0][1] == n) white[0][0] = p;
+		else if (white[1][1] == n) white[1][0] = p;
+		checkPenalty();
 	}
-	public int[] getPenaltyWhiteLoc(){ 
-		
-		return penaltyWhite;
+
+	public int[] getPenaltyWhiteLoc() { 
+		if (whitePenalty > 0) return white[whitePenalty-1];
+		return null;
 	}
-	private void checkPenalty(){
-		//0 is previous location
-		//1 is current location
-		
-		whitePegs=returnWhiteLoc();
-		if(possibleJumpingWhite1!=PEG_ID_NONE&&possibleJumpingWhite2!=PEG_ID_NONE)
-		{
-			if(possibleJumpingWhite1==whitePegs[0])
-				penaltyWhite[0]=possibleJumpingWhite2;
-			else penaltyWhite[0]=possibleJumpingWhite1;
-			penaltyWhite[1]=slidingWhite;
+
+	private void resetWhiteTrackers() {
+		white[0][0] = 0;
+		white[0][1] = 0;
+		white[1][0] = 0;
+		white[1][1] = 0;
+		whitePenalty = 0;
+	}
+
+	private boolean whiteExists() {
+		for (int i = 1; i < 34; i++) {
+			if (getPeg(i) == Peg.WHITE) {
+				return true;
+			}
 		}
-		int white= PEG_ID_NONE;  
-		if(possibleJumpingWhite1!=PEG_ID_NONE){
-			white=possibleJumpingWhite1;
+		return false;
+	}
+
+	private void preWhiteMove() {
+		int count = 0;
+		resetWhiteTrackers();
+		for (int i = 1; i < 34 && count < 2; i++) {
+			if (getPeg(i) == Peg.WHITE) {
+				white[count][0] = i;
+				white[count][1] = i;
+				count++;
+			}
 		}
-		else white=possibleJumpingWhite2;
-		
-		penaltyWhite[0]=white;
-		if(white!=whitePegs[0]&&white!=whitePegs[1])
-			penaltyWhite[1]= slidingWhite;
-		else penaltyWhite[1]= white;
-		
 	}
-	public void doPenalty(){
-		
-			super.setPeg(Peg.NONE, this.getPenaltyWhiteLoc()[1]);
-			whitePegs=this.returnWhiteLoc();
-			if(whitePegs[0]==PEG_ID_NONE&&whitePegs[1]==PEG_ID_NONE)
-				setStatus(Status.WINNER_BLACK);
-			else setStatus(Status.BLACK_MOVE);
-		
+
+	private void postWhiteMove(int from, int to) {
+		if (white[0][0] == from) white[0][1] = to;
+		if (white[1][0] == from) white[1][1] = to;
 	}
+
+	private void checkPenalty() {
+		if (lastWhiteMove == Move.JUMP) return;
+		for (int i = 0; i < 2; i++) {
+			setPeg(Peg.WHITE, white[i][0]);
+			setPeg(Peg.NONE, white[i][1]);
+			if (isFutureJumpPossible(white[i][0])) {
+				setPeg(Peg.NONE, white[i][0]);
+				setPeg(Peg.WHITE, white[i][1]);
+				System.out.println("Penalty at "+white[i][0]+"!");
+				whitePenalty = i+1;
+				setStatus(Status.PENALTY_REQUIRED);
+				return;
+			}
+			setPeg(Peg.NONE, white[i][0]);
+			setPeg(Peg.WHITE, white[i][1]);
+		}
+		whitePenalty = 0;
+	}
+
+	public void doPenalty() {
+		if (whitePenalty > 0) setPeg(Peg.NONE, white[whitePenalty-1][1]);
+		if(!whiteExists()) setStatus(Status.WINNER_BLACK);
+		else {
+			setStatus(Status.BLACK_MOVE);
+			turn=Peg.BLACK;
+		}
+		resetWhiteTrackers();
+	}
+
 	public boolean togglePeg(int loc) {
+		if (getStatus() == Status.WINNER_BLACK || getStatus() == Status.WINNER_WHITE) return true;
 		if (!isPegLocationValid(loc)) return false;
-		if(getStatus()==Status.PENALTY_REQUIRED)
-			return false;
+		if(getStatus()==Status.PENALTY_REQUIRED) return false;
 		if (processWhiteClick(loc)) return true;
 		if (getSelectedPeg() == PEG_ID_NONE && isPegAtLocation(loc))
 		{
-			if(this.whoseTurn()!= getPeg(loc))
-				return false;
+			if(whoseTurn()!= getPeg(loc)) return false;
 			selectPeg(loc);
 			return true;
 		}
@@ -80,16 +107,17 @@ public class SaveTheNetworkModel extends Model {
 	protected boolean processMove(int loc) {
 		switch (getMoveType(pegIDToPoint(getSelectedPeg()), pegIDToPoint(loc))) {
 		case SLIDE:
-			if (jumpingWhite!=PEG_ID_NONE) {
-				jumpingWhite = PEG_ID_NONE;
-				slidingWhite=loc;
+			if (whoseTurn() == Peg.WHITE && lastWhiteMove == Move.JUMP) {
 				reverseTurn();
-				return false;
+				return true;
 			}
 			else
 			{
 				if (makeMove(getSelectedPeg(), loc)){
-					slidingWhite=loc;
+					if (whoseTurn() == Peg.WHITE) {
+						lastWhiteMove = Move.SLIDE;
+						postWhiteMove(getSelectedPeg(), loc);
+					}
 					reverseTurn();
 					return true;
 				}
@@ -99,7 +127,7 @@ public class SaveTheNetworkModel extends Model {
 			}
 		case JUMP:
 			if (makeMove(getSelectedPeg(), loc)) {
-				jumpingWhite = loc;
+				lastWhiteMove = Move.JUMP;
 				selectPeg(loc);
 				setStatus(Status.WHITE_JUMP);
 				return true;
@@ -108,18 +136,17 @@ public class SaveTheNetworkModel extends Model {
 			setStatus(Status.INVALID);
 			return false;
 		case NONE:
-			jumpingWhite = PEG_ID_NONE;
+			lastWhiteMove = Move.NONE;
 			selectPeg(PEG_ID_NONE);
 			return true;
 		case INVALID:
-			jumpingWhite = PEG_ID_NONE;
+			lastWhiteMove = Move.NONE;
 			selectPeg(PEG_ID_NONE);
 			setStatus(Status.INVALID);
 			return false;
 		}
 		return false;
 	}
-
 	public boolean processWhiteClick(int i) {
 		if (getStatus() == Status.WHITE_PLACE_1ST || getStatus() == Status.WHITE_PLACE_2ND) {
 			if ((i >= 1 && i <= 6) || (i >= 9 && i <= 11))
@@ -137,18 +164,7 @@ public class SaveTheNetworkModel extends Model {
 	public Peg whoseTurn(){
 		return turn;
 	}
-	private int [] returnWhiteLoc(){
-		
-		whitePegs[0]=PEG_ID_NONE;
-		whitePegs[1]=PEG_ID_NONE;
-		int count=0;
-		for(int i=1;i<=33;i++){
-			if(getPeg(i)==Peg.WHITE)
-				whitePegs[count++]=i;
-			
-		}
-		return whitePegs;
-	}
+
 	private boolean isBlackLose(){
 		int count=0;
 		for(int i=1;i<=33;i++){
@@ -157,39 +173,30 @@ public class SaveTheNetworkModel extends Model {
 		}
 		return count<18;
 	}
+
 	public void reverseTurn() {
 		if(turn==Peg.WHITE)
 		{
+			selectPeg(PEG_ID_NONE);
+			checkPenalty();
+			lastWhiteMove = Move.NONE;
 			if(this.isBlackLose()){
 				setStatus(Status.WINNER_WHITE);
+				selectPeg(PEG_ID_NONE);
 				return;
 			}
-			turn=Peg.BLACK;
-			if((possibleJumpingWhite1!=PEG_ID_NONE||possibleJumpingWhite2!=PEG_ID_NONE)&&slidingWhite!=PEG_ID_NONE){
-				setStatus(Status.PENALTY_REQUIRED);		
-				checkPenalty();
-			}
-			else {
+			if (getStatus() != Status.PENALTY_REQUIRED) {
 				setStatus(Status.BLACK_MOVE);
+				turn=Peg.BLACK;
 			}
 		}
 		else
 		{
 			turn=Peg.WHITE;
-			slidingWhite=PEG_ID_NONE;
-			jumpingWhite=PEG_ID_NONE;
-			int whitePegs[]=returnWhiteLoc();
-			if(isFutureJumpPossible(whitePegs[0]))
-				possibleJumpingWhite1=whitePegs[0];
-			else possibleJumpingWhite1=PEG_ID_NONE;
-			if(isFutureJumpPossible(whitePegs[1])){
-				possibleJumpingWhite2=whitePegs[1]; 
-			}
-			else possibleJumpingWhite2=PEG_ID_NONE;
-			
+			lastWhiteMove = Move.NONE;
 			setStatus(Status.WHITE_MOVE);
+			preWhiteMove();
 		}
-		jumpingWhite = PEG_ID_NONE;
 		selectPeg(PEG_ID_NONE);
 	}
 
@@ -200,11 +207,11 @@ public class SaveTheNetworkModel extends Model {
 			return false;
 		return (getPeg(fPt) == Peg.BLACK && (sPt.x <= fPt.x)) || (getPeg(fPt) == Peg.WHITE);
 	}
-	
+
 	private int getSquaredDistance(Point p1, Point p2) {
 		return (int)((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
 	}
-	
+
 	private Point getNearestCorner(Point p) {
 		Point corner = new Point();
 		corner.x = (p.x / (BOARD_SIZE/2+1))*(BOARD_SIZE-1);
@@ -214,7 +221,6 @@ public class SaveTheNetworkModel extends Model {
 
 	public boolean checkMove(Point fPt, Point sPt) {
 		if (!isPegLocationValid(fPt) || !isPegLocationValid(sPt)) return false;
-
 		switch (getPeg(fPt)) {
 		case BLACK:
 			// black dots can only move forward and sideways
@@ -223,8 +229,9 @@ public class SaveTheNetworkModel extends Model {
 		case WHITE:
 			// white can move either way
 			Point mid = getMiddlePeg(fPt, sPt);
-			return (checkSlide(fPt,sPt) && !isPegAtLocation(sPt)) || // 1: slide
-			(checkJump(fPt,sPt) && (getPeg(mid) == Peg.BLACK) && !isPegAtLocation(sPt)); // 2: jump
+			boolean slide = (checkSlide(fPt,sPt) && !isPegAtLocation(sPt));// 1: slide
+			boolean jump = (checkJump(fPt,sPt) && (getPeg(mid) == Peg.BLACK) && !isPegAtLocation(sPt)); // 2: jump
+			return slide || jump;
 		default:
 			return false;
 		}
@@ -287,16 +294,6 @@ public class SaveTheNetworkModel extends Model {
 		for (int i = 14; i <= 33; i++)
 			super.setPeg(Peg.BLACK, i);
 		turn = Peg.BLACK;
-		jumpingWhite=PEG_ID_NONE;
-		slidingWhite=PEG_ID_NONE;
-		possibleJumpingWhite1=PEG_ID_NONE;
-		possibleJumpingWhite2=PEG_ID_NONE;
-		penaltyWhite = new int[2];
-		penaltyWhite[0]=PEG_ID_NONE;
-		penaltyWhite[1]=PEG_ID_NONE;
-		whitePegs = new int[2];
-		whitePegs[0] = PEG_ID_NONE;
-		whitePegs[1] = PEG_ID_NONE;
 		super.setStatus(Status.WHITE_PLACE_1ST);
 	}
 	@Override
