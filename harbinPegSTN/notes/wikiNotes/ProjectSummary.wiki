@@ -1,7 +1,5 @@
 Back to HarbinHome
 
----+ Project Summary
-
 In general, this was a rather interesting "test" project so to speak to demonstrate the different aspects of software development. In general, our group managed to get a lot done on the project, in addition to learning a lot about the software development process.
 
 Some of the more notable accomplishments that were coding-related:
