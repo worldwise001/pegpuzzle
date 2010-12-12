@@ -1,0 +1,23 @@
+Back to HarbinHome
+
+---+ Project Summary
+
+In general, this was a rather interesting "test" project so to speak to demonstrate the different aspects of software development. In general, our group managed to get a lot done on the project, in addition to learning a lot about the software development process.
+
+Some of the more notable accomplishments that were coding-related:
+   * Separation of classes for game-specific logic
+      * We were able to combine duplicate code common to both games into a superclass, and make each game subclass that with more specific game logic.
+   * STN Multi-jump logic
+      * We managed to integrate jump detection, and the use of an external continue button without affecting the gameplay of PegPuzzle.
+   * STN Penalty detection/enactment
+      * We were able to track white's moves, detect potential white jumps, and correctly mark and remove white pieces should they not take advantage of a potential white jump move. We were also able to save and load this state into XML.
+   * Graphical display
+      * We were able to migrate from a button-based game to a drawn JPanel game.
+      
+Some of the more notable accomplishments that were project-related:
+   * Shared code ownership
+      * We were able to, at any time, jump in and modify/fix any portion of the code.
+   * Story completion (first iteration)
+      * For the first iteration, we were able to successfully complete all of the stories, plus get additional work done indirectly.
+   * Metrics
+      * We were able (initially) to satisfy a lot of the metrics requirements when running the tools
